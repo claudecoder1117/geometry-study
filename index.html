@@ -5,63 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Geometry Study — Period 2</title>
 <style>
-:root{--bg:#f4f6fb;--panel:#ffffff;--ink:#1a2333;--mut:#667084;--acc:#1d4ed8;--acc-d:#1740b4;--ok:#15803d;--okbg:#eaf7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e3e8f2;--gold:#8a6d00;}
+:root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;justify-content:center;}
-#app{width:100%;max-width:640px;padding:16px 16px 44px;}
+body{margin:0;background:linear-gradient(180deg,#dde7fb 0,#eef2fb 300px,var(--bg) 560px) no-repeat var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;justify-content:center;}
+#app{width:100%;max-width:640px;padding:18px 16px 48px;}
 .screen{display:none;}
 .screen.on{display:block;animation:fadein .2s ease;}
 @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;}}
-h1{font-size:30px;margin:22px 0 4px;text-align:center;font-weight:800;letter-spacing:-.5px;}
-h2{font-size:22px;margin:18px 0 6px;text-align:center;font-weight:700;}
-.sub{text-align:center;color:var(--mut);margin:0 0 16px;font-size:14px;}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0;box-shadow:0 1px 3px rgba(20,30,60,.06);}
-.btn{display:block;width:100%;padding:13px;margin:8px 0;font-size:17px;font-weight:600;color:#fff;background:var(--acc);border:1px solid var(--acc-d);border-radius:10px;cursor:pointer;touch-action:manipulation;font-family:inherit;}
+h1{font-size:30px;margin:0;font-weight:800;letter-spacing:-.5px;}
+h2{font-size:24px;margin:20px 0 4px;font-weight:800;letter-spacing:-.3px;}
+.sub{color:var(--mut);margin:0 0 16px;font-size:14.5px;line-height:1.5;}
+.hero{position:relative;overflow:hidden;background:linear-gradient(130deg,#15255a 0%,#2456d6 58%,#3d7bfd 100%);color:#fff;border-radius:20px;padding:26px 22px 22px;box-shadow:0 18px 32px -18px rgba(21,37,90,.55);}
+.hero::before{content:'';position:absolute;width:190px;height:190px;border:26px solid rgba(255,255,255,.10);border-radius:50%;right:-70px;top:-80px;}
+.hero::after{content:'';position:absolute;width:0;height:0;border-left:44px solid transparent;border-right:44px solid transparent;border-bottom:74px solid rgba(255,255,255,.08);right:64px;bottom:-16px;transform:rotate(14deg);}
+.hero h1{position:relative;z-index:1;}
+.herosub{position:relative;z-index:1;color:#c9d9ff;margin:6px 0 0;font-size:15px;}
+.unitchip{position:relative;z-index:1;display:inline-block;margin-top:14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;}
+.menu{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.menucard{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px 16px;cursor:pointer;touch-action:manipulation;font-family:inherit;box-shadow:0 1px 2px rgba(20,30,60,.05),0 10px 22px -14px rgba(20,30,60,.25);transition:transform .12s ease,box-shadow .12s ease;}
+.menucard:active{transform:scale(.99);}
+@media(hover:hover){.menucard:hover{transform:translateY(-1px);box-shadow:0 2px 3px rgba(20,30,60,.06),0 16px 28px -14px rgba(20,30,60,.3);}}
+.mic{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;}
+.mic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ic-a{background:#e2ebff;color:#2456d6;}
+.ic-b{background:#e5f6ec;color:#15803d;}
+.ic-c{background:#fdf2dd;color:#b45309;}
+.ic-d{background:#f2e9fd;color:#7e22ce;}
+.ic-e{background:#e0f4f7;color:#0e7490;}
+.ic-f{background:#fdf3d3;color:#8a6d00;}
+.mtxt{flex:1;min-width:0;}
+.mt{display:block;font-size:17px;font-weight:700;color:var(--ink);}
+.md{display:block;font-size:13.5px;color:var(--mut);margin-top:2px;line-height:1.4;}
+.chev{flex:none;color:#aebad2;font-size:24px;font-weight:700;line-height:1;}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0;box-shadow:0 1px 2px rgba(20,30,60,.05),0 10px 22px -14px rgba(20,30,60,.22);}
+.btn{display:block;width:100%;padding:13px;margin:8px 0;font-size:17px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2f6bff,#1d4ed8);border:none;border-radius:12px;cursor:pointer;touch-action:manipulation;font-family:inherit;box-shadow:0 8px 16px -10px rgba(29,78,216,.8);}
 .btn:active{transform:scale(.985);}
-.btn.sec{background:#fff;color:var(--acc);}
-.btn.warn{background:#fff;color:var(--bad);border-color:#e8b4b4;}
+.btn.sec{background:#fff;color:var(--acc);border:1.5px solid #c7d6f8;box-shadow:none;}
+.btn.warn{background:#fff;color:var(--bad);border:1.5px solid #e8b4b4;box-shadow:none;}
 .btn.small{font-size:15px;padding:8px 12px;margin:4px 0;width:auto;display:inline-block;}
 .btn.big{font-size:20px;padding:16px;}
 .btn:disabled{opacity:.55;cursor:default;}
 .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
-.answers .btn{font-size:16px;padding:13px 6px;margin:0;min-height:60px;background:#fff;color:var(--ink);border:1px solid var(--line);}
+.answers .btn{font-size:16px;padding:13px 6px;margin:0;min-height:60px;background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:none;border-radius:12px;}
 .answers .btn.right{background:var(--okbg);border:2px solid var(--ok);color:var(--ok);}
 .answers .btn.wrongpick{background:var(--badbg);border:2px solid var(--bad);color:var(--bad);}
-.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;background:#e8eefc;color:var(--acc);margin-bottom:8px;}
-#qtext{font-size:19px;line-height:1.55;margin:2px 0 4px;}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:999px;background:#e8eefc;color:var(--acc);margin-bottom:8px;}
+#qtext{font-size:20px;line-height:1.55;margin:2px 0 4px;}
 #feed{min-height:26px;text-align:center;font-weight:600;font-size:16px;margin:8px 0 2px;}
 #feed.ok{color:var(--ok);}
 #feed.no{color:var(--bad);}
 .topbar{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mut);margin:2px 0 8px;}
 .topbar b{color:var(--ink);}
+#prtime{background:#e9eefc;border-radius:999px;padding:3px 11px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
 .stat{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px dashed var(--line);font-size:16px;}
 .stat:last-child{border-bottom:none;}
-.listrow{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer;touch-action:manipulation;text-align:left;width:100%;font-family:inherit;font-size:16px;}
+.listrow{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin:8px 0;cursor:pointer;touch-action:manipulation;text-align:left;width:100%;font-family:inherit;font-size:16px;color:var(--ink);box-shadow:0 1px 2px rgba(20,30,60,.04),0 8px 18px -12px rgba(20,30,60,.2);}
 .listrow:active{background:#f0f4fc;}
-.listrow .grow{flex:1;}
+.listrow .grow{flex:1;min-width:0;}
 .listrow .t{font-weight:700;}
 .listrow .d{font-size:13px;color:var(--mut);}
-input[type=text],input[type=password]{font-size:18px;padding:11px;width:100%;text-align:center;background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:10px;font-family:inherit;margin:4px 0;}
-input:focus{outline:none;border-color:var(--acc);}
-.chk{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:7px 0;cursor:pointer;font-size:16px;}
-.chk input{width:20px;height:20px;}
-.stepbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0;}
+input[type=text],input[type=password]{font-size:18px;padding:12px;width:100%;text-align:center;background:#fbfcfe;color:var(--ink);border:2px solid var(--line);border-radius:12px;font-family:inherit;margin:4px 0;}
+input:focus{outline:none;border-color:var(--acc);background:#fff;}
+.chk{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 15px;margin:7px 0;cursor:pointer;font-size:16px;box-shadow:0 1px 2px rgba(20,30,60,.04);}
+.chk input{width:20px;height:20px;accent-color:var(--acc);}
+.stepbox{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(20,30,60,.05),0 10px 22px -14px rgba(20,30,60,.22);}
 .stepbox .stepnum{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--mut);text-transform:uppercase;margin-bottom:6px;}
 .stepbox h3{margin:0 0 8px;font-size:19px;}
 .stepbox p{font-size:16px;line-height:1.6;margin:0 0 8px;}
-.ex{background:#f7f9fd;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;line-height:1.7;}
+.ex{background:#f2f6ff;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;line-height:1.7;}
 .ex .eline{opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s;}
 .ex .eline.show{opacity:1;transform:none;}
-#joinbanner{background:#fff8e1;border:1px solid #e8d48b;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:15px;}
+#joinbanner{background:#fff8e1;border:1px solid #e8d48b;border-radius:14px;padding:12px 14px;margin:12px 0 0;font-size:15px;}
 #joinbanner .t{font-weight:700;margin-bottom:6px;}
 .err{color:var(--bad);font-size:14px;min-height:20px;text-align:center;}
-.brow{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin:6px 0;}
-.bmedal{font-size:17px;min-width:32px;text-align:center;color:var(--gold);font-weight:800;}
+.brow{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 13px;margin:6px 0;}
+.bmedal{font-size:16px;min-width:30px;text-align:center;color:var(--gold);font-weight:800;}
 .bname{flex:1;font-size:16px;}
 .bval{font-weight:700;color:var(--acc);}
 .tglrow{display:flex;gap:8px;margin:8px 0;}
-.tglrow .btn{opacity:.5;}
-.tglrow .btn.on{opacity:1;}
+.tglrow .btn{background:#e7ecf7;color:var(--mut);box-shadow:none;opacity:.65;}
+.tglrow .btn.on{opacity:1;background:linear-gradient(135deg,#2f6bff,#1d4ed8);color:#fff;}
 .note{font-size:13px;color:var(--mut);text-align:center;margin-top:10px;line-height:1.5;}
 .backbtn{background:none;border:none;color:var(--acc);font-size:16px;font-weight:600;cursor:pointer;padding:8px 0;font-family:inherit;}
 </style>
@@ -70,16 +93,45 @@ input:focus{outline:none;border-color:var(--acc);}
 <div id="app">
 
 <div class="screen on" id="s-home">
-  <h1>Geometry Study</h1>
-  <p class="sub">Geometry Honors · Period 2 · <span id="unitlbl">Unit 1B</span></p>
+  <div class="hero">
+    <h1>Geometry Study</h1>
+    <p class="herosub">Geometry Honors · Period 2</p>
+    <span class="unitchip">Currently on <span id="unitlbl">Unit 2</span></span>
+  </div>
   <div id="joinbanner" style="display:none"></div>
-  <button class="btn big" onclick="startCurrentUnit()">Current Unit</button>
-  <button class="btn" onclick="showConcepts()">Concepts</button>
-  <button class="btn" onclick="showAssign()">Assignments</button>
-  <button class="btn" onclick="showCustom()">Custom Practice</button>
-  <button class="btn" onclick="showArchive()">Archive</button>
-  <button class="btn sec" onclick="openBoard()">Leaderboard — Time Practiced</button>
-  <p class="sub" id="idline"></p>
+  <nav class="menu">
+    <button class="menucard" onclick="startCurrentUnit()">
+      <span class="mic ic-a"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span>
+      <span class="mtxt"><span class="mt">Practice the Current Unit</span><span class="md">Mixed questions from the unit you're learning right now</span></span>
+      <span class="chev">&rsaquo;</span>
+    </button>
+    <button class="menucard" onclick="showConcepts()">
+      <span class="mic ic-b"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5V5.5"/><path d="M20 18H6.5"/></svg></span>
+      <span class="mtxt"><span class="mt">Learn a Concept</span><span class="md">Step-by-step recaps with worked examples, then practice</span></span>
+      <span class="chev">&rsaquo;</span>
+    </button>
+    <button class="menucard" onclick="showAssign()">
+      <span class="mic ic-c"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6l1 1 2-2.5M3.5 12l1 1 2-2.5M3.5 18l1 1 2-2.5"/></svg></span>
+      <span class="mtxt"><span class="mt">Practice by Assignment</span><span class="md">Problem sets grouped the same way as your homework</span></span>
+      <span class="chev">&rsaquo;</span>
+    </button>
+    <button class="menucard" onclick="showCustom()">
+      <span class="mic ic-d"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span>
+      <span class="mtxt"><span class="mt">Pick Your Own Topics</span><span class="md">You choose which topics to practice — the questions are made for you</span></span>
+      <span class="chev">&rsaquo;</span>
+    </button>
+    <button class="menucard" onclick="showArchive()">
+      <span class="mic ic-e"><svg viewBox="0 0 24 24"><path d="M3.5 8.5L5 3.5h14l1.5 5"/><path d="M5 8.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5"/><path d="M3.5 8.5h17"/><path d="M9.5 13h5"/></svg></span>
+      <span class="mtxt"><span class="mt">Review Past Units</span><span class="md">Topics from units you've already finished</span></span>
+      <span class="chev">&rsaquo;</span>
+    </button>
+    <button class="menucard" onclick="openBoard()">
+      <span class="mic ic-f"><svg viewBox="0 0 24 24"><path d="M7 4h10v5.5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4.5M17 6h3a3 3 0 0 1-3 4.5"/><path d="M12 14.5V17M8.5 20.5h7M12 17l-1.8 3.5h3.6z"/></svg></span>
+      <span class="mtxt"><span class="mt">Leaderboard</span><span class="md">Who's practiced the most — ranked by time and by correct answers</span></span>
+      <span class="chev">&rsaquo;</span>
+    </button>
+  </nav>
+  <p class="sub" id="idline" style="margin-top:16px"></p>
 </div>
 
 <div class="screen" id="s-nounit">
@@ -87,69 +139,69 @@ input:focus{outline:none;border-color:var(--acc);}
   <div class="card">
     <p style="font-size:16px;line-height:1.6" id="nounitmsg">No Unit 2 topics yet — new topics are added as the unit is posted.</p>
   </div>
-  <button class="btn" onclick="showArchive()">Browse archive</button>
-  <button class="btn" onclick="showCustom()">Custom practice</button>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="btn" onclick="showArchive()">Review past units</button>
+  <button class="btn" onclick="showCustom()">Pick your own topics</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-signin">
   <h2>Get on the leaderboard</h2>
-  <p class="sub" style="text-align:left;line-height:1.55">Sign up to get on the class leaderboard — your practice time and correct answers get tracked and ranked. This isn't like signing up for most things: <b>no email, no password, no account to create.</b> Just your first name and last initial, and you're on the board.</p>
+  <p class="sub" style="line-height:1.55">Sign up to get on the class leaderboard — your practice time and correct answers get tracked and ranked. This isn't like signing up for most things: <b>no email, no password, no account to create.</b> Just your first name and last initial, and you're on the board.</p>
   <div class="card">
     <input type="text" id="fname" maxlength="15" placeholder="First name" autocomplete="off">
     <input type="text" id="lini" maxlength="1" placeholder="Last initial" autocomplete="off" style="width:60%">
     <div id="midwrap" style="display:none">
       <input type="text" id="midini" maxlength="1" placeholder="Middle initial" autocomplete="off" style="width:60%">
-      <p class="sub">Someone else already has your name. Add a middle initial to register separately.</p>
+      <p class="sub" style="margin:8px 0 0">Someone else already has your name. Add a middle initial to sign up separately.</p>
     </div>
     <button class="btn big" id="signinbtn" onclick="submitSignin()">Join the leaderboard</button>
     <p class="err" id="signinerr"></p>
   </div>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-verify">
-  <h2>Already registered</h2>
+  <h2>That name's taken</h2>
   <div class="card">
-    <p style="font-size:17px;line-height:1.5">That name is already registered.<br><b>Are you <span id="verifyname"></span>?</b></p>
+    <p style="font-size:17px;line-height:1.5">Someone already signed up with that name.<br><b>Are you <span id="verifyname"></span>?</b></p>
     <button class="btn big" onclick="imOwner()">That's me</button>
     <button class="btn sec" onclick="notOwner()">Not me</button>
   </div>
-  <button class="backbtn" onclick="show('s-signin')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-waiting">
   <h2>Waiting for approval</h2>
   <div class="card">
-    <p style="font-size:16px;line-height:1.6">A join request was sent to <b><span id="waitname"></span></b>'s first device. Once they approve it on their phone, you're in.</p>
-    <p class="sub" id="waitstatus">Checking…</p>
+    <p style="font-size:16px;line-height:1.6">A request was sent to <b><span id="waitname"></span></b>'s first device. Once they tap approve on that device, you're in — this page updates on its own.</p>
+    <p class="sub" id="waitstatus" style="margin-bottom:0">Checking…</p>
     <button class="btn sec" onclick="cancelWait()">Cancel</button>
   </div>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-custom">
-  <h2>Custom Practice</h2>
-  <p class="sub">pick the topics you want</p>
+  <h2>Pick Your Own Topics</h2>
+  <p class="sub">Check the topics you want to practice, then start. You're only choosing topics — every question is generated for you automatically.</p>
   <div id="topicchecks"></div>
   <button class="btn big" onclick="startCustom()">Start practice</button>
   <p class="err" id="customerr"></p>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-concepts">
-  <h2>Concepts</h2>
-  <p class="sub">each concept has a short recap + practice</p>
+  <h2>Learn a Concept</h2>
+  <p class="sub">Pick a topic — each one starts with a short step-by-step recap and a worked example, then gives you practice questions.</p>
   <div id="conceptlist"></div>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-concept">
   <h2 id="conceptname"></h2>
   <p class="sub" id="conceptdesc"></p>
-  <button class="btn big" onclick="startRecap(RC.id)">Interactive recap</button>
+  <button class="btn big" onclick="startRecap(RC.id)">Step-by-step recap</button>
   <button class="btn" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button>
-  <button class="backbtn" onclick="showConcepts()">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-recap">
@@ -162,7 +214,7 @@ input:focus{outline:none;border-color:var(--acc);}
     <button class="btn sec" id="exbtn" onclick="recapNextEx()">Show worked example</button>
   </div>
   <button class="btn big" id="recapnext" onclick="recapNext()">Next step &rarr;</button>
-  <button class="backbtn" onclick="showConcepts()">&larr; Concepts</button>
+  <button class="backbtn" onclick="showConcepts()">&larr; All concepts</button>
 </div>
 
 <div class="screen" id="s-practice">
@@ -180,26 +232,26 @@ input:focus{outline:none;border-color:var(--acc);}
 <div class="screen" id="s-done">
   <h2>Session complete</h2>
   <div class="card" id="donestats"></div>
-  <button class="btn big" onclick="show('s-home')">Done</button>
+  <button class="btn big" onclick="nav('')">Done</button>
 </div>
 
 <div class="screen" id="s-assign">
-  <h2>Assignments</h2>
-  <p class="sub">practice sets matching your homework</p>
+  <h2>Practice by Assignment</h2>
+  <p class="sub">Problem sets grouped the same way as your homework assignments — pick a set to practice all of its topics together.</p>
   <div id="assignlist"></div>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-archive">
-  <h2>Archive</h2>
-  <p class="sub">topics from past units</p>
+  <h2>Review Past Units</h2>
+  <p class="sub">Topics from units you've already finished — good for keeping old material fresh.</p>
   <div id="archivelist"></div>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 <div class="screen" id="s-board">
   <h2>Leaderboard</h2>
-  <p class="sub">time practiced</p>
+  <p class="sub">Ranked by time practiced or by correct answers.</p>
   <div class="tglrow">
     <button class="btn tgl" data-m="seconds" onclick="setBoard(null,'seconds')">Time spent</button>
     <button class="btn tgl" data-m="correct" onclick="setBoard(null,'correct')">Correct answers</button>
@@ -211,7 +263,7 @@ input:focus{outline:none;border-color:var(--acc);}
   </div>
   <div id="boardrows" style="margin-top:8px"></div>
   <button class="btn sec" onclick="loadBoard()">Refresh</button>
-  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+  <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
 </div>
@@ -235,7 +287,113 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": [], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+// ---- topic: parallel-transversals ----
+// Parallel lines cut by a transversal — angle relationships + algebra.
+// Original, procedurally generated. Unit 2: Lines & Intro to Proof.
+registerTopic({
+  id: 'parallel-transversals',
+  name: 'Parallel Lines & Transversals',
+  tag: 'TRANSVERSALS',
+  units: ['2'],
+  added: '2026-10-14',
+  assignments: ['parallel-transversals-hw'],
+  recap: {
+    title: 'Parallel Lines & Transversals',
+    intro: 'A transversal is a line that crosses two or more other lines, making 8 angles at the crossing points. When the two lines are parallel, those angles pair up in special ways: some are equal, some add to 180°.',
+    steps: [
+      {
+        h: 'Know the vocabulary',
+        body: 'Angles sitting in the matching corner at each intersection are corresponding. Angles between the two parallel lines on opposite sides of the transversal are alternate interior. Angles outside the lines on opposite sides are alternate exterior. Angles across from each other where two lines cross are vertical angles.',
+        ex: [
+          'Picture two parallel horizontal lines with a diagonal transversal.',
+          'The upper-right angle at the top crossing and the upper-right angle at the bottom crossing are corresponding.',
+          'The two angles between the parallel lines, on opposite sides of the diagonal, are alternate interior.'
+        ]
+      },
+      {
+        h: 'The congruent pairs',
+        body: 'When the lines are parallel, corresponding angles are congruent, alternate interior angles are congruent, alternate exterior angles are congruent, and vertical angles are congruent. One known angle measure tells you four (or more) others.',
+        ex: [
+          'An upper-right angle measures 70°.',
+          'The corresponding angle below it is 70°.',
+          'The alternate interior angle is 70°.',
+          'The vertical angle across from it is 70°.'
+        ]
+      },
+      {
+        h: 'The supplementary pairs',
+        body: 'Same-side interior angles (between the parallel lines, on the same side of the transversal) add to 180°. Any two angles forming a straight line — a linear pair — also add to 180°.',
+        ex: [
+          'An upper-right angle measures 70°.',
+          'The same-side interior angle is 180° − 70° = 110°.',
+          'Its neighbor on the straight line is also 180° − 70° = 110°.'
+        ]
+      },
+      {
+        h: 'Set up the equation',
+        body: 'When angles are written as expressions like (2x + 35)°, first decide: congruent or supplementary? Congruent pair → set the expressions equal. Supplementary pair → set their sum equal to 180. Solve for x, then sanity-check: the resulting angle should be a sensible measure under 180°.',
+        ex: [
+          'Alternate interior pair: (2x + 35)° and (4x + 15)° are congruent.',
+          '2x + 35 = 4x + 15  →  20 = 2x  →  x = 10.',
+          'Check: 2(10) + 35 = 55°, 4(10) + 15 = 55°. Match — good.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    // ---- variant 1: plain numeric — given one angle, find a related angle
+    if (R(0, 1) === 0) {
+      // relation, phrase, and whether the answer is the same angle or the supplement
+      const rels = [
+        ['corresponding to it on line m', 'same'],
+        ['alternate interior to it', 'same'],
+        ['alternate exterior to it', 'same'],
+        ['vertical to it', 'same'],
+        ['same-side interior with it', 'supp'],
+        ['forming a linear pair with it', 'supp']
+      ];
+      const rel = pick(rels);
+      // avoid X=90 (same and supp collide) and X=88/92 (dup with +/-4 distractors)
+      let X = R(30, 150);
+      while (X === 88 || X === 90 || X === 92) X = R(30, 150);
+      const answer = rel[1] === 'same' ? X : 180 - X;
+      const wrongs = rel[1] === 'same'
+        ? [180 - X, X + 4, X - 4]
+        : [X, answer + 4, answer - 4];
+      return mkQ('TRANSVERSALS',
+        `Line l and line m are parallel, cut by transversal t. On line l, an angle measures ${X}°. What is the measure of the angle ${rel[0]}?`,
+        String(answer), wrongs.map(String));
+    }
+    // ---- variant 2: algebraic — two angle expressions, solve for x
+    const cong = R(0, 1) === 0; // congruent (alternate interior) vs supplementary (same-side interior)
+    let a1, a2, b1, b2, x;
+    if (cong) {
+      // a1*x + b1 = a2*x + b2, a2 > a1, all positive, angle < 180
+      do {
+        a1 = R(1, 3); a2 = a1 + R(1, 2); x = R(10, 20); b1 = R(5, 30);
+        b2 = b1 - (a2 - a1) * x;
+      } while (b2 <= 0 || a1 * x + b1 >= 180);
+    } else {
+      // (a1*x + b1) + (a2*x + b2) = 180, integer x
+      do {
+        a1 = R(1, 4); a2 = R(1, 4); b1 = R(5, 30); b2 = R(5, 30);
+        x = (180 - b1 - b2) / (a1 + a2);
+      } while (!Number.isInteger(x) || x <= 0);
+    }
+    const relWord = cong ? 'alternate interior' : 'same-side interior';
+    // build 3 unique positive distractors deterministically
+    const d = [];
+    for (const v of [x - 1, x + 1, x - 2, x + 2]) {
+      if (v > 0 && v !== x && d.indexOf(v) === -1) d.push(v);
+      if (d.length === 3) break;
+    }
+    return mkQ('TRANSVERSALS',
+      `Lines l and m are parallel, cut by transversal t. An ${relWord} angle pair measures (${a1}x + ${b1})° and (${a2}x + ${b2})°. Find x.`,
+      String(x), d.map(String));
+  }
+});
+
 // ---- topic: midpoint ----
 // Midpoint of a segment from two endpoints.
 registerTopic({
@@ -742,6 +900,80 @@ function show(id){
   $(id).classList.add('on');
 }
 
+// ---- routing ----
+// Every screen is a hash route (#/concepts, #/board, ...) so each menu
+// option is its own page and the browser's back button moves between
+// them like a normal site. Navigation functions call nav('<route>')
+// when invoked from the UI; the router sets IN_ROUTE and calls them
+// back to actually render, so call sites never change.
+var IN_ROUTE=false;
+var ROUTE_STACK=[];
+var SESSION_REQ=null; // {pool,title} for a practice session waiting on its route
+var DONE_OK=false;    // s-done is only reachable right after a session ends
+
+function nav(path){
+  var h='#/'+path;
+  if(location.hash===h){route();}
+  else{location.hash=h;}
+}
+function parseHash(){
+  var h=(location.hash||'').replace(/^#\/?/,'');
+  var parts=h.split('/');
+  return {name:parts[0]||'',arg:parts.slice(1).join('/')||''};
+}
+function goBack(){
+  // In-app back: same as the browser's back button when there is
+  // somewhere in the app to go back to, otherwise home.
+  if(ROUTE_STACK.length>1){history.back();}
+  else{nav('');}
+}
+window.addEventListener('hashchange',function(){route();});
+function route(){
+  var r=parseHash();
+  var cur='#/'+(r.name+(r.arg?'/'+r.arg:''));
+  if(ROUTE_STACK.length>1&&ROUTE_STACK[ROUTE_STACK.length-2]===cur){ROUTE_STACK.pop();}
+  else if(ROUTE_STACK[ROUTE_STACK.length-1]!==cur){ROUTE_STACK.push(cur);}
+  var wasPractice=$('s-practice').classList.contains('on');
+  if(r.name!=='waiting')stopWaitPoll();
+  IN_ROUTE=true;
+  try{
+    switch(r.name){
+      case '': show('s-home'); break;
+      case 'signup': show('s-signin'); break;
+      case 'verify': if(PENDING_NAME){showVerify(PENDING_NAME);}else{show('s-signin');} break;
+      case 'waiting':
+        if(WAIT_NAME){$('waitname').textContent=WAIT_NAME;$('waitstatus').textContent='Checking…';show('s-waiting');startWaitPoll();}
+        else{show('s-signin');}
+        break;
+      case 'unit': startCurrentUnit(); break;
+      case 'topics': showCustom(); break;
+      case 'concepts': showConcepts(); break;
+      case 'concept':
+        if(r.arg&&TOPICS[r.arg]){openConcept(r.arg);}
+        else{showConcepts();}
+        break;
+      case 'recap':
+        if(RC.id&&TOPICS[RC.id]&&TOPICS[RC.id].recap){renderRecapScreen();}
+        else{showConcepts();}
+        break;
+      case 'assignments': showAssign(); break;
+      case 'archive': showArchive(); break;
+      case 'board': openBoard(); break;
+      case 'practice':
+        if(PR){show('s-practice');}
+        else if(SESSION_REQ){var q=SESSION_REQ;SESSION_REQ=null;startPractice(q.pool,q.title);}
+        else{show('s-home');}
+        break;
+      case 'done': if(DONE_OK){show('s-done');}else{show('s-home');} break;
+      default: show('s-home');
+    }
+  }finally{IN_ROUTE=false;}
+  // Leaving a practice session with the browser buttons ends it quietly;
+  // the time already practiced still counts (it flushes below).
+  if(wasPractice&&r.name!=='practice'&&r.name!=='unit'&&PR){flushTime(false);PR=null;}
+  window.scrollTo(0,0);
+}
+
 // ---- backend API: JSONP (Apps Script web apps don't send CORS headers) ----
 function api(action,params,cb){
   if(!BACKEND){if(cb)cb({ok:false,error:'no backend'});return;}
@@ -770,11 +1002,11 @@ function renderIdLine(){
   var el=$('idline');if(!el)return;
   if(ME&&ME.token){el.innerHTML='You\'re on the leaderboard as <b>'+esc(ME.name)+'</b> — your practice time and correct answers count.';}
   else{el.innerHTML='';var w=$('signinwrap');if(w)w.remove();
-    var b=document.createElement('button');b.id='signinwrap';b.className='btn sec';b.textContent='Get on the leaderboard — no email needed';b.onclick=function(){show('s-signin');};
+    var b=document.createElement('button');b.id='signinwrap';b.className='btn sec';b.textContent='Get on the leaderboard — no email needed';b.onclick=function(){nav('signup');};
     el.parentNode.insertBefore(b,el.nextSibling);}
 }
 
-// ---- sign-in flow ----
+// ---- sign-up flow ----
 // Display name format: "First L."  Same-name variant: "First LM." (middle initial).
 function displayName(first,lastI,midI){
   return first+' '+lastI.toUpperCase()+(midI?midI.toUpperCase():'')+'.';
@@ -794,21 +1026,23 @@ function submitSignin(){
     btn.disabled=false;
     if(!d||!d.ok){err.textContent='Could not reach the leaderboard server. Practice still works.';return;}
     if(!d.registered){doRegister(name);}
-    else if(ME&&ME.name===name&&ME.token){show('s-home');}
-    else{PENDING_NAME=name;showVerify(name);}
+    else if(ME&&ME.name===name&&ME.token){nav('');}
+    else{showVerify(name);}
   });
 }
 function doRegister(name){
   var err=$('signinerr');var btn=$('signinbtn');btn.disabled=true;
   api('register',{name:name,deviceId:getDeviceId()},function(d){
     btn.disabled=false;
-    if(d&&d.ok){ME={name:name,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();show('s-home');}
-    else if(d&&d.error==='taken'){PENDING_NAME=name;showVerify(name);}
+    if(d&&d.ok){ME={name:name,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();nav('');}
+    else if(d&&d.error==='taken'){showVerify(name);}
     else{err.textContent='That did not go through — try again.';}
   });
 }
 var PENDING_NAME='';
 function showVerify(name){
+  PENDING_NAME=name;
+  if(!IN_ROUTE){nav('verify');return;}
   $('verifyname').textContent=name;show('s-verify');
 }
 // "That's me": create a join request; the account owner's device approves.
@@ -816,18 +1050,17 @@ function imOwner(){
   api('requestJoin',{name:PENDING_NAME,deviceId:getDeviceId()},function(d){
     if(d&&d.ok&&d.status==='approved'&&d.token){
       // device was already approved on this account earlier
-      ME={name:PENDING_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();show('s-home');return;
+      ME={name:PENDING_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();nav('');return;
     }
-    $('waitname').textContent=PENDING_NAME;
-    $('waitstatus').textContent='Checking…';
-    WAIT_NAME=PENDING_NAME;show('s-waiting');startWaitPoll();
+    WAIT_NAME=PENDING_NAME;
+    nav('waiting');
   });
 }
 function notOwner(){
-  // show the middle-initial field so a different person can register separately
+  // show the middle-initial field so a different person can sign up separately
   $('midwrap').style.display='';
   $('signinerr').textContent='';
-  show('s-signin');
+  nav('signup');
 }
 var WAIT_NAME='', _waitPoll=null;
 function startWaitPoll(){
@@ -838,7 +1071,7 @@ function startWaitPoll(){
       if(!d||!d.ok)return;
       if(d.status==='approved'&&d.token){
         stopWaitPoll();
-        ME={name:WAIT_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();show('s-home');
+        ME={name:WAIT_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();nav('');
       }else if(d.status==='denied'){
         stopWaitPoll();
         $('waitstatus').innerHTML='Request denied. If that was a mistake, ask them to approve it next time you are together, then <a href="#" onclick="imOwner();return false;" style="color:#1d4ed8">re-request</a>.';
@@ -847,7 +1080,7 @@ function startWaitPoll(){
   },8000);
 }
 function stopWaitPoll(){if(_waitPoll){clearInterval(_waitPoll);_waitPoll=null;}}
-function cancelWait(){stopWaitPoll();WAIT_NAME='';show('s-home');}
+function cancelWait(){stopWaitPoll();WAIT_NAME='';nav('');}
 
 // ---- account-owner join approvals ----
 // The account owner's device checks for pending join requests on open
@@ -878,15 +1111,17 @@ function currentPool(){return topicIdsForUnit(MANIFEST.currentUnit||'');}
 
 // ---- modes ----
 function startCurrentUnit(){
+  if(!IN_ROUTE){nav('unit');return;}
   var pool=currentPool();
   if(!pool.length){
     $('nounittitle').textContent='Unit '+MANIFEST.currentUnit+' — Current Unit';
-    $('nounitmsg').textContent='No Unit '+MANIFEST.currentUnit+' topics yet — new topics are added as the unit is posted.';
+    $('nounitmsg').textContent='No Unit '+MANIFEST.currentUnit+' topics yet — new topics are added here as the unit is posted.';
     show('s-nounit');return;
   }
   startPractice(pool,'Current Unit');
 }
 function showCustom(){
+  if(!IN_ROUTE){nav('topics');return;}
   var box=$('topicchecks');box.innerHTML='';
   allSlugs().forEach(function(s){
     var t=TOPICS[s];if(!t)return;
@@ -903,20 +1138,22 @@ function startCustom(){
   for(var i=0;i<boxes.length;i++)if(boxes[i].checked)sel.push(boxes[i].value);
   if(!sel.length){$('customerr').textContent='Pick at least one topic.';return;}
   $('customerr').textContent='';
-  startPractice(sel,'Custom Practice');
+  startPractice(sel,'Your Topics');
 }
 function showConcepts(){
+  if(!IN_ROUTE){nav('concepts');return;}
   var box=$('conceptlist');box.innerHTML='';
   allSlugs().forEach(function(s){
     var t=TOPICS[s];if(!t)return;
     var b=document.createElement('button');b.className='listrow';
-    b.innerHTML='<span class="grow"><span class="t">'+esc(t.name)+'</span><br><span class="d">recap + practice</span></span><span>&rarr;</span>';
+    b.innerHTML='<span class="grow"><span class="t">'+esc(t.name)+'</span><br><span class="d">step-by-step recap + practice</span></span><span class="chev">&rsaquo;</span>';
     (function(id){b.onclick=function(){openConcept(id);};})(s);
     box.appendChild(b);
   });
   show('s-concepts');
 }
 function showAssign(){
+  if(!IN_ROUTE){nav('assignments');return;}
   var box=$('assignlist');box.innerHTML='';
   (MANIFEST.assignmentSets||[]).forEach(function(set){
     var ids=(set.topics||[]).filter(function(s){return TOPICS[s];});
@@ -926,7 +1163,7 @@ function showAssign(){
       b.disabled=true;b.style.opacity='.5';b.style.cursor='default';
       b.innerHTML='<span class="grow"><span class="t">'+esc(set.name)+'</span><br><span class="d">No problems posted yet</span></span>';
     }else{
-      b.innerHTML='<span class="grow"><span class="t">'+esc(set.name)+'</span><br><span class="d">'+esc(names)+'</span></span><span>&rarr;</span>';
+      b.innerHTML='<span class="grow"><span class="t">'+esc(set.name)+'</span><br><span class="d">'+esc(names)+'</span></span><span class="chev">&rsaquo;</span>';
       (function(pool,name){b.onclick=function(){startPractice(pool,name);};})(ids,set.name);
     }
     box.appendChild(b);
@@ -934,13 +1171,14 @@ function showAssign(){
   show('s-assign');
 }
 function showArchive(){
+  if(!IN_ROUTE){nav('archive');return;}
   var box=$('archivelist');box.innerHTML='';
   var slugs=MANIFEST.archive||[];
-  if(!slugs.length){box.innerHTML='<p class="sub">Nothing archived yet — past units will show up here.</p>';}
+  if(!slugs.length){box.innerHTML='<p class="sub">Nothing here yet — topics from past units will show up here.</p>';}
   slugs.forEach(function(s){
     var t=TOPICS[s];if(!t)return;
     var b=document.createElement('button');b.className='listrow';
-    b.innerHTML='<span class="grow"><span class="t">'+esc(t.name)+'</span><br><span class="d">Unit '+(t.units||[]).join(', ')+'</span></span><span>&rarr;</span>';
+    b.innerHTML='<span class="grow"><span class="t">'+esc(t.name)+'</span><br><span class="d">Unit '+(t.units||[]).join(', ')+'</span></span><span class="chev">&rsaquo;</span>';
     (function(id,name){b.onclick=function(){startPractice([id],name);};})(s,t.name);
     box.appendChild(b);
   });
@@ -950,16 +1188,21 @@ function showArchive(){
 // ---- concepts + interactive recap ----
 var RC={id:null,step:0,exIdx:-1};
 function openConcept(id){
-  RC={id:id,step:0,exIdx:-1};
+  if(!IN_ROUTE){RC.id=id;nav('concept/'+id);return;}
+  RC.step=0;RC.exIdx=-1;
   var t=TOPICS[id];
   $('conceptname').textContent=t.name;
   $('conceptdesc').textContent=t.recap?t.recap.intro:'';
   show('s-concept');
 }
 function startRecap(id){
+  RC={id:id,step:0,exIdx:-1};
+  if(!IN_ROUTE){nav('recap');return;}
+  renderRecapScreen();
+}
+function renderRecapScreen(){
   var tg=$('tryone');if(tg)tg.remove();
   var sb=document.querySelector('#s-recap .stepbox');if(sb)sb.style.display='';
-  RC={id:id,step:0,exIdx:-1};
   renderRecap();show('s-recap');
 }
 function renderRecap(){
@@ -1034,6 +1277,7 @@ var PR=null; // {pool,title,answered,correct,elapsed,flushedSecs,flushedCorrect,
 function startPractice(topicIds,title){
   topicIds=topicIds.filter(function(s){return TOPICS[s];});
   if(!topicIds.length)return;
+  if(!IN_ROUTE){SESSION_REQ={pool:topicIds,title:title};nav('practice');return;}
   PR={pool:topicIds,title:title,answered:0,correct:0,elapsed:0,flushedSecs:0,flushedCorrect:0,current:null};
   $('prtitle').innerHTML='<b>'+esc(title)+'</b>';
   show('s-practice');
@@ -1080,11 +1324,13 @@ function endPractice(){
     '<div class="stat"><span>Correct</span><b>'+(PR?PR.correct:0)+' ('+pct+'%)</b></div>'+
     '<div class="stat"><span>Time practiced</span><b>'+fmtDur(PR?PR.elapsed:0)+'</b></div>';
   PR=null;
+  DONE_OK=true;
+  if(!IN_ROUTE){nav('done');return;}
   show('s-done');
 }
 // ---- time + correct tracking ----
 // Time accrues only while a practice session is open and the tab is visible.
-// Every ~20s (and on session end / page hide) the delta is sent to the
+// Every ~20 seconds (and on session end / page hide) the delta is sent to the
 // backend with the account token.
 setInterval(function(){
   if(PR&&document.visibilityState==='visible'){PR.elapsed++;updatePrStats();}
@@ -1107,10 +1353,11 @@ function flushTime(beacon){
 // ---- leaderboard: time spent and correct answers, day / week / all time ----
 var BOARD={range:'day',metric:'seconds'};
 function openBoard(){
+  if(!IN_ROUTE){nav('board');return;}
   if(!ME||!ME.token){
     var box=$('boardrows');
     box.innerHTML='<p class="sub">The leaderboard is for people who signed up — it takes ten seconds and needs no email, just your first name and last initial.</p>';
-    var b=document.createElement('button');b.className='btn sec';b.textContent='Get on the leaderboard';b.onclick=function(){show('s-signin');};
+    var b=document.createElement('button');b.className='btn sec';b.textContent='Get on the leaderboard';b.onclick=function(){nav('signup');};
     box.appendChild(b);show('s-board');return;
   }
   show('s-board');loadBoard();
@@ -1141,6 +1388,7 @@ function loadBoard(){
   var u=$('unitlbl');if(u)u.textContent='Unit '+MANIFEST.currentUnit;
   renderIdLine();
   if(ME&&ME.token)checkJoins();
+  route();
 })();
 
 </script>
