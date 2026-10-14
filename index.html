@@ -93,8 +93,8 @@ input:focus{outline:none;border-color:var(--acc);}
 </div>
 
 <div class="screen" id="s-signin">
-  <h2>Sign in</h2>
-  <p class="sub">first name + last initial, for the leaderboard</p>
+  <h2>Get on the leaderboard</h2>
+  <p class="sub" style="text-align:left;line-height:1.55">Sign up to get on the class leaderboard — your practice time and correct answers get tracked and ranked. This isn't like signing up for most things: <b>no email, no password, no account to create.</b> Just your first name and last initial, and you're on the board.</p>
   <div class="card">
     <input type="text" id="fname" maxlength="15" placeholder="First name" autocomplete="off">
     <input type="text" id="lini" maxlength="1" placeholder="Last initial" autocomplete="off" style="width:60%">
@@ -102,7 +102,7 @@ input:focus{outline:none;border-color:var(--acc);}
       <input type="text" id="midini" maxlength="1" placeholder="Middle initial" autocomplete="off" style="width:60%">
       <p class="sub">Someone else already has your name. Add a middle initial to register separately.</p>
     </div>
-    <button class="btn big" id="signinbtn" onclick="submitSignin()">Sign in</button>
+    <button class="btn big" id="signinbtn" onclick="submitSignin()">Join the leaderboard</button>
     <p class="err" id="signinerr"></p>
   </div>
   <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
@@ -768,9 +768,9 @@ function getDeviceId(){
 function saveMe(){try{localStorage.setItem('gs_me',JSON.stringify(ME));}catch(e){}}
 function renderIdLine(){
   var el=$('idline');if(!el)return;
-  if(ME&&ME.token){el.innerHTML='Signed in as <b>'+esc(ME.name)+'</b> — time and correct answers count toward the leaderboard.';}
+  if(ME&&ME.token){el.innerHTML='You\'re on the leaderboard as <b>'+esc(ME.name)+'</b> — your practice time and correct answers count.';}
   else{el.innerHTML='';var w=$('signinwrap');if(w)w.remove();
-    var b=document.createElement('button');b.id='signinwrap';b.className='btn sec';b.textContent='Sign in for the leaderboard';b.onclick=function(){show('s-signin');};
+    var b=document.createElement('button');b.id='signinwrap';b.className='btn sec';b.textContent='Get on the leaderboard — no email needed';b.onclick=function(){show('s-signin');};
     el.parentNode.insertBefore(b,el.nextSibling);}
 }
 
@@ -1109,8 +1109,8 @@ var BOARD={range:'day',metric:'seconds'};
 function openBoard(){
   if(!ME||!ME.token){
     var box=$('boardrows');
-    box.innerHTML='<p class="sub">Sign in to see the leaderboard.</p>';
-    var b=document.createElement('button');b.className='btn sec';b.textContent='Sign in';b.onclick=function(){show('s-signin');};
+    box.innerHTML='<p class="sub">The leaderboard is for people who signed up — it takes ten seconds and needs no email, just your first name and last initial.</p>';
+    var b=document.createElement('button');b.className='btn sec';b.textContent='Get on the leaderboard';b.onclick=function(){show('s-signin');};
     box.appendChild(b);show('s-board');return;
   }
   show('s-board');loadBoard();
