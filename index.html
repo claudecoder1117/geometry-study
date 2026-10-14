@@ -118,11 +118,17 @@ h2{margin:8px 0 4px;}
   #app{max-width:880px;}
   .menu{display:grid;grid-template-columns:1fr 1fr;}
 }
+#s-home .menu{flex:1;min-height:0;}
+#s-home .menucard{flex:1 1 0;min-height:42px;align-items:center;}
 @media(max-height:700px){
   #conceptlist .d,#assignlist .d,#archivelist .d{display:none;}
   #conceptlist .listrow,#assignlist .listrow,#archivelist .listrow{padding:10px 13px;}
   .menu{gap:7px;}
   .menucard{padding:10px 13px;}
+  .hero{padding:14px 18px 12px;}
+  .hero h1{font-size:24px;}
+  .unitchip{margin-top:8px;}
+  .md{line-height:1.3;}
 }
 @media(max-height:600px){
   .hero{padding:12px 16px;}
@@ -138,6 +144,53 @@ h2{margin:8px 0 4px;}
 }
 @media(max-height:480px){
   .md{display:none;}
+  #s-home .menu{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);}
+}
+/* ---- round 2: fit tuning from measured device sizes ---- */
+.screen.on{overflow-y:auto;}
+#s-home{overflow:hidden;}
+@media(max-height:760px){
+  #conceptlist .d,#assignlist .d,#archivelist .d{display:none;}
+}
+@media(max-width:559px){
+  #assignlist .d{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .sub{font-size:13.5px;}
+}
+@media(min-width:300px) and (max-height:760px){
+  #topicchecks,#conceptlist{grid-template-columns:1fr 1fr;}
+}
+@media(min-width:800px) and (max-height:480px){
+  #topicchecks,#conceptlist,#assignlist,#archivelist{grid-template-columns:1fr 1fr 1fr;}
+}
+@media(max-height:480px){
+  #conceptlist .listrow,#assignlist .listrow,#archivelist .listrow{padding:8px 12px;}
+  .chk{padding:8px 12px;font-size:15px;}
+  h2{margin-top:2px;}
+  .sub{margin-bottom:6px;}
+}
+@media(max-height:600px){
+  #s-signin input[type=text]{padding:8px;}
+  #s-signin .btn.big{padding:12px;font-size:18px;}
+  #s-signin .sub{margin-bottom:6px;}
+}
+/* ---- round 3: measured squeezes for the last holdouts ---- */
+@media(min-width:300px) and (max-height:760px){
+  #topicchecks .chk{font-size:14px;line-height:1.25;padding:9px 11px;gap:10px;}
+  #topicchecks .chk input{width:18px;height:18px;}
+}
+@media(max-height:480px){
+  #topicchecks{gap:6px;}
+  #topicchecks .chk{padding:7px 10px;line-height:1.2;}
+  #s-custom .btn.big{padding:11px;font-size:18px;}
+  #s-custom .err{min-height:0;}
+  #s-custom .sub{font-size:13px;line-height:1.35;}
+  .backbtn{padding:4px 0;}
+}
+@media(max-height:600px){
+  #s-signin .sub{font-size:13px;line-height:1.4;}
+  #s-signin .card{margin:4px 0;}
+  #s-signin input[type=text]{padding:7px;font-size:16px;}
+  #s-signin .err{min-height:12px;}
 }
 </style>
 </head>
