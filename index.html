@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Geometry Study — Period 2</title>
+<style>
+:root{--bg:#f4f6fb;--panel:#ffffff;--ink:#1a2333;--mut:#667084;--acc:#1d4ed8;--acc-d:#1740b4;--ok:#15803d;--okbg:#eaf7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e3e8f2;--gold:#8a6d00;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;justify-content:center;}
+#app{width:100%;max-width:640px;padding:16px 16px 44px;}
+.screen{display:none;}
+.screen.on{display:block;animation:fadein .2s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;}}
+h1{font-size:30px;margin:22px 0 4px;text-align:center;font-weight:800;letter-spacing:-.5px;}
+h2{font-size:22px;margin:18px 0 6px;text-align:center;font-weight:700;}
+.sub{text-align:center;color:var(--mut);margin:0 0 16px;font-size:14px;}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0;box-shadow:0 1px 3px rgba(20,30,60,.06);}
+.btn{display:block;width:100%;padding:13px;margin:8px 0;font-size:17px;font-weight:600;color:#fff;background:var(--acc);border:1px solid var(--acc-d);border-radius:10px;cursor:pointer;touch-action:manipulation;font-family:inherit;}
+.btn:active{transform:scale(.985);}
+.btn.sec{background:#fff;color:var(--acc);}
+.btn.warn{background:#fff;color:var(--bad);border-color:#e8b4b4;}
+.btn.small{font-size:15px;padding:8px 12px;margin:4px 0;width:auto;display:inline-block;}
+.btn.big{font-size:20px;padding:16px;}
+.btn:disabled{opacity:.55;cursor:default;}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.answers .btn{font-size:16px;padding:13px 6px;margin:0;min-height:60px;background:#fff;color:var(--ink);border:1px solid var(--line);}
+.answers .btn.right{background:var(--okbg);border:2px solid var(--ok);color:var(--ok);}
+.answers .btn.wrongpick{background:var(--badbg);border:2px solid var(--bad);color:var(--bad);}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;background:#e8eefc;color:var(--acc);margin-bottom:8px;}
+#qtext{font-size:19px;line-height:1.55;margin:2px 0 4px;}
+#feed{min-height:26px;text-align:center;font-weight:600;font-size:16px;margin:8px 0 2px;}
+#feed.ok{color:var(--ok);}
+#feed.no{color:var(--bad);}
+.topbar{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mut);margin:2px 0 8px;}
+.topbar b{color:var(--ink);}
+.stat{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px dashed var(--line);font-size:16px;}
+.stat:last-child{border-bottom:none;}
+.listrow{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer;touch-action:manipulation;text-align:left;width:100%;font-family:inherit;font-size:16px;}
+.listrow:active{background:#f0f4fc;}
+.listrow .grow{flex:1;}
+.listrow .t{font-weight:700;}
+.listrow .d{font-size:13px;color:var(--mut);}
+input[type=text],input[type=password]{font-size:18px;padding:11px;width:100%;text-align:center;background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:10px;font-family:inherit;margin:4px 0;}
+input:focus{outline:none;border-color:var(--acc);}
+.chk{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:7px 0;cursor:pointer;font-size:16px;}
+.chk input{width:20px;height:20px;}
+.stepbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0;}
+.stepbox .stepnum{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--mut);text-transform:uppercase;margin-bottom:6px;}
+.stepbox h3{margin:0 0 8px;font-size:19px;}
+.stepbox p{font-size:16px;line-height:1.6;margin:0 0 8px;}
+.ex{background:#f7f9fd;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;line-height:1.7;}
+.ex .eline{opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s;}
+.ex .eline.show{opacity:1;transform:none;}
+#joinbanner{background:#fff8e1;border:1px solid #e8d48b;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:15px;}
+#joinbanner .t{font-weight:700;margin-bottom:6px;}
+.err{color:var(--bad);font-size:14px;min-height:20px;text-align:center;}
+.brow{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin:6px 0;}
+.bmedal{font-size:17px;min-width:32px;text-align:center;color:var(--gold);font-weight:800;}
+.bname{flex:1;font-size:16px;}
+.bval{font-weight:700;color:var(--acc);}
+.tglrow{display:flex;gap:8px;margin:8px 0;}
+.tglrow .btn{opacity:.5;}
+.tglrow .btn.on{opacity:1;}
+.note{font-size:13px;color:var(--mut);text-align:center;margin-top:10px;line-height:1.5;}
+.backbtn{background:none;border:none;color:var(--acc);font-size:16px;font-weight:600;cursor:pointer;padding:8px 0;font-family:inherit;}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div class="screen on" id="s-home">
+  <h1>Geometry Study</h1>
+  <p class="sub">Geometry Honors · Period 2 · <span id="unitlbl">Unit 1B</span></p>
+  <div id="joinbanner" style="display:none"></div>
+  <button class="btn big" onclick="startCurrentUnit()">Current Unit</button>
+  <button class="btn" onclick="showConcepts()">Concepts</button>
+  <button class="btn" onclick="showAssign()">Assignments</button>
+  <button class="btn" onclick="showCustom()">Custom Practice</button>
+  <button class="btn" onclick="showArchive()">Archive</button>
+  <button class="btn sec" onclick="openBoard()">Leaderboard — Time Practiced</button>
+  <p class="sub" id="idline"></p>
+</div>
+
+<div class="screen" id="s-nounit">
+  <h2 id="nounittitle">Current Unit</h2>
+  <div class="card">
+    <p style="font-size:16px;line-height:1.6" id="nounitmsg">No Unit 2 topics yet — new topics are added as the unit is posted.</p>
+  </div>
+  <button class="btn" onclick="showArchive()">Browse archive</button>
+  <button class="btn" onclick="showCustom()">Custom practice</button>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-signin">
+  <h2>Sign in</h2>
+  <p class="sub">first name + last initial, for the leaderboard</p>
+  <div class="card">
+    <input type="text" id="fname" maxlength="15" placeholder="First name" autocomplete="off">
+    <input type="text" id="lini" maxlength="1" placeholder="Last initial" autocomplete="off" style="width:60%">
+    <div id="midwrap" style="display:none">
+      <input type="text" id="midini" maxlength="1" placeholder="Middle initial" autocomplete="off" style="width:60%">
+      <p class="sub">Someone else already has your name. Add a middle initial to register separately.</p>
+    </div>
+    <button class="btn big" id="signinbtn" onclick="submitSignin()">Sign in</button>
+    <p class="err" id="signinerr"></p>
+  </div>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-verify">
+  <h2>Already registered</h2>
+  <div class="card">
+    <p style="font-size:17px;line-height:1.5">That name is already registered.<br><b>Are you <span id="verifyname"></span>?</b></p>
+    <button class="btn big" onclick="imOwner()">That's me</button>
+    <button class="btn sec" onclick="notOwner()">Not me</button>
+  </div>
+  <button class="backbtn" onclick="show('s-signin')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-waiting">
+  <h2>Waiting for approval</h2>
+  <div class="card">
+    <p style="font-size:16px;line-height:1.6">A join request was sent to <b><span id="waitname"></span></b>'s first device. Once they approve it on their phone, you're in.</p>
+    <p class="sub" id="waitstatus">Checking…</p>
+    <button class="btn sec" onclick="cancelWait()">Cancel</button>
+  </div>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-custom">
+  <h2>Custom Practice</h2>
+  <p class="sub">pick the topics you want</p>
+  <div id="topicchecks"></div>
+  <button class="btn big" onclick="startCustom()">Start practice</button>
+  <p class="err" id="customerr"></p>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-concepts">
+  <h2>Concepts</h2>
+  <p class="sub">each concept has a short recap + practice</p>
+  <div id="conceptlist"></div>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-concept">
+  <h2 id="conceptname"></h2>
+  <p class="sub" id="conceptdesc"></p>
+  <button class="btn big" onclick="startRecap(RC.id)">Interactive recap</button>
+  <button class="btn" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button>
+  <button class="backbtn" onclick="showConcepts()">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-recap">
+  <h2 id="recaptitle"></h2>
+  <div class="stepbox">
+    <div class="stepnum" id="stepnum"></div>
+    <h3 id="steph"></h3>
+    <p id="stepbody"></p>
+    <div class="ex" id="exbox" style="display:none"></div>
+    <button class="btn sec" id="exbtn" onclick="recapNextEx()">Show worked example</button>
+  </div>
+  <button class="btn big" id="recapnext" onclick="recapNext()">Next step &rarr;</button>
+  <button class="backbtn" onclick="showConcepts()">&larr; Concepts</button>
+</div>
+
+<div class="screen" id="s-practice">
+  <div class="topbar"><span id="prtitle"><b>Practice</b></span><span id="prtime">0:00</span></div>
+  <div class="card">
+    <span class="tag" id="ptag">TOPIC</span>
+    <div id="qtext"></div>
+    <div class="answers" id="answers"></div>
+  </div>
+  <div id="feed"></div>
+  <button class="btn big" id="prnext" onclick="nextQ()" style="display:none">Next question &rarr;</button>
+  <div class="topbar"><span id="prstats"></span><button class="backbtn" onclick="endPractice()">End session</button></div>
+</div>
+
+<div class="screen" id="s-done">
+  <h2>Session complete</h2>
+  <div class="card" id="donestats"></div>
+  <button class="btn big" onclick="show('s-home')">Done</button>
+</div>
+
+<div class="screen" id="s-assign">
+  <h2>Assignments</h2>
+  <p class="sub">practice sets matching your homework</p>
+  <div id="assignlist"></div>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-archive">
+  <h2>Archive</h2>
+  <p class="sub">topics from past units</p>
+  <div id="archivelist"></div>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+<div class="screen" id="s-board">
+  <h2>Leaderboard</h2>
+  <p class="sub">time practiced</p>
+  <div class="tglrow">
+    <button class="btn tgl" data-m="seconds" onclick="setBoard(null,'seconds')">Time spent</button>
+    <button class="btn tgl" data-m="correct" onclick="setBoard(null,'correct')">Correct answers</button>
+  </div>
+  <div class="tglrow">
+    <button class="btn tgl" data-r="day" onclick="setBoard('day')">Today</button>
+    <button class="btn tgl" data-r="week" onclick="setBoard('week')">This week</button>
+    <button class="btn tgl" data-r="ever" onclick="setBoard('ever')">All time</button>
+  </div>
+  <div id="boardrows" style="margin-top:8px"></div>
+  <button class="btn sec" onclick="loadBoard()">Refresh</button>
+  <button class="backbtn" onclick="show('s-home')">&larr; Back</button>
+</div>
+
+</div>
+<script>
+//__HELPERS_START__  (tests/test_topics.js extracts everything up to __HELPERS_END__
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[R(0,a.length-1)];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=R(0,i);const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+const PT=(x,y)=>`(${x}, ${y})`;
+const sgn=n=>n<0?`${n}`:`+${n}`;
+function mkQ(topic,q,correct,cands){
+  const set=new Set([correct]);const distract=[];
+  const pool=shuffle(cands);
+  for(const c of pool){if(!set.has(c)){set.add(c);distract.push(c);}if(distract.length>=3)break;}
+  let k=1;while(distract.length<3){const f=correct+'·'+(k++);if(!set.has(f)){set.add(f);distract.push(f);}}
+  const choices=shuffle([correct,...distract]);
+  return {topic,q,choices,answer:choices.indexOf(correct)};
+}
+
+// ---------- topic system ----------
+const TOPICS={};
+function registerTopic(t){TOPICS[t.id]=t;}
+//__HELPERS_END__
+const MANIFEST={"active": [], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+// ---- topic: midpoint ----
+// Midpoint of a segment from two endpoints.
+registerTopic({
+  id: 'midpoint',
+  name: 'Midpoint Formula',
+  tag: 'MIDPOINT',
+  units: ['1B'],
+  added: '2026-10-07',
+  assignments: ['midpoint-distance-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Midpoint Formula',
+    intro: 'The midpoint of a segment is the point exactly halfway between its endpoints. To find it, average the x-coordinates and average the y-coordinates.',
+    steps: [
+      {
+        h: 'The formula',
+        body: 'Midpoint = ((x1+x2)/2, (y1+y2)/2). Add the two x-coordinates and divide by 2; do the same for the y-coordinates.',
+        ex: [
+          'Find the midpoint of (1, 3) and (5, 7):',
+          'x: (1 + 5) / 2 = 3',
+          'y: (3 + 7) / 2 = 5',
+          'Midpoint: (3, 5)'
+        ]
+      },
+      {
+        h: 'Watch the signs',
+        body: 'Keep negative signs glued to their numbers. -2 and 6 average to 2, not -4 — the sign matters more than the digits.',
+        ex: [
+          'Endpoints (-2, 8) and (6, -4):',
+          'x: (-2 + 6) / 2 = 2',
+          'y: (8 + (-4)) / 2 = 2',
+          'Midpoint: (2, 2)'
+        ]
+      },
+      {
+        h: 'Halves are fine',
+        body: 'If a coordinate sum is odd, the midpoint has a .5 in it. Do not round — a half is an exact answer.',
+        ex: [
+          'Endpoints (1, 2) and (4, 5):',
+          'x: (1 + 4) / 2 = 2.5',
+          'y: (2 + 5) / 2 = 3.5',
+          'Midpoint: (2.5, 3.5)'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const x1=R(-10,10),y1=R(-10,10),x2=R(-10,10),y2=R(-10,10);
+    const mx=(x1+x2)/2,my=(y1+y2)/2;
+    return mkQ('MIDPOINT',`Find the midpoint of the segment with endpoints ${PT(x1,y1)} and ${PT(x2,y2)}.`,PT(mx,my),
+      [PT(x1+x2,y1+y2),PT((x1-x2)/2,(y1-y2)/2),PT(mx+1,my),PT(mx,my-1),PT(-mx,my),PT(mx+2,my+2)]);
+  }
+});
+
+// ---- topic: distance ----
+// Exact distance between two points (integer answers via Pythagorean triples).
+registerTopic({
+  id: 'distance',
+  name: 'Distance Formula',
+  tag: 'DISTANCE',
+  units: ['1B'],
+  added: '2026-10-07',
+  assignments: ['midpoint-distance-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Distance Formula',
+    intro: 'The distance between two points is the length of the segment joining them. The formula comes straight from the Pythagorean theorem.',
+    steps: [
+      {
+        h: 'The formula',
+        body: 'd = sqrt((x2-x1)^2 + (y2-y1)^2). The horizontal and vertical gaps are the legs of a right triangle, and the segment is the hypotenuse.',
+        ex: [
+          'Distance between (1, 2) and (4, 6):',
+          'dx = 4 - 1 = 3,  dy = 6 - 2 = 4',
+          'd = sqrt(3^2 + 4^2) = sqrt(9 + 16)',
+          'd = sqrt(25) = 5'
+        ]
+      },
+      {
+        h: 'Order does not matter',
+        body: 'Subtract in either direction — the squares erase the signs, because (x1-x2)^2 equals (x2-x1)^2.',
+        ex: [
+          'Distance between (5, 1) and (2, 5):',
+          'dx = 5 - 2 = 3,  dy = 1 - 5 = -4',
+          'd = sqrt(3^2 + (-4)^2) = sqrt(9 + 16)',
+          'd = 5'
+        ]
+      },
+      {
+        h: 'Exact answers',
+        body: 'If the sum is not a perfect square, leave it as a simplified radical. Do not round unless the problem asks for a decimal.',
+        ex: [
+          '(0, 0) and (3, 4) give an exact 5.',
+          '(0, 0) and (2, 3): d = sqrt(4 + 9) = sqrt(13)',
+          'sqrt(13) cannot simplify — it stays as sqrt(13).'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const TRIP=[[3,4,5],[6,8,10],[5,12,13],[8,15,17],[9,12,15],[7,24,25],[12,16,20],[20,21,29]];
+    const t=pick(TRIP),dx=t[0]*pick([1,-1]),dy=t[1]*pick([1,-1]),h=t[2];
+    const x1=R(-8,8),y1=R(-8,8),x2=x1+dx,y2=y1+dy;
+    return mkQ('DISTANCE',`Find the exact distance between ${PT(x1,y1)} and ${PT(x2,y2)}.`,String(h),
+      [String(Math.abs(dx)+Math.abs(dy)),String(Math.abs(Math.abs(dx)-Math.abs(dy))),String(h+1),String(h-1),String(h+2),String(2*h)]);
+  }
+});
+
+// ---- topic: missing-endpoint ----
+// Find the missing endpoint given the midpoint and one endpoint.
+registerTopic({
+  id: 'missing-endpoint',
+  name: 'Missing Endpoint',
+  tag: 'MIDPOINT',
+  units: ['1B'],
+  added: '2026-10-07',
+  assignments: ['midpoint-distance-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Finding a Missing Endpoint',
+    intro: 'If you know the midpoint M and one endpoint R, you can find the other endpoint S. The midpoint is the average, so reverse it by doubling.',
+    steps: [
+      {
+        h: 'The doubling trick',
+        body: 'S = 2M - R. Double the midpoint\u2019s coordinates, then subtract the known endpoint.',
+        ex: [
+          'M = (4, 5) and R = (1, 2). Find S:',
+          'S = (2*4 - 1, 2*5 - 2)',
+          'S = (8 - 1, 10 - 2)',
+          'S = (7, 8)'
+        ]
+      },
+      {
+        h: 'Check your work',
+        body: 'The midpoint of R and your answer should equal M. A ten-second sanity check before moving on.',
+        ex: [
+          'Check: ((1 + 7)/2, (2 + 8)/2)',
+          '= (8/2, 10/2) = (4, 5)',
+          'That matches M. Correct.'
+        ]
+      },
+      {
+        h: 'Works with negatives too',
+        body: 'Same trick, just keep the signs straight: subtracting a negative becomes addition.',
+        ex: [
+          'M = (-3, 1) and R = (2, -5). Find S:',
+          'S = (2*(-3) - 2, 2*1 - (-5))',
+          'S = (-6 - 2, 2 + 5)',
+          'S = (-8, 7)'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const mx=R(-8,8),my=R(-8,8),rx=R(-8,8),ry=R(-8,8);
+    const sx=2*mx-rx,sy=2*my-ry;
+    return mkQ('MIDPOINT',`M ${PT(mx,my)} is the midpoint of segment RS. R is ${PT(rx,ry)}. Find S.`,PT(sx,sy),
+      [PT(mx-rx,my-ry),PT(rx-mx,ry-my),PT(sx+2,sy),PT(sx,sy+2),PT(2*mx+rx,2*my+ry)]);
+  }
+});
+
+// ---- topic: partition ----
+// Partition a directed segment in a given ratio (integer coordinates by construction).
+registerTopic({
+  id: 'partition',
+  name: 'Partitioning a Segment',
+  tag: 'PARTITION',
+  units: ['1B'],
+  added: '2026-10-07',
+  assignments: ['partitioning-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Partitioning a Segment',
+    intro: 'A point can divide a segment in a ratio like 2:3. "AP:PB = 2:3" means the segment is cut into 2+3 = 5 equal parts, and P sits 2 parts from A.',
+    steps: [
+      {
+        h: 'The ratio rule',
+        body: 'If P partitions AB with AP:PB = a:b, then P is a/(a+b) of the way from A to B. Add the two parts to get the total.',
+        ex: [
+          'AP:PB = 2:3',
+          'Total parts: 2 + 3 = 5',
+          'P is 2/5 of the way from A to B.'
+        ]
+      },
+      {
+        h: 'Work each coordinate separately',
+        body: 'P = (x1 + (a/(a+b)) * (x2-x1), y1 + (a/(a+b)) * (y2-y1)). Start at A, then walk the fraction toward B.',
+        ex: [
+          'A = (0, 0), B = (10, 20), AP:PB = 1:3:',
+          'Total parts: 4, so P is 1/4 of the way from A.',
+          'x: 0 + (1/4)*10 = 2.5',
+          'y: 0 + (1/4)*20 = 5',
+          'P = (2.5, 5)'
+        ]
+      },
+      {
+        h: 'Direction matters',
+        body: 'Always start from A, the first letter named. Starting from B gives the mirror-image point — a different answer.',
+        ex: [
+          'A = (0, 0), B = (8, 8), AP:PB = 3:1:',
+          'P is 3/4 of the way from A: P = (6, 6).',
+          'Starting from B would give (2, 2) — wrong point.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const s=pick([2,3,4,5]),a=R(1,s-1),b=s-a;
+    const x1=R(-8,8),y1=R(-8,8);
+    let k1=R(-3,3),k2=R(-3,3);if(k1===0)k1=2;if(k2===0)k2=-2;
+    const vx=s*k1,vy=s*k2,x2=x1+vx,y2=y1+vy;
+    const px=x1+a*k1,py=y1+a*k2;
+    return mkQ('PARTITION',`Point P partitions directed segment AB — A${PT(x1,y1)}, B${PT(x2,y2)} — with AP:PB = ${a}:${b}. Find P.`,PT(px,py),
+      [PT(x1+b*k1,y1+b*k2),PT((x1+x2)/2,(y1+y2)/2),PT(px+1,py),PT(px,py+1),PT(x2,y2)]);
+  }
+});
+
+// ---- topic: seg-add ----
+// Segment addition: solve for x (constructed so the equation is never an identity).
+registerTopic({
+  id: 'seg-add',
+  name: 'Segments and Congruence',
+  tag: 'SEGMENTS',
+  units: ['1B'],
+  added: '2026-10-07',
+  assignments: ['segment-addition-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Segments and Congruence',
+    intro: 'If point S lies between R and T, the two smaller pieces add up to the whole: RS + ST = RT. That is the Segment Addition Postulate.',
+    steps: [
+      {
+        h: 'Set up the equation',
+        body: 'RS + ST = RT. Substitute the given expressions, combine like terms, then solve for x.',
+        ex: [
+          'RS = 2x + 1, ST = 3x - 4, RT = 19:',
+          '(2x + 1) + (3x - 4) = 19',
+          '5x - 3 = 19',
+          '5x = 22,  so x = 4.4'
+        ]
+      },
+      {
+        h: 'When RT has an x too',
+        body: 'Same idea, more bookkeeping: collect every x-term on one side and every constant on the other, then solve.',
+        ex: [
+          'RS = 2x + 1, ST = 3, RT = 4x - 2:',
+          '(2x + 1) + 3 = 4x - 2',
+          '2x + 4 = 4x - 2',
+          '6 = 2x,  so x = 3'
+        ]
+      },
+      {
+        h: 'Sanity-check the lengths',
+        body: 'Plug x back in: every segment length must be positive. A negative or zero length means something went wrong.',
+        ex: [
+          'x = 3 in the example above:',
+          'RS = 2(3) + 1 = 7,  ST = 3,  RT = 4(3) - 2 = 10',
+          '7 + 3 = 10. The pieces add up — correct.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    let x,a,b,c,d,e,f,rs,st,rt;
+    do{
+      x=R(2,9);a=R(2,9);c=R(2,9);e=R(2,9);
+      if(e===a+c)e+=1; // avoid identity: RS+ST must not equal RT for all x
+      b=R(-9,9);d=R(-9,9);
+      f=(a+c-e)*x+(b+d);
+      rs=a*x+b;st=c*x+d;rt=e*x+f;
+    }while(rs<=0||st<=0||rt<=0||b===0||d===0||f===0);
+    const q=`S is between R and T. RS = ${a}x${sgn(b)}, ST = ${c}x${sgn(d)}, RT = ${e}x${sgn(f)}. Solve for x.`;
+    const cd=[x+1,x-1,x+2,x-2].filter(v=>v>0&&v!==x).map(String);
+    return mkQ('SEGMENTS',q,String(x),cd);
+  }
+});
+
+// ---- topic: radicals ----
+// Simplify radicals to simplest k√m form.
+registerTopic({
+  id: 'radicals',
+  name: 'Simplifying Radicals',
+  tag: 'RADICALS',
+  units: ['1B'],
+  added: '2026-10-07',
+  assignments: ['radicals-review', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Simplifying Radicals',
+    intro: 'A radical is in simplest form when the number under the root has no perfect-square factors left (other than 1).',
+    steps: [
+      {
+        h: 'Pull out the biggest square',
+        body: 'Factor the radicand: find the largest perfect square that divides it, take its square root out front, and leave the rest under the root.',
+        ex: [
+          'Simplify sqrt(48):',
+          '48 = 16 * 3, and 16 is a perfect square.',
+          'sqrt(48) = sqrt(16) * sqrt(3)',
+          '= 4*sqrt(3)'
+        ]
+      },
+      {
+        h: 'How to find the square',
+        body: 'Run through the perfect squares — 4, 9, 16, 25, 36 — and check which one divides your number. Or factor completely and pull out pairs.',
+        ex: [
+          'Simplify sqrt(72):',
+          '72 = 2*2*2*3*3  ->  pairs: (2*2) and (3*3)',
+          'Each pair contributes one factor outside: 2*3 = 6',
+          'One 2 is left inside: 6*sqrt(2)'
+        ]
+      },
+      {
+        h: 'Already simple stays simple',
+        body: 'If no perfect square divides the radicand, it is already in simplest form. Do not invent work.',
+        ex: [
+          'sqrt(13): no square divides 13 — it stays sqrt(13).',
+          'sqrt(30): no square divides 30 — it stays sqrt(30).',
+          'sqrt(20) = sqrt(4*5) = 2*sqrt(5).'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const SQF=[2,3,5,6,7,10,11,13];
+    const k=R(2,6),m=pick(SQF),n=k*k*m,cor=`${k}√${m}`;
+    const cd=[`${k+1}√${m}`,`${k}√${m+1}`,`${k-1}√${m}`,`${2*k}√${m}`,`${k}√${m+2}`];
+    for(let d=2;d<k;d++)if(k%d===0)cd.push(`${k/d}√${d*d*m}`);
+    return mkQ('RADICALS',`Simplify √${n}.`,cor,cd);
+  }
+});
+
+// ---- topic: graphing ----
+// Graphing on the coordinate plane: quadrants, plotting points from the
+// origin, and reading coordinates. (Review guide for the Unit 1B test
+// lists "graphing" alongside segments, midpoint, distance, partitioning,
+// radicals.)
+registerTopic({
+  id: 'graphing',
+  name: 'Graphing on the Coordinate Plane',
+  tag: 'GRAPHING',
+  units: ['1B'],
+  added: '2026-10-08',
+  assignments: ['graphing-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Graphing on the Coordinate Plane',
+    intro: 'Every point is an address: the x-coordinate says how far left or right of the y-axis, the y-coordinate says how far above or below the x-axis.',
+    steps: [
+      {
+        h: 'Quadrants',
+        body: 'Right and up is Quadrant I, left and up is II, left and down is III, right and down is IV. Points sitting on an axis are not in any quadrant.',
+        ex: [
+          '(3, -2): right and down  ->  Quadrant IV',
+          '(-5, 1): left and up  ->  Quadrant II',
+          '(0, 4): on the y-axis  ->  no quadrant'
+        ]
+      },
+      {
+        h: 'Plotting from the origin',
+        body: 'Start at (0, 0). Move along x first — right for positive, left for negative — then up or down for y.',
+        ex: [
+          'Plot (-4, 3): from the origin, move 4 left, then 3 up.',
+          'Plot (5, -1): from the origin, move 5 right, then 1 down.'
+        ]
+      },
+      {
+        h: 'Reading coordinates',
+        body: 'x comes first, then y. The classic trap is swapping them: "3 right, 2 up" is (3, 2), not (2, 3).',
+        ex: [
+          '"4 units left of the y-axis and 6 above the x-axis":',
+          'Left of the y-axis means negative x: x = -4.',
+          'Above the x-axis means positive y: y = 6.',
+          'The point is (-4, 6).'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const v = R(1, 3);
+    if (v === 1) {
+      // which quadrant is a plotted point in?
+      let x = 0; while (x === 0) x = R(-9, 9);
+      let y = 0; while (y === 0) y = R(-9, 9);
+      const q = x > 0 ? (y > 0 ? 'I' : 'IV') : (y > 0 ? 'II' : 'III');
+      return mkQ('GRAPHING', `The point ${PT(x, y)} is plotted on a coordinate plane. In which quadrant does it lie?`, q,
+        ['I', 'II', 'III', 'IV'].filter(c => c !== q));
+    }
+    if (v === 2) {
+      // translate from the origin
+      const ax = R(2, 9), ay = R(2, 9);
+      const dx = pick(['left', 'right']), dy = pick(['up', 'down']);
+      const px = dx === 'right' ? ax : -ax, py = dy === 'up' ? ay : -ay;
+      return mkQ('GRAPHING', `Start at the origin. Move ${ax} unit${ax === 1 ? '' : 's'} ${dx} and ${ay} unit${ay === 1 ? '' : 's'} ${dy}. What point do you land on?`, PT(px, py),
+        [PT(-px, py), PT(px, -py), PT(-px, -py), PT(py, px), PT(-py, -px)]);
+    }
+    // read coordinates from a position description (x vs y order)
+    let x = 0; while (x === 0) x = R(-9, 9);
+    let y = 0; while (y === 0) y = R(-9, 9);
+    const xs = x >= 0 ? 'to the right of' : 'to the left of';
+    const ys = y >= 0 ? 'above' : 'below';
+    return mkQ('GRAPHING', `A point is plotted ${Math.abs(x)} unit${Math.abs(x) === 1 ? '' : 's'} ${xs} the y-axis and ${Math.abs(y)} unit${Math.abs(y) === 1 ? '' : 's'} ${ys} the x-axis. What are its coordinates?`, PT(x, y),
+      [PT(y, x), PT(-x, y), PT(x, -y), PT(-x, -y), PT(y, -x), PT(-y, x)]);
+  }
+});
+
+// ---- topic: coord-perimeter-area ----
+// Perimeter and area of rectangles and right triangles on the coordinate
+// plane (Unit 1B classwork: packet pp. 11-12 "distance, perimeter, area"
+// graph-paper work, Oct 7). All problems use integer coordinates and
+// integer answers. Original procedurally generated problems — none copy a
+// homework problem.
+registerTopic({
+  id: 'coord-perimeter-area',
+  name: 'Perimeter & Area on the Coordinate Plane',
+  tag: 'PERIM-AREA',
+  units: ['1B'],
+  added: '2026-10-13',
+  assignments: ['coord-perimeter-area-hw', 'unit-1b-review-packet'],
+  recap: {
+    title: 'Perimeter & Area on the Coordinate Plane',
+    intro: 'On the coordinate plane, side lengths of axis-aligned rectangles and right triangles are just horizontal and vertical gaps — subtract the coordinates.',
+    steps: [
+      {
+        h: 'Side lengths from coordinates',
+        body: 'Horizontal side = difference of the x-values; vertical side = difference of the y-values. The sign does not matter — use the absolute value.',
+        ex: [
+          'A = (1, 2), B = (6, 2): length = |6 - 1| = 5.',
+          'A = (1, 2), D = (1, 5): width = |5 - 2| = 3.'
+        ]
+      },
+      {
+        h: 'Rectangle: perimeter and area',
+        body: 'Perimeter = 2*(length + width); Area = length * width. Remember which one is which: perimeter is a fence (units), area is coverage (square units).',
+        ex: [
+          'Rectangle 5 by 3:',
+          'Perimeter = 2*(5 + 3) = 16',
+          'Area = 5 * 3 = 15'
+        ]
+      },
+      {
+        h: 'Right triangle',
+        body: 'Area = 1/2 * base * height, using the two legs. Perimeter = leg1 + leg2 + hypotenuse (use the distance formula if the hypotenuse is not given).',
+        ex: [
+          'Right triangle with legs 6 and 4, hypotenuse 2*sqrt(13):',
+          'Area = (1/2)*6*4 = 12',
+          'Perimeter = 6 + 4 + 2*sqrt(13)'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const v = R(1, 4);
+    if (v <= 2) {
+      // axis-aligned rectangle ABCD
+      const x1 = R(-8, 2), dx = R(2, 7), x2 = x1 + dx;
+      const y1 = R(-8, 2), dy = R(2, 7), y2 = y1 + dy;
+      const verts = `A${PT(x1, y1)}, B${PT(x2, y1)}, C${PT(x2, y2)}, D${PT(x1, y2)}`;
+      if (v === 1) {
+        const area = dx * dy;
+        return mkQ('PERIM-AREA',
+          `Rectangle ABCD has vertices ${verts}. What is its area?`, String(area),
+          [String(2 * (dx + dy)), String(dx + dy), String(area + dx), String(area - dx),
+           String(area + 1), String(area - 1), String(2 * area)]);
+      }
+      const perim = 2 * (dx + dy);
+      return mkQ('PERIM-AREA',
+        `Rectangle ABCD has vertices ${verts}. What is its perimeter?`, String(perim),
+        [String(dx * dy), String(dx + dy), String(2 * dx + dy), String(dx + 2 * dy),
+         String(perim + 2), String(perim - 2)]);
+    }
+    if (v === 3) {
+      // right triangle area: horizontal base, vertical height, right angle at A or B
+      const m = pick([2, 4, 6, 8]), n = R(2, 8); // m even -> integer area
+      const x = R(-8, 9 - m), y = R(-8, 9 - n);
+      const cPt = pick([PT(x, y + n), PT(x + m, y + n)]);
+      const area = (m * n) / 2;
+      return mkQ('PERIM-AREA',
+        `Triangle ABC has vertices A${PT(x, y)}, B${PT(x + m, y)}, C${cPt}. What is its area?`,
+        String(area),
+        [String(m * n), String(m + n), String(area + 1), String(area - 1),
+         String(2 * (m + n)), String(m * n + m)]);
+    }
+    // right triangle perimeter: integer legs from a Pythagorean triple
+    const t = pick([[3, 4, 5], [6, 8, 10]]), a = t[0], b = t[1], c = t[2];
+    const x = R(-8, 9 - a), y = R(-8, 9 - b);
+    const perim = a + b + c;
+    return mkQ('PERIM-AREA',
+      `Triangle ABC has vertices A${PT(x, y)}, B${PT(x + a, y)}, C${PT(x, y + b)}. What is its perimeter?`,
+      String(perim),
+      [String((a * b) / 2), String(a + b), String(perim + 1), String(perim - 1),
+       String(a * b), String(2 * c)]);
+  }
+});
+
+</script>
+<script>
+// ---------- Geometry Study client ----------
+var BACKEND="https://script.google.com/macros/s/AKfycbyIVYVmBlWYQ2U56zxF8Hs6zLcPamzub_RvxP2Yj2TIMmGXbbut0AthSfgA339jBh1NGA/exec";
+
+// ---- tiny helpers ----
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmtDur(sec){sec=Math.max(0,Math.round(sec));if(sec<60)return sec+' sec';var m=Math.round(sec/60);if(m<60)return m+' min';var h=Math.floor(m/60);return h+'h '+(m%60)+'m';}
+function fmtClock(sec){sec=Math.max(0,Math.floor(sec));var m=Math.floor(sec/60);return m+':'+('0'+(sec%60)).slice(-2);}
+function etDate(){try{return new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});}catch(e){return new Date().toISOString().slice(0,10);}}
+
+// ---- screens ----
+function show(id){
+  var els=document.querySelectorAll('.screen');
+  for(var i=0;i<els.length;i++)els[i].classList.remove('on');
+  $(id).classList.add('on');
+}
+
+// ---- backend API: JSONP (Apps Script web apps don't send CORS headers) ----
+function api(action,params,cb){
+  if(!BACKEND){if(cb)cb({ok:false,error:'no backend'});return;}
+  var c='gscb'+Math.random().toString(36).slice(2);
+  var done=false,s=document.createElement('script');
+  function fin(d){if(done)return;done=true;try{delete window[c];}catch(e){}if(s.parentNode)s.parentNode.removeChild(s);if(cb)cb(d||{ok:false});}
+  window[c]=fin;
+  s.onerror=function(){fin({ok:false,error:'network'});};
+  setTimeout(function(){fin({ok:false,error:'timeout'});},15000);
+  var q='action='+encodeURIComponent(action)+'&callback='+encodeURIComponent(c);
+  for(var k in params){q+='&'+encodeURIComponent(k)+'='+encodeURIComponent(params[k]==null?'':params[k]);}
+  s.src=BACKEND+'?'+q;
+  document.body.appendChild(s);
+}
+
+// ---- identity ----
+var ME=null;
+try{ME=JSON.parse(localStorage.getItem('gs_me')||'null');}catch(e){ME=null;}
+function getDeviceId(){
+  var d=null;try{d=localStorage.getItem('gs_dev');}catch(e){}
+  if(!d){d='d'+Math.random().toString(36).slice(2)+Date.now().toString(36);try{localStorage.setItem('gs_dev',d);}catch(e){}}
+  return d;
+}
+function saveMe(){try{localStorage.setItem('gs_me',JSON.stringify(ME));}catch(e){}}
+function renderIdLine(){
+  var el=$('idline');if(!el)return;
+  if(ME&&ME.token){el.innerHTML='Signed in as <b>'+esc(ME.name)+'</b> — time and correct answers count toward the leaderboard.';}
+  else{el.innerHTML='';var w=$('signinwrap');if(w)w.remove();
+    var b=document.createElement('button');b.id='signinwrap';b.className='btn sec';b.textContent='Sign in for the leaderboard';b.onclick=function(){show('s-signin');};
+    el.parentNode.insertBefore(b,el.nextSibling);}
+}
+
+// ---- sign-in flow ----
+// Display name format: "First L."  Same-name variant: "First LM." (middle initial).
+function displayName(first,lastI,midI){
+  return first+' '+lastI.toUpperCase()+(midI?midI.toUpperCase():'')+'.';
+}
+function submitSignin(){
+  var f=($('fname').value||'').trim().replace(/\s+/g,' ');
+  var li=($('lini').value||'').trim();
+  var mi=($('midini').value||'').trim();
+  var err=$('signinerr');
+  if(!/^[A-Za-z][A-Za-z'\-]{0,14}$/.test(f)){err.textContent='Enter your first name.';return;}
+  if(!/^[A-Za-z]$/.test(li)){err.textContent='Enter your last initial.';return;}
+  if(mi&&!/^[A-Za-z]$/.test(mi)){err.textContent='Middle initial must be a single letter.';return;}
+  err.textContent='';
+  var name=displayName(f,li,mi);
+  var btn=$('signinbtn');btn.disabled=true;
+  api('checkName',{name:name},function(d){
+    btn.disabled=false;
+    if(!d||!d.ok){err.textContent='Could not reach the leaderboard server. Practice still works.';return;}
+    if(!d.registered){doRegister(name);}
+    else if(ME&&ME.name===name&&ME.token){show('s-home');}
+    else{PENDING_NAME=name;showVerify(name);}
+  });
+}
+function doRegister(name){
+  var err=$('signinerr');var btn=$('signinbtn');btn.disabled=true;
+  api('register',{name:name,deviceId:getDeviceId()},function(d){
+    btn.disabled=false;
+    if(d&&d.ok){ME={name:name,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();show('s-home');}
+    else if(d&&d.error==='taken'){PENDING_NAME=name;showVerify(name);}
+    else{err.textContent='That did not go through — try again.';}
+  });
+}
+var PENDING_NAME='';
+function showVerify(name){
+  $('verifyname').textContent=name;show('s-verify');
+}
+// "That's me": create a join request; the account owner's device approves.
+function imOwner(){
+  api('requestJoin',{name:PENDING_NAME,deviceId:getDeviceId()},function(d){
+    if(d&&d.ok&&d.status==='approved'&&d.token){
+      // device was already approved on this account earlier
+      ME={name:PENDING_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();show('s-home');return;
+    }
+    $('waitname').textContent=PENDING_NAME;
+    $('waitstatus').textContent='Checking…';
+    WAIT_NAME=PENDING_NAME;show('s-waiting');startWaitPoll();
+  });
+}
+function notOwner(){
+  // show the middle-initial field so a different person can register separately
+  $('midwrap').style.display='';
+  $('signinerr').textContent='';
+  show('s-signin');
+}
+var WAIT_NAME='', _waitPoll=null;
+function startWaitPoll(){
+  stopWaitPoll();
+  _waitPoll=setInterval(function(){
+    if(!WAIT_NAME)return;
+    api('joinStatus',{name:WAIT_NAME,deviceId:getDeviceId()},function(d){
+      if(!d||!d.ok)return;
+      if(d.status==='approved'&&d.token){
+        stopWaitPoll();
+        ME={name:WAIT_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();show('s-home');
+      }else if(d.status==='denied'){
+        stopWaitPoll();
+        $('waitstatus').innerHTML='Request denied. If that was a mistake, ask them to approve it next time you are together, then <a href="#" onclick="imOwner();return false;" style="color:#1d4ed8">re-request</a>.';
+      }
+    });
+  },8000);
+}
+function stopWaitPoll(){if(_waitPoll){clearInterval(_waitPoll);_waitPoll=null;}}
+function cancelWait(){stopWaitPoll();WAIT_NAME='';show('s-home');}
+
+// ---- account-owner join approvals ----
+// The account owner's device checks for pending join requests on open
+// and every minute, and can approve/deny them.
+function checkJoins(){
+  if(!ME||!ME.token||!BACKEND)return;
+  api('pendingJoins',{token:ME.token,deviceId:getDeviceId()},function(d){
+    var box=$('joinbanner');
+    if(!d||!d.ok||!d.pending||!d.pending.length){if(box)box.style.display='none';return;}
+    var h='<div class="t">Join requests</div>';
+    d.pending.forEach(function(r){
+      h+='<div style="margin:8px 0">A new device wants to join your account <span class="bsub">(requested '+esc(r.created)+')</span><br>'
+        +'<button class="btn small" onclick="resolveJoin(\''+esc(r.deviceId)+'\',\'approve\')">Approve</button> '
+        +'<button class="btn small" onclick="resolveJoin(\''+esc(r.deviceId)+'\',\'deny\')">Deny</button></div>';
+    });
+    box.innerHTML=h;box.style.display='';
+  });
+}
+function resolveJoin(reqDeviceId,decision){
+  api('resolveJoin',{token:ME.token,deviceId:getDeviceId(),reqDeviceId:reqDeviceId,decision:decision},function(){checkJoins();});
+}
+setInterval(function(){checkJoins();},60000);
+
+// ---- topic pools ----
+function allSlugs(){return (MANIFEST.active||[]).concat(MANIFEST.archive||[]);}
+function topicIdsForUnit(unit){return allSlugs().filter(function(s){var t=TOPICS[s];return t&&t.units&&t.units.indexOf(unit)>=0;});}
+function currentPool(){return topicIdsForUnit(MANIFEST.currentUnit||'');}
+
+// ---- modes ----
+function startCurrentUnit(){
+  var pool=currentPool();
+  if(!pool.length){
+    $('nounittitle').textContent='Unit '+MANIFEST.currentUnit+' — Current Unit';
+    $('nounitmsg').textContent='No Unit '+MANIFEST.currentUnit+' topics yet — new topics are added as the unit is posted.';
+    show('s-nounit');return;
+  }
+  startPractice(pool,'Current Unit');
+}
+function showCustom(){
+  var box=$('topicchecks');box.innerHTML='';
+  allSlugs().forEach(function(s){
+    var t=TOPICS[s];if(!t)return;
+    var l=document.createElement('label');l.className='chk';
+    var c=document.createElement('input');c.type='checkbox';c.value=s;c.checked=true;
+    var sp=document.createElement('span');sp.textContent=t.name;
+    l.appendChild(c);l.appendChild(sp);box.appendChild(l);
+  });
+  show('s-custom');
+}
+function startCustom(){
+  var sel=[];
+  var boxes=$('topicchecks').querySelectorAll('input[type=checkbox]');
+  for(var i=0;i<boxes.length;i++)if(boxes[i].checked)sel.push(boxes[i].value);
+  if(!sel.length){$('customerr').textContent='Pick at least one topic.';return;}
+  $('customerr').textContent='';
+  startPractice(sel,'Custom Practice');
+}
+function showConcepts(){
+  var box=$('conceptlist');box.innerHTML='';
+  allSlugs().forEach(function(s){
+    var t=TOPICS[s];if(!t)return;
+    var b=document.createElement('button');b.className='listrow';
+    b.innerHTML='<span class="grow"><span class="t">'+esc(t.name)+'</span><br><span class="d">recap + practice</span></span><span>&rarr;</span>';
+    (function(id){b.onclick=function(){openConcept(id);};})(s);
+    box.appendChild(b);
+  });
+  show('s-concepts');
+}
+function showAssign(){
+  var box=$('assignlist');box.innerHTML='';
+  (MANIFEST.assignmentSets||[]).forEach(function(set){
+    var ids=(set.topics||[]).filter(function(s){return TOPICS[s];});
+    var b=document.createElement('button');b.className='listrow';
+    var names=ids.map(function(s){return TOPICS[s].name;}).join(' · ');
+    if(!ids.length){
+      b.disabled=true;b.style.opacity='.5';b.style.cursor='default';
+      b.innerHTML='<span class="grow"><span class="t">'+esc(set.name)+'</span><br><span class="d">No problems posted yet</span></span>';
+    }else{
+      b.innerHTML='<span class="grow"><span class="t">'+esc(set.name)+'</span><br><span class="d">'+esc(names)+'</span></span><span>&rarr;</span>';
+      (function(pool,name){b.onclick=function(){startPractice(pool,name);};})(ids,set.name);
+    }
+    box.appendChild(b);
+  });
+  show('s-assign');
+}
+function showArchive(){
+  var box=$('archivelist');box.innerHTML='';
+  var slugs=MANIFEST.archive||[];
+  if(!slugs.length){box.innerHTML='<p class="sub">Nothing archived yet — past units will show up here.</p>';}
+  slugs.forEach(function(s){
+    var t=TOPICS[s];if(!t)return;
+    var b=document.createElement('button');b.className='listrow';
+    b.innerHTML='<span class="grow"><span class="t">'+esc(t.name)+'</span><br><span class="d">Unit '+(t.units||[]).join(', ')+'</span></span><span>&rarr;</span>';
+    (function(id,name){b.onclick=function(){startPractice([id],name);};})(s,t.name);
+    box.appendChild(b);
+  });
+  show('s-archive');
+}
+
+// ---- concepts + interactive recap ----
+var RC={id:null,step:0,exIdx:-1};
+function openConcept(id){
+  RC={id:id,step:0,exIdx:-1};
+  var t=TOPICS[id];
+  $('conceptname').textContent=t.name;
+  $('conceptdesc').textContent=t.recap?t.recap.intro:'';
+  show('s-concept');
+}
+function startRecap(id){
+  var tg=$('tryone');if(tg)tg.remove();
+  var sb=document.querySelector('#s-recap .stepbox');if(sb)sb.style.display='';
+  RC={id:id,step:0,exIdx:-1};
+  renderRecap();show('s-recap');
+}
+function renderRecap(){
+  var t=TOPICS[RC.id],r=t.recap,step=r.steps[RC.step];
+  $('recaptitle').textContent=r.title;
+  $('stepnum').textContent='Step '+(RC.step+1)+' of '+r.steps.length;
+  $('steph').textContent=step.h;
+  $('stepbody').textContent=step.body;
+  RC.exIdx=-1;
+  var box=$('exbox');box.style.display='none';box.innerHTML='';
+  $('exbtn').style.display='';
+  $('exbtn').textContent='Show worked example';
+  var last=RC.step===r.steps.length-1;
+  $('recapnext').style.display='';
+  $('recapnext').textContent=last?'Try one →':'Next step →';
+}
+function recapNextEx(){
+  var step=TOPICS[RC.id].recap.steps[RC.step];
+  var box=$('exbox');
+  if(RC.exIdx===-1){
+    box.style.display='';box.innerHTML='';
+    step.ex.forEach(function(line){
+      var d=document.createElement('div');d.className='eline';d.textContent=line;box.appendChild(d);
+    });
+    RC.exIdx=0;box.children[0].classList.add('show');
+  }else if(RC.exIdx<step.ex.length-1){
+    RC.exIdx++;box.children[RC.exIdx].classList.add('show');
+  }
+  if(RC.exIdx>=step.ex.length-1)$('exbtn').style.display='none';
+  else $('exbtn').textContent='Reveal next line';
+}
+function recapNext(){
+  var r=TOPICS[RC.id].recap;
+  if(RC.step<r.steps.length-1){RC.step++;renderRecap();}
+  else{recapTryOne();}
+}
+// End of the recap: one real generated problem, answered and checked,
+// then a direct path into practice.
+function recapTryOne(){
+  var t=TOPICS[RC.id];
+  var p=t.generate();
+  $('recaptitle').textContent='Try one';
+  var sb=document.querySelector('#s-recap .stepbox');sb.style.display='none';
+  $('exbtn').style.display='none';$('recapnext').style.display='none';
+  var tg=document.createElement('div');tg.id='tryone';tg.className='card';
+  tg.innerHTML='<span class="tag">'+esc(t.tag)+'</span><div id="tqtext" style="font-size:18px;line-height:1.5"></div><div class="answers" id="tanswers" style="margin-top:12px"></div><div id="tfeed" style="min-height:26px;text-align:center;font-weight:600;margin:8px 0 2px"></div><div id="tafter" style="display:none"><button class="btn big" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button><button class="btn sec" onclick="recapBack()">Back to recap</button></div>';
+  var sbp=sb.parentNode;sbp.insertBefore(tg,sb.nextSibling);
+  $('tqtext').textContent=p.q;
+  p.choices.forEach(function(c,i){
+    var b=document.createElement('button');b.className='btn';b.textContent=c;
+    b.onclick=function(){tryAnswer(b,i,p);};
+    $('tanswers').appendChild(b);
+  });
+}
+function tryAnswer(btn,i,p){
+  var btns=$('tanswers').querySelectorAll('.btn');
+  for(var j=0;j<btns.length;j++)btns[j].disabled=true;
+  btns[p.answer].classList.add('right');
+  var f=$('tfeed');
+  if(i===p.answer){f.textContent='Correct.';f.style.color='#15803d';}
+  else{btn.classList.add('wrongpick');f.textContent='Not quite — the answer is '+p.choices[p.answer]+'.';f.style.color='#b91c1c';}
+  $('tafter').style.display='';
+}
+function recapBack(){
+  var tg=$('tryone');if(tg)tg.remove();
+  var sb=document.querySelector('#s-recap .stepbox');sb.style.display='';
+  renderRecap();
+}
+
+// ---- practice engine ----
+var PR=null; // {pool,title,answered,correct,elapsed,flushedSecs,flushedCorrect,current}
+function startPractice(topicIds,title){
+  topicIds=topicIds.filter(function(s){return TOPICS[s];});
+  if(!topicIds.length)return;
+  PR={pool:topicIds,title:title,answered:0,correct:0,elapsed:0,flushedSecs:0,flushedCorrect:0,current:null};
+  $('prtitle').innerHTML='<b>'+esc(title)+'</b>';
+  show('s-practice');
+  nextQ();
+}
+function nextQ(){
+  var t=TOPICS[PR.pool[Math.floor(Math.random()*PR.pool.length)]];
+  var p=t.generate();
+  PR.current=p;
+  $('ptag').textContent=t.tag;
+  $('qtext').textContent=p.q;
+  $('feed').textContent='';$('feed').className='';
+  var box=$('answers');box.innerHTML='';
+  p.choices.forEach(function(c,i){
+    var b=document.createElement('button');b.className='btn';b.textContent=c;
+    b.onclick=function(){answer(i);};
+    box.appendChild(b);
+  });
+  $('prnext').style.display='none';
+  updatePrStats();
+}
+function answer(i){
+  if(!PR||!PR.current)return;
+  var p=PR.current;PR.current=null;
+  var btns=$('answers').querySelectorAll('.btn');
+  for(var j=0;j<btns.length;j++)btns[j].disabled=true;
+  btns[p.answer].classList.add('right');
+  PR.answered++;
+  var f=$('feed');
+  if(i===p.answer){PR.correct++;f.textContent='Correct.';f.className='ok';}
+  else{btns[i].classList.add('wrongpick');f.textContent='Not quite — the answer is '+p.choices[p.answer]+'.';f.className='no';}
+  $('prnext').style.display='';
+  updatePrStats();
+}
+function updatePrStats(){
+  $('prstats').textContent='Answered '+PR.answered+' · Correct '+PR.correct;
+  $('prtime').textContent=fmtClock(PR.elapsed);
+}
+function endPractice(){
+  flushTime(false);
+  var pct=PR&&PR.answered?Math.round(100*PR.correct/PR.answered):0;
+  $('donestats').innerHTML=
+    '<div class="stat"><span>Questions answered</span><b>'+(PR?PR.answered:0)+'</b></div>'+
+    '<div class="stat"><span>Correct</span><b>'+(PR?PR.correct:0)+' ('+pct+'%)</b></div>'+
+    '<div class="stat"><span>Time practiced</span><b>'+fmtDur(PR?PR.elapsed:0)+'</b></div>';
+  PR=null;
+  show('s-done');
+}
+// ---- time + correct tracking ----
+// Time accrues only while a practice session is open and the tab is visible.
+// Every ~20s (and on session end / page hide) the delta is sent to the
+// backend with the account token.
+setInterval(function(){
+  if(PR&&document.visibilityState==='visible'){PR.elapsed++;updatePrStats();}
+},1000);
+setInterval(function(){flushTime(false);},20000);
+window.addEventListener('pagehide',function(){flushTime(true);});
+function flushTime(beacon){
+  if(!PR)return;
+  var secs=PR.elapsed-PR.flushedSecs, cor=PR.correct-PR.flushedCorrect;
+  PR.flushedSecs=PR.elapsed;PR.flushedCorrect=PR.correct;
+  if(!ME||!ME.token||!BACKEND)return;
+  if(secs<=0&&cor<=0)return;
+  var params={token:ME.token,seconds:secs,correct:cor};
+  if(beacon&&navigator.sendBeacon){
+    var q='action=logTime&token='+encodeURIComponent(params.token)+'&seconds='+secs+'&correct='+cor;
+    navigator.sendBeacon(BACKEND+'?'+q);
+  }else{api('logTime',params,function(){});}
+}
+
+// ---- leaderboard: time spent and correct answers, day / week / all time ----
+var BOARD={range:'day',metric:'seconds'};
+function openBoard(){
+  if(!ME||!ME.token){
+    var box=$('boardrows');
+    box.innerHTML='<p class="sub">Sign in to see the leaderboard.</p>';
+    var b=document.createElement('button');b.className='btn sec';b.textContent='Sign in';b.onclick=function(){show('s-signin');};
+    box.appendChild(b);show('s-board');return;
+  }
+  show('s-board');loadBoard();
+}
+function setBoard(r,m){if(r)BOARD.range=r;if(m)BOARD.metric=m;loadBoard();}
+function loadBoard(){
+  var box=$('boardrows');if(!box)return;
+  box.innerHTML='<p class="sub">Loading…</p>';
+  var rs=document.querySelectorAll('#s-board [data-r]');
+  for(var i=0;i<rs.length;i++)rs[i].classList.toggle('on',rs[i].getAttribute('data-r')===BOARD.range);
+  var ms=document.querySelectorAll('#s-board [data-m]');
+  for(var j=0;j<ms.length;j++)ms[j].classList.toggle('on',ms[j].getAttribute('data-m')===BOARD.metric);
+  api('board',{range:BOARD.range,metric:BOARD.metric},function(d){
+    if(!d||!d.ok||!d.rows||!d.rows.length){box.innerHTML='<p class="sub">No entries yet.</p>';return;}
+    var h='';
+    d.rows.forEach(function(r,i){
+      var medal=i===0?'1':i===1?'2':i===2?'3':(i+1);
+      var val=BOARD.metric==='seconds'?fmtDur(r.value):r.value+' correct';
+      var you=ME&&r.name===ME.name?' <b>(you)</b>':'';
+      h+='<div class="brow"><span class="bmedal">'+medal+'</span><span class="bname">'+esc(r.name)+you+'</span><span class="bval">'+val+'</span></div>';
+    });
+    box.innerHTML=h;
+  });
+}
+
+// ---- init ----
+(function(){
+  var u=$('unitlbl');if(u)u.textContent='Unit '+MANIFEST.currentUnit;
+  renderIdLine();
+  if(ME&&ME.token)checkJoins();
+})();
+
+</script>
+</body>
+</html>
