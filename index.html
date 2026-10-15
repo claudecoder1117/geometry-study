@@ -244,8 +244,8 @@ h2{margin:8px 0 4px;}
   <div class="card">
     <p style="font-size:16px;line-height:1.6" id="nounitmsg">No Unit 2 topics yet — new topics are added as the unit is posted.</p>
   </div>
-  <button class="btn" onclick="showArchive()">Review past units</button>
-  <button class="btn" onclick="showCustom()">Pick your own topics</button>
+  <button class="btn" onclick="goUp('archive')">Review past units</button>
+  <button class="btn" onclick="goUp('topics')">Pick your own topics</button>
   <button class="backbtn" onclick="goBack()">&larr; Back</button>
 </div>
 
@@ -319,7 +319,7 @@ h2{margin:8px 0 4px;}
     <button class="btn sec" id="exbtn" onclick="recapNextEx()">Show worked example</button>
   </div>
   <button class="btn big" id="recapnext" onclick="recapNext()">Next step &rarr;</button>
-  <button class="backbtn" onclick="showConcepts()">&larr; All concepts</button>
+  <button class="backbtn" onclick="goUp('concepts')">&larr; All concepts</button>
 </div>
 
 <div class="screen" id="s-practice">
@@ -337,7 +337,7 @@ h2{margin:8px 0 4px;}
 <div class="screen" id="s-done">
   <h2>Session complete</h2>
   <div class="card" id="donestats"></div>
-  <button class="btn big" onclick="nav('')">Done</button>
+  <button class="btn big" onclick="goUp('')">Done</button>
 </div>
 
 <div class="screen" id="s-assign">
@@ -1021,6 +1021,24 @@ function nav(path){
   if(location.hash===h){route();}
   else{location.hash=h;}
 }
+function replaceNav(path){
+  var h='#/'+path;
+  if(location.hash===h){route();return;}
+  location.replace(h);
+}
+// "Up" navigation to a parent screen (All concepts, Done, finishing
+// sign-up). If the parent is where we just came from, go back to it;
+// otherwise swap the current history entry for it. Up navigation never
+// pushes: pushing an up-target is what trapped people in two-page
+// loops where the browser back button bounced between the same two
+// screens forever (recap <-> All concepts, done <-> home, ...).
+function goUp(path){
+  var t='#/'+path;
+  if(ROUTE_STACK.length>1&&ROUTE_STACK[ROUTE_STACK.length-2]===t){history.back();return;}
+  if(ROUTE_STACK.length&&ROUTE_STACK[ROUTE_STACK.length-1]===t){route();return;}
+  if(ROUTE_STACK.length)ROUTE_STACK[ROUTE_STACK.length-1]=t;
+  location.replace(t);
+}
 function parseHash(){
   var h=(location.hash||'').replace(/^#\/?/,'');
   var parts=h.split('/');
@@ -1028,9 +1046,10 @@ function parseHash(){
 }
 function goBack(){
   // In-app back: same as the browser's back button when there is
-  // somewhere in the app to go back to, otherwise home.
+  // somewhere in the app to go back to, otherwise home (replaced,
+  // not pushed, so back can't bounce home <-> here either).
   if(ROUTE_STACK.length>1){history.back();}
-  else{nav('');}
+  else{replaceNav('');}
 }
 window.addEventListener('hashchange',function(){route();});
 function route(){
@@ -1045,21 +1064,21 @@ function route(){
     switch(r.name){
       case '': show('s-home'); break;
       case 'signup': show('s-signin'); break;
-      case 'verify': if(PENDING_NAME){showVerify(PENDING_NAME);}else{show('s-signin');} break;
+      case 'verify': if(PENDING_NAME){showVerify(PENDING_NAME);}else{replaceNav('signup');} break;
       case 'waiting':
         if(WAIT_NAME){$('waitname').textContent=WAIT_NAME;$('waitstatus').textContent='Checking…';show('s-waiting');startWaitPoll();}
-        else{show('s-signin');}
+        else{replaceNav('signup');}
         break;
       case 'unit': startCurrentUnit(); break;
       case 'topics': showCustom(); break;
       case 'concepts': showConcepts(); break;
       case 'concept':
         if(r.arg&&TOPICS[r.arg]){openConcept(r.arg);}
-        else{showConcepts();}
+        else{replaceNav('concepts');}
         break;
       case 'recap':
         if(RC.id&&TOPICS[RC.id]&&TOPICS[RC.id].recap){renderRecapScreen();}
-        else{showConcepts();}
+        else{replaceNav('concepts');}
         break;
       case 'assignments': showAssign(); break;
       case 'archive': showArchive(); break;
@@ -1067,10 +1086,12 @@ function route(){
       case 'practice':
         if(PR){show('s-practice');}
         else if(SESSION_REQ){var q=SESSION_REQ;SESSION_REQ=null;startPractice(q.pool,q.title);}
-        else{show('s-home');}
+        else{replaceNav('');}
         break;
-      case 'done': if(DONE_OK){show('s-done');}else{show('s-home');} break;
-      default: show('s-home');
+      // DONE_OK is consumed on arrival: the done screen can never be
+      // re-entered later (back/forward) with a stale session's stats.
+      case 'done': if(DONE_OK){DONE_OK=false;show('s-done');}else{replaceNav('');} break;
+      default: replaceNav('');
     }
   }finally{IN_ROUTE=false;}
   // Leaving a practice session with the browser buttons ends it quietly;
@@ -1131,7 +1152,7 @@ function submitSignin(){
     btn.disabled=false;
     if(!d||!d.ok){err.textContent='Could not reach the leaderboard server. Practice still works.';return;}
     if(!d.registered){doRegister(name);}
-    else if(ME&&ME.name===name&&ME.token){nav('');}
+    else if(ME&&ME.name===name&&ME.token){finishSignup();}
     else{showVerify(name);}
   });
 }
@@ -1139,7 +1160,7 @@ function doRegister(name){
   var err=$('signinerr');var btn=$('signinbtn');btn.disabled=true;
   api('register',{name:name,deviceId:getDeviceId()},function(d){
     btn.disabled=false;
-    if(d&&d.ok){ME={name:name,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();nav('');}
+    if(d&&d.ok){ME={name:name,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();finishSignup();}
     else if(d&&d.error==='taken'){showVerify(name);}
     else{err.textContent='That did not go through — try again.';}
   });
@@ -1150,12 +1171,20 @@ function showVerify(name){
   if(!IN_ROUTE){nav('verify');return;}
   $('verifyname').textContent=name;show('s-verify');
 }
+// Leaving the sign-up flow for home: an up move, never a push — and
+// the flow's transient state is cleared, so back/forward can never
+// land on a live verify/waiting screen again (the waiting screen used
+// to re-approve and bounce you forward to home by itself).
+function finishSignup(){
+  WAIT_NAME='';PENDING_NAME='';stopWaitPoll();
+  goUp('');
+}
 // "That's me": create a join request; the account owner's device approves.
 function imOwner(){
   api('requestJoin',{name:PENDING_NAME,deviceId:getDeviceId()},function(d){
     if(d&&d.ok&&d.status==='approved'&&d.token){
       // device was already approved on this account earlier
-      ME={name:PENDING_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();nav('');return;
+      ME={name:PENDING_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();finishSignup();return;
     }
     WAIT_NAME=PENDING_NAME;
     nav('waiting');
@@ -1165,7 +1194,8 @@ function notOwner(){
   // show the middle-initial field so a different person can sign up separately
   $('midwrap').style.display='';
   $('signinerr').textContent='';
-  nav('signup');
+  PENDING_NAME='';
+  replaceNav('signup');
 }
 var WAIT_NAME='', _waitPoll=null;
 function startWaitPoll(){
@@ -1175,8 +1205,8 @@ function startWaitPoll(){
     api('joinStatus',{name:WAIT_NAME,deviceId:getDeviceId()},function(d){
       if(!d||!d.ok)return;
       if(d.status==='approved'&&d.token){
-        stopWaitPoll();
-        ME={name:WAIT_NAME,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();nav('');
+        var nm=WAIT_NAME;
+        ME={name:nm,token:d.token,deviceId:getDeviceId()};saveMe();renderIdLine();checkJoins();finishSignup();
       }else if(d.status==='denied'){
         stopWaitPoll();
         $('waitstatus').innerHTML='Request denied. If that was a mistake, ask them to approve it next time you are together, then <a href="#" onclick="imOwner();return false;" style="color:#1d4ed8">re-request</a>.';
@@ -1185,7 +1215,7 @@ function startWaitPoll(){
   },8000);
 }
 function stopWaitPoll(){if(_waitPoll){clearInterval(_waitPoll);_waitPoll=null;}}
-function cancelWait(){stopWaitPoll();WAIT_NAME='';nav('');}
+function cancelWait(){stopWaitPoll();WAIT_NAME='';PENDING_NAME='';goUp('');}
 
 // ---- account-owner join approvals ----
 // The account owner's device checks for pending join requests on open
@@ -1345,15 +1375,18 @@ function recapNext(){
   else{recapTryOne();}
 }
 // End of the recap: one real generated problem, answered and checked,
-// then a direct path into practice.
+// then clear exits — practice, a fresh try-one, or the concepts list.
+// (The old "Back to recap" button dropped you on the last step, whose
+// only way forward was "Try one" again: a loop through this question.)
 function recapTryOne(){
   var t=TOPICS[RC.id];
   var p=t.generate();
+  var old=$('tryone');if(old)old.remove();
   $('recaptitle').textContent='Try one';
   var sb=document.querySelector('#s-recap .stepbox');sb.style.display='none';
   $('exbtn').style.display='none';$('recapnext').style.display='none';
   var tg=document.createElement('div');tg.id='tryone';tg.className='card';
-  tg.innerHTML='<span class="tag">'+esc(t.tag)+'</span><div id="tqtext" style="font-size:18px;line-height:1.5"></div><div class="answers" id="tanswers" style="margin-top:12px"></div><div id="tfeed" style="min-height:26px;text-align:center;font-weight:600;margin:8px 0 2px"></div><div id="tafter" style="display:none"><button class="btn big" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button><button class="btn sec" onclick="recapBack()">Back to recap</button></div>';
+  tg.innerHTML='<span class="tag">'+esc(t.tag)+'</span><div id="tqtext" style="font-size:18px;line-height:1.5"></div><div class="answers" id="tanswers" style="margin-top:12px"></div><div id="tfeed" style="min-height:26px;text-align:center;font-weight:600;margin:8px 0 2px"></div><div id="tafter" style="display:none"><button class="btn big" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button><button class="btn sec" onclick="recapTryOne()">Try another one</button><button class="btn sec" onclick="goUp(\'concepts\')">All concepts</button></div>';
   var sbp=sb.parentNode;sbp.insertBefore(tg,sb.nextSibling);
   $('tqtext').textContent=p.q;
   p.choices.forEach(function(c,i){
@@ -1370,11 +1403,6 @@ function tryAnswer(btn,i,p){
   if(i===p.answer){f.textContent='Correct.';f.style.color='#15803d';}
   else{btn.classList.add('wrongpick');f.textContent='Not quite — the answer is '+p.choices[p.answer]+'.';f.style.color='#b91c1c';}
   $('tafter').style.display='';
-}
-function recapBack(){
-  var tg=$('tryone');if(tg)tg.remove();
-  var sb=document.querySelector('#s-recap .stepbox');sb.style.display='';
-  renderRecap();
 }
 
 // ---- practice engine ----
