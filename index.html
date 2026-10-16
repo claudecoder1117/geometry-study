@@ -392,7 +392,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -402,7 +402,7 @@ registerTopic({
   tag: 'TRANSVERSALS',
   units: ['2'],
   added: '2026-10-14',
-  assignments: ['parallel-transversals-hw'],
+  assignments: ['parallel-transversals-hw', 'packet-4-7-8'],
   recap: {
     title: 'Parallel Lines & Transversals',
     intro: 'A transversal is a line that crosses two or more other lines, making 8 angles at the crossing points. When the two lines are parallel, those angles pair up in special ways: some are equal, some add to 180°.',
@@ -495,6 +495,131 @@ registerTopic({
     }
     return mkQ('TRANSVERSALS',
       `Lines l and m are parallel, cut by transversal t. An ${relWord} angle pair measures (${a1}x + ${b1})° and (${a2}x + ${b2})°. Find x.`,
+      String(x), d.map(String));
+  }
+});
+
+// ---- topic: crook-problems ----
+// Crook problems: angle chasing on a bent path between parallel lines.
+// Original, procedurally generated. Unit 2: Lines & Intro to Proof.
+// The move: draw an auxiliary line through the bend vertex, parallel to the
+// given lines. By alternate interior angles, the bend angle is the SUM of
+// the two given interior angles (when both are on the same side).
+registerTopic({
+  id: 'crook-problems',
+  name: 'Crook Problems',
+  tag: 'CROOK',
+  units: ['2'],
+  added: '2026-10-16',
+  assignments: ['packet-4-7-8'],
+  recap: {
+    title: 'Crook Problems: Angle Chasing with Auxiliary Lines',
+    intro: 'A crook problem hides two parallel lines with a bent path between them — the path turns at a point between the lines. You know the angle each straight piece makes with its line, and you need the angle at the bend. The trick is one extra line you draw yourself.',
+    steps: [
+      {
+        h: 'Spot the bent path',
+        body: 'Look for two parallel lines and a path that goes from a point on one line to a point on the other, bending at a vertex in between. The given angles are the interior angles where each piece of the path meets its line — both on the same side of the path.',
+        ex: [
+          'Line l and line m are parallel; path A → B → C bends at B.',
+          'Ray BA makes a 35° interior angle with line l.',
+          'Ray BC makes a 55° interior angle with line m, same side.',
+          'Goal: find m∠ABC, the angle at the bend.'
+        ]
+      },
+      {
+        h: 'Draw the auxiliary line',
+        body: 'Through the bend vertex, draw a line parallel to the two given lines. This auxiliary line splits the bend angle into two smaller angles — one upper piece and one lower piece. You added this line; it was not in the original figure.',
+        ex: [
+          'Through B, draw line n parallel to lines l and m.',
+          'The bend angle ∠ABC is now split into an upper part (between BA and n) and a lower part (between BC and n).',
+          'Solve each part separately, then add them.'
+        ]
+      },
+      {
+        h: 'Match each part to a given angle',
+        body: 'The upper part and the 35° given angle are alternate interior angles (cut by BA across the parallel lines l and n), so they are congruent. Same story below: the lower part and the 55° given angle are alternate interior angles across lines m and n. The bend angle is the sum: 35° + 55° = 90°.',
+        ex: [
+          'Upper part = 35° (alternate interior with the angle at A).',
+          'Lower part = 55° (alternate interior with the angle at C).',
+          'm∠ABC = 35° + 55° = 90°.'
+        ]
+      },
+      {
+        h: 'Solve for a missing piece',
+        body: 'Sometimes the bend and one given angle are known and you need the other given angle: subtract — the missing angle is the bend minus the known one. If the bend is written algebraically, like (3x + 12)°, set that expression equal to the sum of the two given angles and solve.',
+        ex: [
+          'Bend is 110°, one given angle is 45° → the other is 110° − 45° = 65°.',
+          'Bend is (3x + 12)° with given angles 40° and 35°: 3x + 12 = 75 → 3x = 63 → x = 21.',
+          'Check: 3(21) + 12 = 75° = 40° + 35°. Good.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    // helper: first 3 plausible distractors — unique, valid angle measures
+    // (mistake-based candidates first, safe numeric fallbacks after).
+    const three = (answer, pool) => {
+      const d = [];
+      const fb = [answer + 7, answer - 7, answer + 11, answer - 11,
+                  answer + 13, answer - 13, answer + 17, answer - 17];
+      for (const v of pool.concat(fb)) {
+        if (v > 0 && v < 180 && v !== answer && d.indexOf(v) === -1) d.push(v);
+        if (d.length === 3) break;
+      }
+      return d;
+    };
+    const v = R(0, 2);
+    if (v === 0) {
+      // ---- variant 1: find the bend angle (answer = th1 + th2)
+      let th1 = R(25, 60), th2 = R(25, 60);
+      while (th2 === th1) th2 = R(25, 60);
+      const answer = th1 + th2;
+      const wrongs = three(answer, [
+        Math.abs(th1 - th2),   // subtracted instead of adding
+        180 - (th1 + th2),     // treated the bend as supplementary
+        th1,                   // reported one given angle
+        th2,                   // reported the other given angle
+        2 * Math.min(th1, th2) // doubled the smaller angle
+      ]);
+      return mkQ('CROOK',
+        `Lines l and m are parallel. Point A is on l, point C is on m, and point B is between the two lines. The path A \u2192 B \u2192 C bends at B. Ray BA makes an interior angle of ${th1}\u00B0 with line l, and ray BC makes an interior angle of ${th2}\u00B0 with line m, on the same side of the path. What is m\u2220ABC?`,
+        String(answer), wrongs.map(String));
+    }
+    if (v === 1) {
+      // ---- variant 2: bend angle and one given angle known, find the other
+      let B, th1, th2;
+      do {
+        B = R(75, 150);
+        th1 = R(25, 60);
+        th2 = B - th1;
+      } while (th2 < 25 || th2 > 125 || th2 === th1);
+      const answer = th2;
+      const wrongs = three(answer, [
+        th1,          // reported the given angle instead
+        180 - B,      // mixed up supplementary relationships
+        B - 2 * th1,  // subtracted the given angle twice
+        th1 + 20
+      ]);
+      return mkQ('CROOK',
+        `Lines l and m are parallel. Point A is on l, point C is on m, and point B is between the two lines. The path A \u2192 B \u2192 C bends at B, with m\u2220ABC = ${B}\u00B0. Ray BA makes an interior angle of ${th1}\u00B0 with line l. What interior angle does ray BC make with line m, on the same side of the path?`,
+        String(answer), wrongs.map(String));
+    }
+    // ---- variant 3: algebraic — bend angle is (a*x + b)°, solve for x
+    let th1, th2, S, a, b, x;
+    do {
+      th1 = R(25, 55);
+      do { th2 = R(25, 55); } while (th2 === th1);
+      S = th1 + th2;
+      a = R(1, 4); b = R(5, 40);
+      x = (S - b) / a;
+    } while (b >= S || !Number.isInteger(x) || x < 1 || x > 25);
+    const d = [];
+    for (const cand of [x - 1, x + 1, x - 2, x + 2, x + 3]) {
+      if (cand > 0 && cand !== x && d.indexOf(cand) === -1) d.push(cand);
+      if (d.length === 3) break;
+    }
+    return mkQ('CROOK',
+      `Lines l and m are parallel. The path A \u2192 B \u2192 C bends at B, with point B between the two lines. Ray BA makes an interior angle of ${th1}\u00B0 with line l, and ray BC makes an interior angle of ${th2}\u00B0 with line m, on the same side of the path. The angle at B is written as (${a}x + ${b})\u00B0. Find x.`,
       String(x), d.map(String));
   }
 });
