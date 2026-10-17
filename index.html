@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
+<script>window.__BUILD_ID__="4b1c8895e1ec";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -1649,6 +1650,39 @@ function loadBoard(){
   route();
 })();
 
+</script>
+<script>
+// Auto-update: when a newer build is live, reload to it — but never in the
+// middle of a practice session or while someone is typing their signup.
+(function(){
+  var myBuild=window.__BUILD_ID__;
+  if(!myBuild||myBuild==='dev')return;
+  var UNSAFE={'s-practice':1,'s-signin':1};
+  var pendingFor=null,checking=false;
+  function unsafe(){
+    for(var id in UNSAFE){var el=document.getElementById(id);if(el&&el.classList.contains('on'))return true;}
+    return false;
+  }
+  function apply(){
+    if(!pendingFor||unsafe())return;
+    try{if(sessionStorage.getItem('upd_'+pendingFor))return;sessionStorage.setItem('upd_'+pendingFor,'1');}catch(e){}
+    fetch(location.pathname,{cache:'reload'}).then(function(){location.reload();},function(){location.reload();});
+  }
+  function check(){
+    if(checking)return;checking=true;
+    fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
+      var m=t.match(/__BUILD_ID__="([0-9a-f]+)"/);
+      if(m&&m[1]!==myBuild){pendingFor=m[1];apply();}
+      checking=false;
+    },function(){checking=false;});
+  }
+  document.addEventListener('visibilitychange',function(){if(!document.hidden){check();apply();}});
+  window.addEventListener('focus',function(){check();});
+  window.addEventListener('hashchange',function(){setTimeout(apply,60);});
+  setInterval(check,5*60*1000);
+  setInterval(apply,20*1000);
+  setTimeout(check,4000);
+})();
 </script>
 </body>
 </html>
