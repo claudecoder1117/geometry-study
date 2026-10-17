@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
@@ -89,7 +89,7 @@ input:focus{outline:none;border-color:var(--acc);background:#fff;}
 .backbtn{background:none;border:none;color:var(--acc);font-size:16px;font-weight:600;cursor:pointer;padding:8px 0;font-family:inherit;}
 /* ---- fit-to-viewport: the page itself never scrolls ---- */
 html,body{height:100%;overflow:hidden;}
-#app{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:14px 16px 18px;}
+#app{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top,0px)) calc(16px + env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) calc(16px + env(safe-area-inset-left,0px));}
 .screen.on{display:flex;flex-direction:column;flex:1;min-height:0;}
 h2{margin:8px 0 4px;}
 .sub{margin-bottom:10px;}
