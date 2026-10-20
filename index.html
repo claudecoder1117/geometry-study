@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="4b1c8895e1ec";</script>
+<script>window.__BUILD_ID__="3dbb2d8d2411";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -393,7 +393,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -622,6 +622,255 @@ registerTopic({
     return mkQ('CROOK',
       `Lines l and m are parallel. The path A \u2192 B \u2192 C bends at B, with point B between the two lines. Ray BA makes an interior angle of ${th1}\u00B0 with line l, and ray BC makes an interior angle of ${th2}\u00B0 with line m, on the same side of the path. The angle at B is written as (${a}x + ${b})\u00B0. Find x.`,
       String(x), d.map(String));
+  }
+});
+
+// ---- topic: point-line-distance ----
+// Distance from a point to a line: d = |ax0 + by0 + c| / sqrt(a^2 + b^2).
+// Original, procedurally generated. Unit 2: Lines & Intro to Proof.
+// Parameters are chosen so every answer is a small integer: the normal
+// vector (a, b) comes from a Pythagorean triple (so sqrt(a^2+b^2) is an
+// integer), and c (or the y-intercept r) is set so the numerator is an
+// exact multiple of the denominator.
+registerTopic({
+  id: 'point-line-distance',
+  name: 'Distance from a Point to a Line',
+  tag: 'DIST-LINE',
+  units: ['2'],
+  added: '2026-10-20',
+  assignments: ['p-13-hw'],
+  recap: {
+    title: 'Distance from a Point to a Line',
+    intro: 'Lots of segments join a point to a line, but only one of them is the shortest: the one that hits the line at a right angle. Its length comes from a single formula — you just have to feed it the right numbers.',
+    steps: [
+      {
+        h: 'The shortest path is perpendicular',
+        body: 'Draw any segment from the point to the line and you get the hypotenuse of a right triangle whose other leg is the perpendicular segment — so every non-perpendicular segment is longer. The distance from a point to a line always means the perpendicular distance.',
+        ex: [
+          'Point P floats above a slanted line.',
+          'Segments from P to the line at shallow angles are long; the one that meets the line at 90° is the shortest.',
+          'That shortest length is what "the distance" means.'
+        ]
+      },
+      {
+        h: 'Write the line as ax + by + c = 0',
+        body: 'The formula needs the line in standard form: everything on one side, zero on the other. If the line is given as y = mx + b, move it all left: mx − y + b = 0, so a = m, b = −1, c = the intercept. Watch the signs when you move terms.',
+        ex: [
+          'Line: y = (3/4)x − 5.',
+          'Move everything left: (3/4)x − y − 5 = 0.',
+          'Read off a = 3/4, b = −1, c = −5. (Or multiply through by 4: 3x − 4y − 20 = 0.)'
+        ]
+      },
+      {
+        h: 'Plug the point into the left side, take absolute value',
+        body: 'Put the point\'s coordinates into ax + by + c. The result can be negative — distance can\'t be, so wrap it in absolute value. The denominator is √(a² + b²), which uses only a and b, never c or the point.',
+        ex: [
+          'Point (2, 1), line 3x + 4y − 15 = 0.',
+          'Numerator: |3(2) + 4(1) − 15| = |6 + 4 − 15| = |−5| = 5.',
+          'Denominator: √(3² + 4²) = √25 = 5.',
+          'Distance = 5/5 = 1.'
+        ]
+      },
+      {
+        h: 'Dodge the classic mistakes',
+        body: 'Two errors show up constantly: dividing by (a² + b²) instead of its square root, and forgetting the absolute value. Also check that c is really the constant after moving everything to one side — a sign slip there ruins the numerator.',
+        ex: [
+          'Above: dividing by 25 instead of 5 gives 5/25 — wrong.',
+          'Skipping the absolute value can hand you a negative "distance" — impossible.',
+          'Sanity check: the answer should be small when the point sits near the line.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const TRIPLES = [[3,4,5],[5,12,13],[8,15,17],[7,24,25]];
+    const fmtLine = (a,b,c) => `${a}x ${b<0?'-':'+'} ${Math.abs(b)}y ${c<0?'-':'+'} ${Math.abs(c)} = 0`;
+    // mistake-based distractor pool: forgetting to divide is the classic one
+    const pool = (d,h) => [String(d*h), String(d+1), String(d+2), String(d+3),
+                           String(2*d+1), d>1 ? String(d-1) : String(d+4)];
+    const v = R(0, 1);
+    if (v === 0) {
+      // ---- variant 1: line in standard form ax + by + c = 0
+      let a, b, c, h, x0, y0, d;
+      for (let tries = 0; tries < 500; tries++) {
+        const t = pick(TRIPLES);
+        a = t[0]*pick([1,-1]); b = t[1]*pick([1,-1]); h = t[2];
+        x0 = R(-6,6); y0 = R(-6,6); d = R(1,8);
+        c = -a*x0 - b*y0 + pick([1,-1])*d*h;
+        if (Math.abs(c) <= 99 && c !== 0) break;
+      }
+      return mkQ('DIST-LINE',
+        `Find the distance from the point ${PT(x0, y0)} to the line ${fmtLine(a,b,c)}.`,
+        String(d), pool(d,h));
+    }
+    // ---- variant 2: line in slope-intercept form y = mx + r
+    let a, b, h, x0, y0, d, r, mNum, mDen;
+    for (let tries = 0; tries < 500; tries++) {
+      const t = pick(TRIPLES);
+      a = t[0]*pick([1,-1]); b = t[1]*pick([1,-1]); h = t[2];
+      r = R(-8,8); d = R(1,8); y0 = R(-6,6);
+      // line: ax + by + c = 0 with c = -b*r. Need |a*x0 + b*(y0-r)| = d*h.
+      let done = false;
+      for (const s of shuffle([1,-1])) {
+        const num = s*d*h - b*(y0 - r);
+        if (num % a === 0) {
+          const cand = num / a;
+          if (Math.abs(cand) <= 9) { x0 = cand; done = true; break; }
+        }
+      }
+      if (done) break;
+      if (tries === 499) { // ultra-rare fallback: degenerate to standard form
+        x0 = 0; y0 = 0; d = 1; r = 0; a = 3; b = 4; h = 5;
+      }
+    }
+    // slope m = -a/b, reduced (triple is primitive so already reduced)
+    if (b < 0) { mNum = a; mDen = -b; } else { mNum = -a; mDen = b; }
+    const mStr = mDen === 1 ? `${mNum}` : `(${mNum}/${mDen})`;
+    const lineStr = `y = ${mStr}x` + (r === 0 ? '' : (r > 0 ? ` + ${r}` : ` - ${-r}`));
+    return mkQ('DIST-LINE',
+      `Find the distance from the point ${PT(x0, y0)} to the line ${lineStr}.`,
+      String(d), pool(d,h));
+  }
+});
+
+// ---- topic: line-equations ----
+// Writing equations of lines: slope from two points, point-slope and
+// slope-intercept forms, reading slope/intercept from a description.
+// Original, procedurally generated. Unit 2: Lines & Intro to Proof.
+registerTopic({
+  id: 'line-equations',
+  name: 'Writing Equations of Lines',
+  tag: 'LINES',
+  units: ['2'],
+  added: '2026-10-20',
+  assignments: ['p-13-hw'],
+  recap: {
+    title: 'Writing Equations of Lines',
+    intro: 'One line can be written many correct ways — point-slope, slope-intercept, standard form are all the same line in different clothes. Every form is built from the same two ingredients: the slope, and one point the line passes through.',
+    steps: [
+      {
+        h: 'Slope is rise over run',
+        body: 'For two points, slope m = (y2 − y1)/(x2 − x1): how far the line climbs divided by how far it runs. Positive slope climbs left to right, negative slope falls — and the sign is the easiest thing to get backwards, so keep the same point order on top and bottom.',
+        ex: [
+          'Points (2, 1) and (5, 7).',
+          'Rise = 7 − 1 = 6, run = 5 − 2 = 3.',
+          'm = 6/3 = 2.'
+        ]
+      },
+      {
+        h: 'Point-slope starts from what you know',
+        body: 'If you know the slope m and any point (x0, y0) on the line, you can write its equation immediately: y − y0 = m(x − x0). The minus signs are part of the formula — a point with a negative coordinate flips one to a plus.',
+        ex: [
+          'Slope 2, point (2, 1): y − 1 = 2(x − 2).',
+          'Point (−3, 4), slope −1/2: y − 4 = (−1/2)(x + 3).',
+          'Any point on the line works — the equation looks different but describes the same line.'
+        ]
+      },
+      {
+        h: 'Slope-intercept reads like a graph',
+        body: 'y = mx + b tells you the whole picture at a glance: m is the slope and b is where the line crosses the y-axis. To get there from point-slope, distribute and solve for y. Any form is acceptable as long as it describes the same line.',
+        ex: [
+          'y − 1 = 2(x − 2) becomes y = 2x − 3.',
+          'Slope 2, crosses the y-axis at (0, −3): the same line.',
+          'Reading y = −x + 5: slope −1, y-intercept 5.'
+        ]
+      },
+      {
+        h: 'Check your equation against the point',
+        body: 'A fast self-check: plug the known point into your equation — it must satisfy it. Sign slips when moving terms are the number-one source of wrong answers, and this check catches them in seconds.',
+        ex: [
+          'Claim: slope 2 through (2, 1) is y = 2x + 3.',
+          'Test (2, 1): 1 = 2(2) + 3 = 7. False — wrong intercept.',
+          'Fix: y = 2x − 3 passes the check: 1 = 4 − 3. Good.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const gcd = (a,b) => { a = Math.abs(a); b = Math.abs(b); return b === 0 ? a : gcd(b, a % b); };
+    const red = (n,d) => { const g = gcd(n,d); n/=g; d/=g; if (d<0){n=-n;d=-d;} return [n,d]; };
+    const fracStr = (n,d) => { const [rn,rd] = red(n,d); return rd===1 ? `${rn}` : `${rn}/${rd}`; };
+    // coefficient as printed before x: 1 -> '', -1 -> '-', ints plain, fractions parenthesized
+    const fmtCoef = (n,d) => { const [rn,rd] = red(n,d);
+      return rd===1 ? (rn===1?'':(rn===-1?'-':`${rn}`)) : `(${rn}/${rd})`; };
+    const bStr = (b) => b===0 ? '' : (b>0 ? ` + ${b}` : ` - ${-b}`);
+    const yPart = (y0) => y0>0 ? `y - ${y0}` : (y0<0 ? `y + ${-y0}` : 'y');
+    const xPart = (x0) => x0>0 ? `(x - ${x0})` : (x0<0 ? `(x + ${-x0})` : 'x');
+    const FRACS = [[1,1],[-1,1],[2,1],[-2,1],[3,1],[-3,1],[1,2],[-1,2],[2,3],[-2,3],[3,2],[-3,2],[1,3],[-1,3]];
+    const v = R(0, 2);
+    if (v === 0) {
+      // ---- variant 1: slope + point -> which equation describes the line?
+      const [mn0,md0] = pick(FRACS);
+      let x0 = 0, y0 = 0;
+      while (x0 === 0 || y0 === 0) { x0 = R(-8,8); y0 = R(-8,8); }
+      const mStr = fracStr(mn0,md0);
+      const useSI = R(0,1) === 1 && md0 === 1; // slope-intercept correct form needs integer slope
+      let correct, pool;
+      if (useSI) {
+        const b = y0 - mn0*x0;
+        correct = `y = ${fmtCoef(mn0,1)}x${bStr(b)}`;
+        pool = [
+          `y = ${fmtCoef(mn0,1)}x${bStr(b+1)}`,          // intercept off by 1
+          `y = ${fmtCoef(mn0,1)}x${bStr(b-1)}`,          // intercept off by 1
+          `y = ${fmtCoef(-mn0,1)}x${bStr(b)}`,           // negated slope
+          b !== 0 ? `y = ${fmtCoef(mn0,1)}x${bStr(-b)}` : null, // flipped intercept sign
+          `${yPart(y0>0?y0+1:y0-1)} = ${fmtCoef(mn0,1)}${xPart(x0)}`, // parallel line through (x0, y0±1)
+          `${yPart(y0)} = ${fmtCoef(-mn0,1)}${xPart(x0)}`,      // wrong slope, point-slope
+        ].filter(Boolean);
+      } else {
+        correct = `${yPart(y0)} = ${fmtCoef(mn0,md0)}${xPart(x0)}`;
+        const flipY = y0>0 ? `y + ${y0}` : `y - ${-y0}`;   // passes through (x0, -y0)
+        const flipX = x0>0 ? `(x + ${x0})` : `(x - ${-x0})`; // passes through (-x0, y0)
+        const bInt = (y0*md0 - mn0*x0) / md0;
+        pool = [
+          `${flipY} = ${fmtCoef(mn0,md0)}${xPart(x0)}`,   // sign slip on y0
+          `${yPart(y0)} = ${fmtCoef(mn0,md0)}${flipX}`,   // sign slip on x0
+          `${yPart(y0)} = ${fmtCoef(-mn0,md0)}${xPart(x0)}`, // negated slope
+        ];
+        if (!(md0 === 1 && Math.abs(mn0) === 1))
+          pool.push(`${yPart(y0)} = ${fmtCoef(md0,mn0)}${xPart(x0)}`); // reciprocal slope
+        if (Number.isInteger(bInt)) {
+          pool.push(`y = ${fmtCoef(mn0,md0)}x${bStr(bInt+1)}`); // same line? no: intercept off
+          pool.push(`y = ${fmtCoef(mn0,md0)}x${bStr(bInt-1)}`);
+        }
+      }
+      return mkQ('LINES',
+        `A line has slope ${mStr} and passes through ${PT(x0, y0)}. Which is an equation of the line?`,
+        correct, pool);
+    }
+    if (v === 1) {
+      // ---- variant 2: slope of the line through two points
+      const [mn,md] = pick(FRACS);
+      const k = R(1,2), dx = md*k, dy = mn*k;
+      const x1 = R(-9,9), y1 = R(-9,9);
+      const x2 = x1+dx, y2 = y1+dy;
+      const ans = fracStr(mn,md);
+      const pool = [fracStr(-mn,md),      // sign error
+                    fracStr(md,mn),       // run over rise
+                    fracStr(-md,mn),      // run over rise + sign error
+                    fracStr(mn+md,md),    // slope off by 1
+                    fracStr(mn-md,md),
+                    fracStr(2*mn+md,md),  // safe numeric extras
+                    fracStr(mn-2*md,md)];
+      return mkQ('LINES',
+        `What is the slope of the line through ${PT(x1, y1)} and ${PT(x2, y2)}?`,
+        ans, pool);
+    }
+    // ---- variant 3: slope + y-intercept description -> equation
+    let m = 0; while (m === 0) m = R(-3,3);
+    const b = R(-8,8);
+    const correct = `y = ${fmtCoef(m,1)}x${bStr(b)}`;
+    const pool = [
+      `y = ${fmtCoef(-m,1)}x${bStr(b)}`,                       // negated slope
+      `y = ${fmtCoef(m,1)}x${bStr(b+1)}`,                      // intercept off by 1
+      `y = ${fmtCoef(m,1)}x${bStr(b-2)}`,                      // intercept off by 2
+      b !== 0 ? `y = ${fmtCoef(m,1)}x${bStr(-b)}` : null,      // flipped intercept sign
+      `y = ${fmtCoef(-m,1)}x${bStr(-b)}`,                      // negated slope + flipped intercept
+      `${yPart(b+1)} = ${fmtCoef(m,1)}${xPart(0)}`,            // parallel line through (0, b+1)
+    ].filter(Boolean);
+    return mkQ('LINES',
+      `A line has slope ${m} and crosses the y-axis at ${PT(0, b)}. Which is an equation of the line?`,
+      correct, pool);
   }
 });
 
