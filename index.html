@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="3dbb2d8d2411";</script>
+<script>window.__BUILD_ID__="4e5494d8f31b";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -1409,10 +1409,23 @@ function replaceNav(path){
 // screens forever (recap <-> All concepts, done <-> home, ...).
 function goUp(path){
   var t='#/'+path;
-  if(ROUTE_STACK.length>1&&ROUTE_STACK[ROUTE_STACK.length-2]===t){history.back();return;}
+  if(ROUTE_STACK.length>1&&ROUTE_STACK[ROUTE_STACK.length-2]===t){histBack(path);return;}
   if(ROUTE_STACK.length&&ROUTE_STACK[ROUTE_STACK.length-1]===t){route();return;}
   if(ROUTE_STACK.length)ROUTE_STACK[ROUTE_STACK.length-1]=t;
   location.replace(t);
+}
+// history.back() doesn't always work inside a sandboxed frame (e.g. the
+// Apps Script mirror): hash changes may not be traversable, so the call
+// silently does nothing. This tries history.back() first and falls back
+// to navigating the route stack manually if the hash never changed.
+function histBack(path){
+  var hBefore=location.hash;
+  try{history.back();}catch(e){}
+  setTimeout(function(){
+    if(location.hash!==hBefore)return; // browser back worked
+    if(ROUTE_STACK.length>1)ROUTE_STACK.pop();
+    replaceNav(path);
+  },250);
 }
 function parseHash(){
   var h=(location.hash||'').replace(/^#\/?/,'');
@@ -1423,7 +1436,10 @@ function goBack(){
   // In-app back: same as the browser's back button when there is
   // somewhere in the app to go back to, otherwise home (replaced,
   // not pushed, so back can't bounce home <-> here either).
-  if(ROUTE_STACK.length>1){history.back();}
+  if(ROUTE_STACK.length>1){
+    var prev=ROUTE_STACK[ROUTE_STACK.length-2].replace(/^#\/?/,'');
+    histBack(prev);
+  }
   else{replaceNav('');}
 }
 window.addEventListener('hashchange',function(){route();});
