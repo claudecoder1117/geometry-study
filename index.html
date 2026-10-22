@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="c54a1050df19";</script>
+<script>window.__BUILD_ID__="5473deca61ab";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -193,6 +193,78 @@ h2{margin:8px 0 4px;}
   #s-signin input[type=text]{padding:7px;font-size:16px;}
   #s-signin .err{min-height:12px;}
 }
+/* ================= v2: motion, notebook work, question formats ================= */
+.screen.on{animation:screenin .3s cubic-bezier(.2,.7,.3,1);scroll-behavior:smooth;}
+@keyframes screenin{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+@keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.menu .menucard{animation:rise .45s cubic-bezier(.2,.7,.3,1) both;}
+.menu .menucard:nth-child(2){animation-delay:.05s;}
+.menu .menucard:nth-child(3){animation-delay:.1s;}
+.menu .menucard:nth-child(4){animation-delay:.15s;}
+.menu .menucard:nth-child(5){animation-delay:.2s;}
+.menu .menucard:nth-child(6){animation-delay:.25s;}
+#conceptlist .listrow,#assignlist .listrow,#archivelist .listrow,#topicchecks .chk{animation:rise .4s cubic-bezier(.2,.7,.3,1) both;}
+#conceptlist .listrow:nth-child(2),#assignlist .listrow:nth-child(2),#archivelist .listrow:nth-child(2),#topicchecks .chk:nth-child(2){animation-delay:.04s;}
+#conceptlist .listrow:nth-child(3),#assignlist .listrow:nth-child(3),#archivelist .listrow:nth-child(3),#topicchecks .chk:nth-child(3){animation-delay:.08s;}
+#conceptlist .listrow:nth-child(4),#assignlist .listrow:nth-child(4),#archivelist .listrow:nth-child(4),#topicchecks .chk:nth-child(4){animation-delay:.12s;}
+#conceptlist .listrow:nth-child(5),#assignlist .listrow:nth-child(5),#archivelist .listrow:nth-child(5),#topicchecks .chk:nth-child(5){animation-delay:.16s;}
+#conceptlist .listrow:nth-child(n+6),#assignlist .listrow:nth-child(n+6),#archivelist .listrow:nth-child(n+6),#topicchecks .chk:nth-child(n+6){animation-delay:.2s;}
+.card{animation:rise .35s cubic-bezier(.2,.7,.3,1) both;}
+.btn{transition:transform .12s ease,background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,opacity .2s ease;}
+.answers .btn.right{animation:pop .35s ease;}
+.answers .btn.wrongpick{animation:shake .4s ease;}
+@keyframes pop{0%{transform:scale(1);}40%{transform:scale(1.045);}100%{transform:scale(1);}}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-5px);}40%{transform:translateX(5px);}60%{transform:translateX(-4px);}80%{transform:translateX(3px);}}
+/* notebook paper: worked lines go down the page like a person's work */
+.notebook{flex:1;min-height:0;overflow-y:auto;scroll-behavior:smooth;background-color:#fffdf6;border:1px solid #e7dfc8;border-radius:14px;padding:12px 16px 22px 36px;box-shadow:0 1px 2px rgba(20,30,60,.05),0 10px 22px -14px rgba(20,30,60,.22);background-image:linear-gradient(90deg,transparent 0 26px,rgba(214,90,90,.35) 26px,rgba(214,90,90,.35) 27.5px,transparent 27.5px),repeating-linear-gradient(180deg,transparent 0 31px,rgba(90,120,200,.15) 31px,rgba(90,120,200,.15) 32px);}
+.workpaper{background-color:#fffdf6;border:1px solid #e7dfc8;border-radius:14px;padding:10px 14px 14px 34px;margin:10px 0;box-shadow:0 1px 2px rgba(20,30,60,.05),0 8px 18px -12px rgba(20,30,60,.2);background-image:linear-gradient(90deg,transparent 0 24px,rgba(214,90,90,.35) 24px,rgba(214,90,90,.35) 25.5px,transparent 25.5px),repeating-linear-gradient(180deg,transparent 0 31px,rgba(90,120,200,.15) 31px,rgba(90,120,200,.15) 32px);animation:rise .3s ease both;}
+.wp-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mut);line-height:32px;}
+.wstep{margin-top:10px;animation:rise .35s ease both;}
+.wstep .wnum{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--mut);text-transform:uppercase;line-height:20px;}
+.wstep h3{margin:0 0 4px;font-size:18px;line-height:26px;}
+.wbody{font-size:15.5px;line-height:1.55;color:#33405c;margin:2px 0 6px;}
+.hand{font-family:'Segoe Print','Bradley Hand','Chalkboard SE','Comic Sans MS',cursive;color:#1d3fae;}
+.wline{display:flex;justify-content:space-between;align-items:baseline;gap:10px;line-height:32px;font-size:16.5px;opacity:0;transform:translateX(-8px);}
+.wline.show{opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease;}
+.wline .wl{flex:1;min-width:0;}
+.wop{flex:none;font-size:12px;font-weight:700;color:#b45309;background:#fdf2dd;border:1px solid #f0dfba;border-radius:999px;padding:2px 9px;line-height:1.5;white-space:nowrap;}
+.why2{flex:none;font-size:12px;font-weight:700;color:#7e22ce;background:#f2e9fd;border:1px solid #e3d4fb;border-radius:999px;padding:2px 9px;line-height:1.5;white-space:nowrap;}
+.wnote{font-size:13.5px;color:var(--mut);font-style:italic;line-height:1.45;padding:2px 0 6px;}
+/* flashcards */
+.flashwrap{perspective:900px;margin-top:12px;}
+.flash{position:relative;height:180px;cursor:pointer;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.3,.7,.3,1);}
+.flash.flipped{transform:rotateY(180deg);}
+.flash .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;border-radius:16px;border:1.5px solid var(--line);background:#fff;box-shadow:0 1px 2px rgba(20,30,60,.05),0 10px 22px -14px rgba(20,30,60,.22);}
+.flash .back{transform:rotateY(180deg);background:#f2f6ff;border-color:#c7d6f8;}
+.flash .flabel{font-size:11px;letter-spacing:1px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:8px;}
+.flash .ftext{font-size:19px;line-height:1.45;font-weight:600;}
+.flash .ftext.big{font-size:24px;font-weight:700;}
+.gradebtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;animation:rise .3s ease both;}
+.gradebtns .btn{margin:0;}
+/* exact answer */
+.exactrow{display:flex;gap:10px;margin-top:12px;}
+.exactrow input{flex:1;text-align:left;font-size:19px;margin:0;}
+.exactrow .btn{width:auto;margin:0;padding:0 22px;flex:none;}
+input.rightin{border-color:var(--ok)!important;background:var(--okbg);}
+input.wrongin{border-color:var(--bad)!important;background:var(--badbg);animation:shake .4s ease;}
+/* prove it: two-column proof with pick-the-reason steps */
+.proof{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;animation:rise .3s ease both;}
+.prow{display:grid;grid-template-columns:1.15fr 1fr;border-bottom:1px solid var(--line);}
+.prow:last-child{border-bottom:none;}
+.pstmt{padding:10px 12px;font-size:15.5px;line-height:1.45;background:#fff;}
+.pstmt .pno{color:var(--mut);font-weight:700;margin-right:6px;}
+.preason{padding:10px 12px;font-size:14.5px;line-height:1.45;border-left:1px solid var(--line);background:#fbfcfe;color:#9aa7c2;}
+.preason.done{color:var(--ok);font-weight:600;background:var(--okbg);}
+.preason.active{color:var(--ink);background:#fff8e1;}
+.ropts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.ropt{width:auto;margin:0;font-size:14.5px;font-weight:600;padding:9px 13px;background:#fff;color:var(--ink);border:1.5px solid var(--line);border-radius:999px;cursor:pointer;font-family:inherit;box-shadow:none;transition:transform .12s ease,border-color .2s,background .2s;}
+.ropt:active{transform:scale(.97);}
+.ropt.right{background:var(--okbg);border-color:var(--ok);color:var(--ok);}
+.ropt.wrongpick{background:var(--badbg);border-color:var(--bad);color:var(--bad);animation:shake .4s ease;}
+.ropt:disabled{opacity:.55;cursor:default;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important;scroll-behavior:auto!important;}
+}
 </style>
 </head>
 <body>
@@ -312,25 +384,25 @@ h2{margin:8px 0 4px;}
 
 <div class="screen" id="s-recap">
   <h2 id="recaptitle"></h2>
-  <div class="stepbox">
-    <div class="stepnum" id="stepnum"></div>
-    <h3 id="steph"></h3>
-    <p id="stepbody"></p>
-    <div class="ex" id="exbox" style="display:none"></div>
-    <button class="btn sec" id="exbtn" onclick="recapNextEx()">Show worked example</button>
-  </div>
-  <button class="btn big" id="recapnext" onclick="recapNext()">Next step &rarr;</button>
+  <p class="sub" id="recapintro"></p>
+  <div class="notebook" id="nb"></div>
+  <button class="btn big" id="recapnext" onclick="recapNext()">Start the recap &rarr;</button>
   <button class="backbtn" onclick="goUp('concepts')">&larr; All concepts</button>
 </div>
 
 <div class="screen" id="s-practice">
   <div class="topbar"><span id="prtitle"><b>Practice</b></span><span id="prtime">0:00</span></div>
-  <div class="card">
+  <div class="card" id="qcard">
     <span class="tag" id="ptag">TOPIC</span>
     <div id="qtext"></div>
-    <div class="answers" id="answers"></div>
+    <div id="qzone"></div>
   </div>
   <div id="feed"></div>
+  <div id="workbox" style="display:none"></div>
+  <div id="workbtns" style="display:none;gap:8px">
+    <button class="btn sec" id="showwork" onclick="workToggle()" style="flex:1">Show the work</button>
+    <button class="btn sec" id="workall" onclick="workShowAll()" style="flex:none;width:auto;padding-left:18px;padding-right:18px">All lines</button>
+  </div>
   <button class="btn big" id="prnext" onclick="nextQ()" style="display:none">Next question &rarr;</button>
   <div class="topbar"><span id="prstats"></span><button class="backbtn" onclick="endPractice()">End session</button></div>
 </div>
@@ -447,17 +519,26 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Transversal', b: 'A line that crosses two or more other lines.' },
+    { f: 'Corresponding angles', b: 'Angles in the matching corner at each intersection. Congruent when the lines are parallel.' },
+    { f: 'Alternate interior angles', b: 'Angles between the two lines, on opposite sides of the transversal. Congruent when the lines are parallel.' },
+    { f: 'Alternate exterior angles', b: 'Angles outside the two lines, on opposite sides of the transversal. Congruent when the lines are parallel.' },
+    { f: 'Same-side interior angles', b: 'Angles between the two lines, on the same side of the transversal. They add to 180° when the lines are parallel.' },
+    { f: 'Vertical angles', b: 'Angles across from each other where two lines cross. Always congruent.' },
+    { f: 'Linear pair', b: 'Two angles that sit side by side on a straight line. They always add to 180°.' }
+  ],
   generate: function(){
     // ---- variant 1: plain numeric — given one angle, find a related angle
     if (R(0, 1) === 0) {
-      // relation, phrase, and whether the answer is the same angle or the supplement
+      // relation phrase, same/supplement, display name for the work
       const rels = [
-        ['corresponding to it on line m', 'same'],
-        ['alternate interior to it', 'same'],
-        ['alternate exterior to it', 'same'],
-        ['vertical to it', 'same'],
-        ['same-side interior with it', 'supp'],
-        ['forming a linear pair with it', 'supp']
+        ['corresponding to it on line m', 'same', 'Corresponding Angles'],
+        ['alternate interior to it', 'same', 'Alternate Interior Angles'],
+        ['alternate exterior to it', 'same', 'Alternate Exterior Angles'],
+        ['vertical to it', 'same', 'Vertical Angles'],
+        ['same-side interior with it', 'supp', 'Same-Side Interior Angles'],
+        ['forming a linear pair with it', 'supp', 'Linear Pair']
       ];
       const rel = pick(rels);
       // avoid X=90 (same and supp collide) and X=88/92 (dup with +/-4 distractors)
@@ -467,9 +548,18 @@ registerTopic({
       const wrongs = rel[1] === 'same'
         ? [180 - X, X + 4, X - 4]
         : [X, answer + 4, answer - 4];
-      return mkQ('TRANSVERSALS',
+      const q = mkQ('TRANSVERSALS',
         `Line l and line m are parallel, cut by transversal t. On line l, an angle measures ${X}°. What is the measure of the angle ${rel[0]}?`,
         String(answer), wrongs.map(String));
+      q.work = rel[1] === 'same'
+        ? [`Start: one angle measures ${X}°.`,
+           { t: `${rel[2]} are congruent — equal measures.`, why: rel[2] },
+           `So this angle also measures ${answer}°.`]
+        : [`Start: one angle measures ${X}°.`,
+           { t: `${rel[2]} are supplementary — they add to 180°.`, why: rel[2] },
+           { t: `180° − ${X}° = ${answer}°`, op: 'subtract' },
+           `So this angle measures ${answer}°.`];
+      return q;
     }
     // ---- variant 2: algebraic — two angle expressions, solve for x
     const cong = R(0, 1) === 0; // congruent (alternate interior) vs supplementary (same-side interior)
@@ -494,9 +584,33 @@ registerTopic({
       if (v > 0 && v !== x && d.indexOf(v) === -1) d.push(v);
       if (d.length === 3) break;
     }
-    return mkQ('TRANSVERSALS',
+    const q = mkQ('TRANSVERSALS',
       `Lines l and m are parallel, cut by transversal t. An ${relWord} angle pair measures (${a1}x + ${b1})° and (${a2}x + ${b2})°. Find x.`,
       String(x), d.map(String));
+    const T = (a) => a === 1 ? 'x' : `${a}x`;
+    const E = (a, b) => `${T(a)} + ${b}`;
+    if (cong) {
+      q.work = [
+        { t: `${E(a1, b1)} = ${E(a2, b2)}`, why: 'Alt. Interior Angles ≅' },
+        { t: `${b1} = ${E(a2 - a1, b2)}`, op: `− ${T(a1)} from both sides` }
+      ];
+      if (a2 - a1 === 1) {
+        q.work.push({ t: `x = ${x}`, op: `− ${b2} from both sides` });
+      } else {
+        q.work.push({ t: `${b1 - b2} = ${T(a2 - a1)}`, op: `− ${b2} from both sides` });
+        q.work.push({ t: `x = ${x}`, op: `÷ ${a2 - a1} both sides` });
+      }
+      q.work.push({ note: `Check: ${a1}(${x}) + ${b1} = ${a1 * x + b1}° and ${a2}(${x}) + ${b2} = ${a2 * x + b2}°. They match.` });
+    } else {
+      q.work = [
+        { t: `(${E(a1, b1)}) + (${E(a2, b2)}) = 180`, why: 'Same-Side Interior: supp.' },
+        { t: `${E(a1 + a2, b1 + b2)} = 180`, op: 'combine like terms' },
+        { t: `${T(a1 + a2)} = ${180 - b1 - b2}`, op: `− ${b1 + b2} from both sides` },
+        { t: `x = ${x}`, op: `÷ ${a1 + a2} both sides` },
+        { note: `Check: ${a1}(${x}) + ${b1} = ${a1 * x + b1}° and ${a2}(${x}) + ${b2} = ${a2 * x + b2}° — they add to 180°.` }
+      ];
+    }
+    return q;
   }
 });
 
@@ -556,6 +670,12 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Auxiliary line', b: 'An extra line you draw into a figure to help solve the problem — it was not part of the original figure.' },
+    { f: 'Alternate interior angles', b: 'Angles between two lines, on opposite sides of a transversal. Congruent when the lines are parallel.' },
+    { f: 'Parallel lines', b: 'Lines in the same plane that never meet, no matter how far they extend.' },
+    { f: 'Transversal', b: 'A line that crosses two or more other lines.' }
+  ],
   generate: function(){
     // helper: first 3 plausible distractors — unique, valid angle measures
     // (mistake-based candidates first, safe numeric fallbacks after).
@@ -582,9 +702,16 @@ registerTopic({
         th2,                   // reported the other given angle
         2 * Math.min(th1, th2) // doubled the smaller angle
       ]);
-      return mkQ('CROOK',
+      const q = mkQ('CROOK',
         `Lines l and m are parallel. Point A is on l, point C is on m, and point B is between the two lines. The path A \u2192 B \u2192 C bends at B. Ray BA makes an interior angle of ${th1}\u00B0 with line l, and ray BC makes an interior angle of ${th2}\u00B0 with line m, on the same side of the path. What is m\u2220ABC?`,
         String(answer), wrongs.map(String));
+      q.work = [
+        { t: 'Draw a line through B, parallel to l and m.', why: 'Auxiliary line' },
+        { t: `Top piece of the bend = ${th1}°`, why: 'Alt. Interior Angles' },
+        { t: `Bottom piece of the bend = ${th2}°`, why: 'Alt. Interior Angles' },
+        { t: `m∠ABC = ${th1}° + ${th2}° = ${answer}°`, op: 'add the two pieces' }
+      ];
+      return q;
     }
     if (v === 1) {
       // ---- variant 2: bend angle and one given angle known, find the other
@@ -601,9 +728,16 @@ registerTopic({
         B - 2 * th1,  // subtracted the given angle twice
         th1 + 20
       ]);
-      return mkQ('CROOK',
+      const q = mkQ('CROOK',
         `Lines l and m are parallel. Point A is on l, point C is on m, and point B is between the two lines. The path A \u2192 B \u2192 C bends at B, with m\u2220ABC = ${B}\u00B0. Ray BA makes an interior angle of ${th1}\u00B0 with line l. What interior angle does ray BC make with line m, on the same side of the path?`,
         String(answer), wrongs.map(String));
+      q.work = [
+        { t: 'Draw a line through B, parallel to l and m.', why: 'Auxiliary line' },
+        { t: `Top piece of the bend = ${th1}°`, why: 'Alt. Interior Angles' },
+        { t: `The two pieces add to the whole bend: ${B}°.`, why: 'Pieces add up' },
+        { t: `Bottom piece = ${B}° − ${th1}° = ${answer}°`, op: 'subtract' }
+      ];
+      return q;
     }
     // ---- variant 3: algebraic — bend angle is (a*x + b)°, solve for x
     let th1, th2, S, a, b, x;
@@ -619,9 +753,22 @@ registerTopic({
       if (cand > 0 && cand !== x && d.indexOf(cand) === -1) d.push(cand);
       if (d.length === 3) break;
     }
-    return mkQ('CROOK',
+    const q = mkQ('CROOK',
       `Lines l and m are parallel. The path A \u2192 B \u2192 C bends at B, with point B between the two lines. Ray BA makes an interior angle of ${th1}\u00B0 with line l, and ray BC makes an interior angle of ${th2}\u00B0 with line m, on the same side of the path. The angle at B is written as (${a}x + ${b})\u00B0. Find x.`,
       String(x), d.map(String));
+    q.work = [
+      { t: 'Draw the auxiliary line through B — the bend is the sum of its two pieces.', why: 'Auxiliary line' },
+      { t: `${a}x + ${b} = ${th1} + ${th2}`, why: 'Bend = sum of pieces' },
+      { t: `${a}x + ${b} = ${S}`, op: 'add the right side' }
+    ];
+    if (a === 1) {
+      q.work.push({ t: `x = ${x}`, op: `− ${b} from both sides` });
+    } else {
+      q.work.push({ t: `${a}x = ${S - b}`, op: `− ${b} from both sides` });
+      q.work.push({ t: `x = ${x}`, op: `÷ ${a} both sides` });
+    }
+    q.work.push({ note: `Check: ${a}(${x}) + ${b} = ${S}° = ${th1}° + ${th2}°. Good.` });
+    return q;
   }
 });
 
@@ -682,8 +829,25 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Distance from a point to a line', b: 'The length of the perpendicular segment from the point to the line — the shortest path between them.' },
+    { f: 'Perpendicular', b: 'Meeting at a right angle (90°).' },
+    { f: 'Standard form of a line', b: 'ax + by + c = 0 — everything on one side, zero on the other.' },
+    { f: 'Absolute value', b: 'A number\u2019s distance from zero — always nonnegative. That is why the distance formula wraps the numerator in | |.' }
+  ],
   generate: function(){
     const TRIPLES = [[3,4,5],[5,12,13],[8,15,17],[7,24,25]];
+    // worked plug-in lines shared by both variants
+    const plugWork = (a, b, c, h, x0, y0, d) => {
+      const num = a * x0 + b * y0 + c;
+      return [
+        { t: 'd = |a·x₀ + b·y₀ + c| / √(a² + b²)', why: 'Distance formula' },
+        { t: `d = |${a}(${x0}) + ${b}(${y0}) + (${c})| / √((${a})² + (${b})²)`, op: 'plug in the point' },
+        { t: `d = |${a * x0} + ${b * y0} + ${c}| / √${a * a + b * b}` },
+        { t: `d = ${Math.abs(num)} / ${h}`, op: 'absolute value, then √' },
+        { t: `d = ${d}`, op: 'divide' }
+      ];
+    };
     const fmtLine = (a,b,c) => `${a}x ${b<0?'-':'+'} ${Math.abs(b)}y ${c<0?'-':'+'} ${Math.abs(c)} = 0`;
     // mistake-based distractor pool: forgetting to divide is the classic one
     const pool = (d,h) => [String(d*h), String(d+1), String(d+2), String(d+3),
@@ -699,9 +863,11 @@ registerTopic({
         c = -a*x0 - b*y0 + pick([1,-1])*d*h;
         if (Math.abs(c) <= 99 && c !== 0) break;
       }
-      return mkQ('DIST-LINE',
+      const q = mkQ('DIST-LINE',
         `Find the distance from the point ${PT(x0, y0)} to the line ${fmtLine(a,b,c)}.`,
         String(d), pool(d,h));
+      q.work = plugWork(a, b, c, h, x0, y0, d);
+      return q;
     }
     // ---- variant 2: line in slope-intercept form y = mx + r
     let a, b, h, x0, y0, d, r, mNum, mDen;
@@ -727,9 +893,13 @@ registerTopic({
     if (b < 0) { mNum = a; mDen = -b; } else { mNum = -a; mDen = b; }
     const mStr = mDen === 1 ? `${mNum}` : `(${mNum}/${mDen})`;
     const lineStr = `y = ${mStr}x` + (r === 0 ? '' : (r > 0 ? ` + ${r}` : ` - ${-r}`));
-    return mkQ('DIST-LINE',
+    const qc = -b * r; // standard-form constant for y = mx + r
+    const q2 = mkQ('DIST-LINE',
       `Find the distance from the point ${PT(x0, y0)} to the line ${lineStr}.`,
       String(d), pool(d,h));
+    q2.work = [{ t: `${lineStr}  →  ${fmtLine(a, b, qc)}`, why: 'Standard form first' }]
+      .concat(plugWork(a, b, qc, h, x0, y0, d));
+    return q2;
   }
 });
 
@@ -786,6 +956,13 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Slope', b: 'How steep a line is: rise over run, m = (y2 − y1)/(x2 − x1).' },
+    { f: 'y-intercept', b: 'Where the line crosses the y-axis — the point (0, b).' },
+    { f: 'Slope-intercept form', b: 'y = mx + b. You can read the slope and y-intercept straight off it.' },
+    { f: 'Point-slope form', b: 'y − y0 = m(x − x0). Built from the slope and any one point on the line.' },
+    { f: 'Rise over run', b: 'Slope as a journey: how far the line climbs (rise) for how far it moves across (run).' }
+  ],
   generate: function(){
     const gcd = (a,b) => { a = Math.abs(a); b = Math.abs(b); return b === 0 ? a : gcd(b, a % b); };
     const red = (n,d) => { const g = gcd(n,d); n/=g; d/=g; if (d<0){n=-n;d=-d;} return [n,d]; };
@@ -834,9 +1011,24 @@ registerTopic({
           pool.push(`y = ${fmtCoef(mn0,md0)}x${bStr(bInt-1)}`);
         }
       }
-      return mkQ('LINES',
+      const q = mkQ('LINES',
         `A line has slope ${mStr} and passes through ${PT(x0, y0)}. Which is an equation of the line?`,
         correct, pool);
+      if (useSI) {
+        const b = y0 - mn0 * x0;
+        q.work = [
+          { t: 'b = y₀ − m·x₀', why: 'Find the intercept' },
+          { t: `b = ${y0} − ${mn0}(${x0}) = ${b}`, op: 'plug in the point' },
+          { t: correct, why: 'y = mx + b' }
+        ];
+      } else {
+        q.work = [
+          { t: 'y − y₀ = m(x − x₀)', why: 'Point-slope form' },
+          { t: correct, op: 'plug in m and the point' },
+          { note: 'The minus signs come with the formula — a negative coordinate turns one into a plus.' }
+        ];
+      }
+      return q;
     }
     if (v === 1) {
       // ---- variant 2: slope of the line through two points
@@ -852,9 +1044,17 @@ registerTopic({
                     fracStr(mn-md,md),
                     fracStr(2*mn+md,md),  // safe numeric extras
                     fracStr(mn-2*md,md)];
-      return mkQ('LINES',
+      const q = mkQ('LINES',
         `What is the slope of the line through ${PT(x1, y1)} and ${PT(x2, y2)}?`,
         ans, pool);
+      q.work = [
+        { t: 'm = (y₂ − y₁) / (x₂ − x₁)', why: 'Slope formula' },
+        { t: `m = (${y2} − ${y1}) / (${x2} − ${x1})`, op: 'plug in the points' },
+        { t: `m = ${dy} / ${dx}`, op: 'subtract' }
+      ];
+      if (k > 1) q.work.push({ t: `m = ${ans}`, op: `÷ ${k} top and bottom` });
+      else if (fracStr(mn, md) !== `${dy} / ${dx}`) q.work.push({ t: `m = ${ans}` });
+      return q;
     }
     // ---- variant 3: slope + y-intercept description -> equation
     let m = 0; while (m === 0) m = R(-3,3);
@@ -868,9 +1068,15 @@ registerTopic({
       `y = ${fmtCoef(-m,1)}x${bStr(-b)}`,                      // negated slope + flipped intercept
       `${yPart(b+1)} = ${fmtCoef(m,1)}${xPart(0)}`,            // parallel line through (0, b+1)
     ].filter(Boolean);
-    return mkQ('LINES',
+    const q = mkQ('LINES',
       `A line has slope ${m} and crosses the y-axis at ${PT(0, b)}. Which is an equation of the line?`,
       correct, pool);
+    q.work = [
+      { t: 'y = mx + b', why: 'Slope-intercept form' },
+      { t: `m = ${m} and b = ${b} are given directly.` },
+      { t: correct, op: 'plug in m and b' }
+    ];
+    return q;
   }
 });
 
@@ -890,6 +1096,18 @@ registerTopic({
   units: ['2'],
   added: '2026-10-22',
   assignments: ['p-12-p-14-hw'],
+  vocab: [
+    { f: 'Proof', b: 'A logical argument: a chain of statements, each one backed by a reason — a definition, postulate, theorem, or property.' },
+    { f: 'Given', b: 'The starting facts of a proof. The one reason that needs no justification.' },
+    { f: 'Hypothesis', b: 'The "if" part of a conditional statement — the setup you are allowed to assume.' },
+    { f: 'Conclusion', b: 'The "then" part of a conditional statement — what the statement claims follows.' },
+    { f: 'Midpoint', b: 'The point that divides a segment into two congruent segments.' },
+    { f: 'Angle bisector', b: 'A ray that divides an angle into two congruent angles.' },
+    { f: 'Vertical angles', b: 'Angles across from each other where two lines cross. The Vertical Angles Theorem says they are congruent.' },
+    { f: 'Complementary angles', b: 'Two angles whose measures add to 90°.' },
+    { f: 'Supplementary angles', b: 'Two angles whose measures add to 180°. A linear pair is always supplementary.' },
+    { f: 'Reflexive Property', b: 'A value equals itself: a = a, and a segment is congruent to itself.' }
+  ],
   recap: {
     title: 'Intro to Proofs: Reasons, Conditionals, and Next Steps',
     intro: 'A proof is just an argument with receipts: every statement you write has to be backed by a reason — a definition, a postulate, a theorem, or a property of equality. These questions train the three moves proofs are built from: naming the reason, reading an if-then statement, and using a theorem to take the next step.',
@@ -985,9 +1203,31 @@ registerTopic({
         { st: `Lines ${l1} and ${l2} are parallel and are cut by a transversal, so the alternate interior angles are congruent`, r: 'Alternate Interior Angles Theorem' }
       ];
       const sc = pick(scenarios);
-      return mkQ('PROOF',
+      const q = mkQ('PROOF',
         `In a two-column proof, one step reads: "${sc.st}". Which reason justifies this step?`,
         sc.r, REASONS.filter(x => x !== sc.r));
+      const HINTS = {
+        'Reflexive Property of Congruence': 'A figure compared to itself.',
+        'Reflexive Property of Equality': 'A measure compared to itself.',
+        'Symmetric Property of Equality': 'The equality is flipped around.',
+        'Transitive Property of Equality': 'Equality chains through a middle value.',
+        'Addition Property of Equality': 'The same amount was added to both sides.',
+        'Segment Addition Postulate': 'Two pieces on one segment make the whole.',
+        'Definition of Midpoint': 'A midpoint splits a segment into two equal parts.',
+        'Definition of Angle Bisector': 'A bisector splits an angle into two congruent angles.',
+        'Definition of Congruent Angles': 'Equal measures is exactly what congruent angles means.',
+        'Definition of Complementary Angles': 'Complementary angles are defined by summing to 90°.',
+        'Vertical Angles Theorem': 'Vertical angles are always congruent.',
+        'Linear Pair Postulate': 'A linear pair is supplementary by this postulate.',
+        'Right Angle Congruence Theorem': 'All right angles are congruent to each other.',
+        'Alternate Interior Angles Theorem': 'Parallel lines make alternate interior angles congruent.'
+      };
+      q.work = [
+        { t: `Step: ${sc.st}` },
+        { note: 'What is the step actually doing? ' + (HINTS[sc.r] || '') },
+        { t: sc.r, why: 'The reason' }
+      ];
+      return q;
     }
 
     if (v === 1) {
@@ -1003,12 +1243,18 @@ registerTopic({
       const c = pick(conds), H = c[0], C = c[1];
       const ask = pick(['hypothesis', 'conclusion']);
       const correct = ask === 'hypothesis' ? H : C;
-      return mkQ('PROOF',
+      const q = mkQ('PROOF',
         `Consider the conditional statement: "If ${H}, then ${C}." What is the ${ask} of this conditional?`,
         correct,
         [ask === 'hypothesis' ? C : H,
          `If ${C}, then ${H}.`,
          `If it is not the case that ${H}, then it is not the case that ${C}.`]);
+      q.work = [
+        { t: `If ${H}, then ${C}.` },
+        { note: 'The part right after "if" is the hypothesis. The part after "then" is the conclusion.' },
+        { t: `The ${ask}: ${correct}` }
+      ];
+      return q;
     }
 
     // ---- flavor 3: apply a named theorem and pick what follows ----
@@ -1020,24 +1266,79 @@ registerTopic({
     const apps = [
       { g: `\u2220${d1} and \u2220${d2} are vertical angles.`, th: 'Vertical Angles Theorem',
         ans: `\u2220${d1} \u2245 \u2220${d2}`,
-        wr: [`m\u2220${d1} + m\u2220${d2} = 90\u00B0`, `m\u2220${d1} + m\u2220${d2} = 180\u00B0`, `\u2220${d1} and \u2220${d2} are complementary`] },
+        wr: [`m\u2220${d1} + m\u2220${d2} = 90\u00B0`, `m\u2220${d1} + m\u2220${d2} = 180\u00B0`, `\u2220${d1} and \u2220${d2} are complementary`],
+        w: [{ t: `\u2220${d1} and \u2220${d2} are vertical angles.` },
+            { t: `\u2220${d1} \u2245 \u2220${d2}`, why: 'Vertical Angles Theorem' }] },
       { g: `M is the midpoint of segment AB and AB = ${Lv}.`, th: 'definition of midpoint',
         ans: `AM = MB = ${Lv / 2}`,
-        wr: [`AM = MB = ${Lv}`, `AM = ${Lv} and MB = ${Lv}`, `AM + MB = ${Lv / 2}`] },
+        wr: [`AM = MB = ${Lv}`, `AM = ${Lv} and MB = ${Lv}`, `AM + MB = ${Lv / 2}`],
+        w: [{ t: `M is the midpoint of AB, and AB = ${Lv}.` },
+            { t: `AM = ${Lv} \u00F7 2 = ${Lv / 2}`, op: 'a midpoint halves it' },
+            { t: `AM = MB = ${Lv / 2}`, why: 'Def. of Midpoint' }] },
       { g: `Ray BD bisects \u2220ABC and m\u2220ABC = ${Tt}\u00B0.`, th: 'definition of an angle bisector',
         ans: `m\u2220ABD = m\u2220DBC = ${Tt / 2}\u00B0`,
-        wr: [`m\u2220ABD = m\u2220DBC = ${Tt}\u00B0`, `m\u2220ABD = ${Tt / 2}\u00B0 and m\u2220DBC = ${Tt}\u00B0`, `m\u2220ABD + m\u2220DBC = ${Tt / 2}\u00B0`] },
+        wr: [`m\u2220ABD = m\u2220DBC = ${Tt}\u00B0`, `m\u2220ABD = ${Tt / 2}\u00B0 and m\u2220DBC = ${Tt}\u00B0`, `m\u2220ABD + m\u2220DBC = ${Tt / 2}\u00B0`],
+        w: [{ t: `Ray BD bisects \u2220ABC, and m\u2220ABC = ${Tt}\u00B0.` },
+            { t: `${Tt}\u00B0 \u00F7 2 = ${Tt / 2}\u00B0`, op: 'a bisector halves it' },
+            { t: `m\u2220ABD = m\u2220DBC = ${Tt / 2}\u00B0`, why: 'Def. of Angle Bisector' }] },
       { g: `\u2220${d1} and \u2220${d2} form a linear pair and m\u2220${d1} = ${x}\u00B0.`, th: 'Linear Pair Postulate',
         ans: `m\u2220${d2} = ${c}\u00B0`,
-        wr: [`m\u2220${d2} = ${x}\u00B0`, `m\u2220${d2} = ${c + 15 <= 155 ? c + 15 : c - 15}\u00B0`, `m\u2220${d2} = ${x <= 120 ? x + 35 : x - 35}\u00B0`] },
+        wr: [`m\u2220${d2} = ${x}\u00B0`, `m\u2220${d2} = ${c + 15 <= 155 ? c + 15 : c - 15}\u00B0`, `m\u2220${d2} = ${x <= 120 ? x + 35 : x - 35}\u00B0`],
+        w: [{ t: `\u2220${d1} and \u2220${d2} form a linear pair, so they are supplementary.` },
+            { t: `m\u2220${d2} = 180\u00B0 \u2212 ${x}\u00B0 = ${c}\u00B0`, op: 'subtract' },
+            { t: `m\u2220${d2} = ${c}\u00B0`, why: 'Linear Pair Postulate' }] },
       { g: `\u2220A and \u2220B are complementary and m\u2220A = ${y}\u00B0.`, th: 'definition of complementary angles',
         ans: `m\u2220B = ${90 - y}\u00B0`,
-        wr: [`m\u2220B = ${y}\u00B0`, `m\u2220B = ${180 - y}\u00B0`, `m\u2220B = ${y + 25 <= 75 ? y + 25 : y - 25}\u00B0`] }
+        wr: [`m\u2220B = ${y}\u00B0`, `m\u2220B = ${180 - y}\u00B0`, `m\u2220B = ${y + 25 <= 75 ? y + 25 : y - 25}\u00B0`],
+        w: [{ t: `\u2220A and \u2220B are complementary \u2014 their measures add to 90\u00B0.` },
+            { t: `m\u2220B = 90\u00B0 \u2212 ${y}\u00B0 = ${90 - y}\u00B0`, op: 'subtract' },
+            { t: `m\u2220B = ${90 - y}\u00B0`, why: 'Def. of Complementary Angles' }] }
     ];
     const ap = pick(apps);
-    return mkQ('PROOF',
+    const q = mkQ('PROOF',
       `A proof gives this fact: ${ap.g} By the ${ap.th}, which statement follows?`,
       ap.ans, ap.wr);
+    q.work = ap.w;
+    return q;
+  },
+  // Prove format: a short two-column proof where each step's reason is
+  // picked from options. Served by the client alongside generate().
+  generateProve: function(){
+    const L = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+    const seg = L[0] + L[1], mid = L[2];
+    const a1 = R(1, 8); let a2 = R(1, 9); while (a2 === a1) a2 = R(1, 9);
+    const POOL = ['Given', 'Definition of Midpoint', 'Definition of Angle Bisector',
+      'Definition of Congruent Angles', 'Definition of Congruent Segments',
+      'Definition of Supplementary Angles', 'Vertical Angles Theorem',
+      'Linear Pair Postulate', 'Segment Addition Postulate',
+      'Reflexive Property of Equality', 'Symmetric Property of Equality',
+      'Transitive Property of Equality', 'Addition Property of Equality',
+      'Right Angle Congruence Theorem'];
+    const step = (text, reason) => {
+      const options = shuffle([reason].concat(shuffle(POOL.filter(r => r !== reason)).slice(0, 3)));
+      return { text: text, options: options, answer: options.indexOf(reason) };
+    };
+    const v = R(0, 3);
+    if (v === 0) return { q: `Prove it: if ${mid} is the midpoint of segment ${seg}, then the two pieces have equal length. Pick the reason for each step.`, steps: [
+      step(`${mid} is the midpoint of segment ${seg}.`, 'Given'),
+      step(`${L[0]}${mid} = ${mid}${L[1]}`, 'Definition of Midpoint'),
+      step(`Segment ${L[0]}${mid} \u2245 segment ${mid}${L[1]}`, 'Definition of Congruent Segments')
+    ]};
+    if (v === 1) return { q: `Prove it: if \u2220${a1} and \u2220${a2} form a linear pair, then their measures add to 180\u00B0. Pick the reason for each step.`, steps: [
+      step(`\u2220${a1} and \u2220${a2} form a linear pair.`, 'Given'),
+      step(`\u2220${a1} and \u2220${a2} are supplementary.`, 'Linear Pair Postulate'),
+      step(`m\u2220${a1} + m\u2220${a2} = 180\u00B0`, 'Definition of Supplementary Angles')
+    ]};
+    if (v === 2) return { q: `Prove it: if \u2220${a1} and \u2220${a2} are vertical angles, then their measures are equal. Pick the reason for each step.`, steps: [
+      step(`\u2220${a1} and \u2220${a2} are vertical angles.`, 'Given'),
+      step(`\u2220${a1} \u2245 \u2220${a2}`, 'Vertical Angles Theorem'),
+      step(`m\u2220${a1} = m\u2220${a2}`, 'Definition of Congruent Angles')
+    ]};
+    return { q: `Prove it: if ray ${L[1]}${L[2]} bisects \u2220${L[0]}${L[1]}${L[3]}, then the two halves have equal measure. Pick the reason for each step.`, steps: [
+      step(`Ray ${L[1]}${L[2]} bisects \u2220${L[0]}${L[1]}${L[3]}.`, 'Given'),
+      step(`\u2220${L[0]}${L[1]}${L[2]} \u2245 \u2220${L[2]}${L[1]}${L[3]}`, 'Definition of Angle Bisector'),
+      step(`m\u2220${L[0]}${L[1]}${L[2]} = m\u2220${L[2]}${L[1]}${L[3]}`, 'Definition of Congruent Angles')
+    ]};
   }
 });
 
@@ -1086,11 +1387,24 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Midpoint', b: 'The point exactly halfway between a segment\u2019s endpoints — it splits the segment into two equal pieces.' },
+    { f: 'Endpoint', b: 'One of the two points where a segment ends.' },
+    { f: 'Segment bisector', b: 'A point, line, or ray that cuts a segment into two congruent pieces by passing through its midpoint.' },
+    { f: 'Average', b: 'Add the values and divide by how many there are. A midpoint is just the average of the endpoints, coordinate by coordinate.' }
+  ],
   generate: function(){
     const x1=R(-10,10),y1=R(-10,10),x2=R(-10,10),y2=R(-10,10);
     const mx=(x1+x2)/2,my=(y1+y2)/2;
-    return mkQ('MIDPOINT',`Find the midpoint of the segment with endpoints ${PT(x1,y1)} and ${PT(x2,y2)}.`,PT(mx,my),
+    const q=mkQ('MIDPOINT',`Find the midpoint of the segment with endpoints ${PT(x1,y1)} and ${PT(x2,y2)}.`,PT(mx,my),
       [PT(x1+x2,y1+y2),PT((x1-x2)/2,(y1-y2)/2),PT(mx+1,my),PT(mx,my-1),PT(-mx,my),PT(mx+2,my+2)]);
+    q.work=[
+      {t:'Midpoint = ((x₁ + x₂)/2, (y₁ + y₂)/2)', why:'Midpoint formula'},
+      {t:`x: (${x1} + ${x2}) / 2 = ${x1+x2} / 2 = ${mx}`, op:'add, then ÷ 2'},
+      {t:`y: (${y1} + ${y2}) / 2 = ${y1+y2} / 2 = ${my}`, op:'add, then ÷ 2'},
+      `Midpoint: ${PT(mx,my)}`
+    ];
+    return q;
   }
 });
 
@@ -1142,8 +1456,15 @@ registerTopic({
     const TRIP=[[3,4,5],[6,8,10],[5,12,13],[8,15,17],[9,12,15],[7,24,25],[12,16,20],[20,21,29]];
     const t=pick(TRIP),dx=t[0]*pick([1,-1]),dy=t[1]*pick([1,-1]),h=t[2];
     const x1=R(-8,8),y1=R(-8,8),x2=x1+dx,y2=y1+dy;
-    return mkQ('DISTANCE',`Find the exact distance between ${PT(x1,y1)} and ${PT(x2,y2)}.`,String(h),
+    const q=mkQ('DISTANCE',`Find the exact distance between ${PT(x1,y1)} and ${PT(x2,y2)}.`,String(h),
       [String(Math.abs(dx)+Math.abs(dy)),String(Math.abs(Math.abs(dx)-Math.abs(dy))),String(h+1),String(h-1),String(h+2),String(2*h)]);
+    q.work=[
+      {t:'d = √((x₂ − x₁)² + (y₂ − y₁)²)', why:'Distance formula'},
+      {t:`d = √((${x2} − ${x1})² + (${y2} − ${y1})²)`, op:'plug in the points'},
+      {t:`d = √(${dx}² + ${dy}²) = √(${dx*dx} + ${dy*dy})`, op:'subtract, then square'},
+      {t:`d = √${dx*dx+dy*dy} = ${h}`, op:'add, then take the root'}
+    ];
+    return q;
   }
 });
 
@@ -1194,8 +1515,15 @@ registerTopic({
   generate: function(){
     const mx=R(-8,8),my=R(-8,8),rx=R(-8,8),ry=R(-8,8);
     const sx=2*mx-rx,sy=2*my-ry;
-    return mkQ('MIDPOINT',`M ${PT(mx,my)} is the midpoint of segment RS. R is ${PT(rx,ry)}. Find S.`,PT(sx,sy),
+    const q=mkQ('MIDPOINT',`M ${PT(mx,my)} is the midpoint of segment RS. R is ${PT(rx,ry)}. Find S.`,PT(sx,sy),
       [PT(mx-rx,my-ry),PT(rx-mx,ry-my),PT(sx+2,sy),PT(sx,sy+2),PT(2*mx+rx,2*my+ry)]);
+    q.work=[
+      {t:'S = 2M − R', why:'Double the midpoint, subtract the known end'},
+      {t:`S = (2(${mx}) − ${rx}, 2(${my}) − ${ry})`, op:'plug in M and R'},
+      {t:`S = (${2*mx} − ${rx}, ${2*my} − ${ry})`, op:'multiply first'},
+      `S = ${PT(sx,sy)}`
+    ];
+    return q;
   }
 });
 
@@ -1249,8 +1577,17 @@ registerTopic({
     let k1=R(-3,3),k2=R(-3,3);if(k1===0)k1=2;if(k2===0)k2=-2;
     const vx=s*k1,vy=s*k2,x2=x1+vx,y2=y1+vy;
     const px=x1+a*k1,py=y1+a*k2;
-    return mkQ('PARTITION',`Point P partitions directed segment AB — A${PT(x1,y1)}, B${PT(x2,y2)} — with AP:PB = ${a}:${b}. Find P.`,PT(px,py),
+    const q=mkQ('PARTITION',`Point P partitions directed segment AB — A${PT(x1,y1)}, B${PT(x2,y2)} — with AP:PB = ${a}:${b}. Find P.`,PT(px,py),
       [PT(x1+b*k1,y1+b*k2),PT((x1+x2)/2,(y1+y2)/2),PT(px+1,py),PT(px,py+1),PT(x2,y2)]);
+    q.work=[
+      {t:`Total parts: ${a} + ${b} = ${s}`, op:'add the ratio parts'},
+      {t:`P is ${a}/${s} of the way from A to B.`},
+      {t:`Each part steps (${k1}, ${k2}) — the full jump (${vx}, ${vy}) split ${s} ways.`},
+      {t:`x: ${x1} + ${a} × ${k1} = ${px}`, op:`${a} parts from A`},
+      {t:`y: ${y1} + ${a} × ${k2} = ${py}`, op:`${a} parts from A`},
+      `P = ${PT(px,py)}`
+    ];
+    return q;
   }
 });
 
@@ -1298,6 +1635,12 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Segment Addition Postulate', b: 'If S is between R and T, then RS + ST = RT — the pieces add up to the whole.' },
+    { f: 'Between', b: 'S is between R and T when S lies on segment RT, between its endpoints.' },
+    { f: 'Congruent segments', b: 'Segments with the same length. Equal lengths and congruent segments say the same thing two ways.' },
+    { f: 'Collinear', b: 'Points that all lie on the same straight line.' }
+  ],
   generate: function(){
     let x,a,b,c,d,e,f,rs,st,rt;
     do{
@@ -1309,7 +1652,16 @@ registerTopic({
     }while(rs<=0||st<=0||rt<=0||b===0||d===0||f===0);
     const q=`S is between R and T. RS = ${a}x${sgn(b)}, ST = ${c}x${sgn(d)}, RT = ${e}x${sgn(f)}. Solve for x.`;
     const cd=[x+1,x-1,x+2,x-2].filter(v=>v>0&&v!==x).map(String);
-    return mkQ('SEGMENTS',q,String(x),cd);
+    const out=mkQ('SEGMENTS',q,String(x),cd);
+    const coef=a+c-e, rhs=f-(b+d);
+    out.work=[
+      {t:`(${a}x${sgn(b)}) + (${c}x${sgn(d)}) = ${e}x${sgn(f)}`, why:'Segment Addition Postulate'},
+      {t:`${a+c}x${sgn(b+d)} = ${e}x${sgn(f)}`, op:'combine like terms'},
+      {t:`${coef===1?'x':coef+'x'} = ${rhs}`, op:'x\u2019s to one side, numbers to the other'}
+    ];
+    if(coef!==1)out.work.push({t:`x = ${x}`, op:`\u00F7 ${coef} both sides`});
+    out.work.push({note:`Check: RS = ${rs}, ST = ${st}, RT = ${rt} — and ${rs} + ${st} = ${rt}. The pieces add to the whole.`});
+    return out;
   }
 });
 
@@ -1357,12 +1709,24 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Radical', b: 'An expression with a root sign, like √48. The whole expression is called a radical.' },
+    { f: 'Radicand', b: 'The number under the root sign. In √48, the radicand is 48.' },
+    { f: 'Perfect square', b: 'A number that is a whole number squared: 4, 9, 16, 25, 36, 49…' },
+    { f: 'Simplest form', b: 'A radical whose radicand has no perfect-square factors left (other than 1).' }
+  ],
   generate: function(){
     const SQF=[2,3,5,6,7,10,11,13];
     const k=R(2,6),m=pick(SQF),n=k*k*m,cor=`${k}√${m}`;
     const cd=[`${k+1}√${m}`,`${k}√${m+1}`,`${k-1}√${m}`,`${2*k}√${m}`,`${k}√${m+2}`];
     for(let d=2;d<k;d++)if(k%d===0)cd.push(`${k/d}√${d*d*m}`);
-    return mkQ('RADICALS',`Simplify √${n}.`,cor,cd);
+    const q=mkQ('RADICALS',`Simplify √${n}.`,cor,cd);
+    q.work=[
+      {t:`√${n} = √(${k*k} × ${m})`, why:`${k*k} is the biggest square factor`},
+      {t:`√${n} = √${k*k} × √${m}`, op:'split the root'},
+      {t:`√${n} = ${cor}`, op:`√${k*k} = ${k} comes out front`}
+    ];
+    return q;
   }
 });
 
@@ -1411,6 +1775,13 @@ registerTopic({
       }
     ]
   },
+  vocab: [
+    { f: 'Quadrant', b: 'One of the four regions of the coordinate plane, numbered I, II, III, IV counterclockwise from the top right.' },
+    { f: 'Origin', b: 'The point (0, 0) — where the x-axis and y-axis cross, and where every plot starts.' },
+    { f: 'x-coordinate', b: 'The first number in a point: how far right (positive) or left (negative) of the y-axis it sits.' },
+    { f: 'y-coordinate', b: 'The second number in a point: how far above (positive) or below (negative) the x-axis it sits.' },
+    { f: 'Axis', b: 'A number line on the plane — the x-axis runs horizontally, the y-axis vertically. Points on an axis are in no quadrant.' }
+  ],
   generate: function(){
     const v = R(1, 3);
     if (v === 1) {
@@ -1418,24 +1789,43 @@ registerTopic({
       let x = 0; while (x === 0) x = R(-9, 9);
       let y = 0; while (y === 0) y = R(-9, 9);
       const q = x > 0 ? (y > 0 ? 'I' : 'IV') : (y > 0 ? 'II' : 'III');
-      return mkQ('GRAPHING', `The point ${PT(x, y)} is plotted on a coordinate plane. In which quadrant does it lie?`, q,
+      const out = mkQ('GRAPHING', `The point ${PT(x, y)} is plotted on a coordinate plane. In which quadrant does it lie?`, q,
         ['I', 'II', 'III', 'IV'].filter(c => c !== q));
+      out.work = [
+        { t: `x = ${x} → ${x > 0 ? 'right side' : 'left side'}` },
+        { t: `y = ${y} → ${y > 0 ? 'top half' : 'bottom half'}` },
+        { t: `${x > 0 ? 'Right' : 'Left'} and ${y > 0 ? 'up' : 'down'} is Quadrant ${q}.` }
+      ];
+      return out;
     }
     if (v === 2) {
       // translate from the origin
       const ax = R(2, 9), ay = R(2, 9);
       const dx = pick(['left', 'right']), dy = pick(['up', 'down']);
       const px = dx === 'right' ? ax : -ax, py = dy === 'up' ? ay : -ay;
-      return mkQ('GRAPHING', `Start at the origin. Move ${ax} unit${ax === 1 ? '' : 's'} ${dx} and ${ay} unit${ay === 1 ? '' : 's'} ${dy}. What point do you land on?`, PT(px, py),
+      const out = mkQ('GRAPHING', `Start at the origin. Move ${ax} unit${ax === 1 ? '' : 's'} ${dx} and ${ay} unit${ay === 1 ? '' : 's'} ${dy}. What point do you land on?`, PT(px, py),
         [PT(-px, py), PT(px, -py), PT(-px, -py), PT(py, px), PT(-py, -px)]);
+      out.work = [
+        { t: `Start at (0, 0).` },
+        { t: `${ax} ${dx} → x = ${px}`, op: dx === 'right' ? 'right is positive' : 'left is negative' },
+        { t: `${ay} ${dy} → y = ${py}`, op: dy === 'up' ? 'up is positive' : 'down is negative' },
+        `You land on ${PT(px, py)}`
+      ];
+      return out;
     }
     // read coordinates from a position description (x vs y order)
     let x = 0; while (x === 0) x = R(-9, 9);
     let y = 0; while (y === 0) y = R(-9, 9);
     const xs = x >= 0 ? 'to the right of' : 'to the left of';
     const ys = y >= 0 ? 'above' : 'below';
-    return mkQ('GRAPHING', `A point is plotted ${Math.abs(x)} unit${Math.abs(x) === 1 ? '' : 's'} ${xs} the y-axis and ${Math.abs(y)} unit${Math.abs(y) === 1 ? '' : 's'} ${ys} the x-axis. What are its coordinates?`, PT(x, y),
+    const out = mkQ('GRAPHING', `A point is plotted ${Math.abs(x)} unit${Math.abs(x) === 1 ? '' : 's'} ${xs} the y-axis and ${Math.abs(y)} unit${Math.abs(y) === 1 ? '' : 's'} ${ys} the x-axis. What are its coordinates?`, PT(x, y),
       [PT(y, x), PT(-x, y), PT(x, -y), PT(-x, -y), PT(y, -x), PT(-y, x)]);
+    out.work = [
+      { t: `${Math.abs(x)} ${xs} the y-axis → x = ${x}`, op: x >= 0 ? 'right is positive' : 'left is negative' },
+      { t: `${Math.abs(y)} ${ys} the x-axis → y = ${y}`, op: y >= 0 ? 'above is positive' : 'below is negative' },
+      `The point is ${PT(x, y)} — x first, then y.`
+    ];
+    return out;
   }
 });
 
@@ -1493,16 +1883,28 @@ registerTopic({
       const verts = `A${PT(x1, y1)}, B${PT(x2, y1)}, C${PT(x2, y2)}, D${PT(x1, y2)}`;
       if (v === 1) {
         const area = dx * dy;
-        return mkQ('PERIM-AREA',
+        const q = mkQ('PERIM-AREA',
           `Rectangle ABCD has vertices ${verts}. What is its area?`, String(area),
           [String(2 * (dx + dy)), String(dx + dy), String(area + dx), String(area - dx),
            String(area + 1), String(area - 1), String(2 * area)]);
+        q.work = [
+          { t: `Length = |${x2} − ${x1}| = ${dx}`, op: 'subtract the x\u2019s' },
+          { t: `Width = |${y2} − ${y1}| = ${dy}`, op: 'subtract the y\u2019s' },
+          { t: `Area = ${dx} × ${dy} = ${area}`, op: 'length × width' }
+        ];
+        return q;
       }
       const perim = 2 * (dx + dy);
-      return mkQ('PERIM-AREA',
+      const q = mkQ('PERIM-AREA',
         `Rectangle ABCD has vertices ${verts}. What is its perimeter?`, String(perim),
         [String(dx * dy), String(dx + dy), String(2 * dx + dy), String(dx + 2 * dy),
          String(perim + 2), String(perim - 2)]);
+      q.work = [
+        { t: `Length = |${x2} − ${x1}| = ${dx}`, op: 'subtract the x\u2019s' },
+        { t: `Width = |${y2} − ${y1}| = ${dy}`, op: 'subtract the y\u2019s' },
+        { t: `Perimeter = 2(${dx} + ${dy}) = 2(${dx + dy}) = ${perim}`, op: 'double the sum of the sides' }
+      ];
+      return q;
     }
     if (v === 3) {
       // right triangle area: horizontal base, vertical height, right angle at A or B
@@ -1510,21 +1912,33 @@ registerTopic({
       const x = R(-8, 9 - m), y = R(-8, 9 - n);
       const cPt = pick([PT(x, y + n), PT(x + m, y + n)]);
       const area = (m * n) / 2;
-      return mkQ('PERIM-AREA',
+      const q = mkQ('PERIM-AREA',
         `Triangle ABC has vertices A${PT(x, y)}, B${PT(x + m, y)}, C${cPt}. What is its area?`,
         String(area),
         [String(m * n), String(m + n), String(area + 1), String(area - 1),
          String(2 * (m + n)), String(m * n + m)]);
+      q.work = [
+        { t: `Base AB runs along the bottom: length ${m}.` },
+        { t: `Height is the vertical side: ${n}.` },
+        { t: `Area = ½ × ${m} × ${n} = ${area}`, op: 'half of base × height' }
+      ];
+      return q;
     }
     // right triangle perimeter: integer legs from a Pythagorean triple
     const t = pick([[3, 4, 5], [6, 8, 10]]), a = t[0], b = t[1], c = t[2];
     const x = R(-8, 9 - a), y = R(-8, 9 - b);
     const perim = a + b + c;
-    return mkQ('PERIM-AREA',
+    const q = mkQ('PERIM-AREA',
       `Triangle ABC has vertices A${PT(x, y)}, B${PT(x + a, y)}, C${PT(x, y + b)}. What is its perimeter?`,
       String(perim),
       [String((a * b) / 2), String(a + b), String(perim + 1), String(perim - 1),
        String(a * b), String(2 * c)]);
+    q.work = [
+      { t: `Horizontal leg = ${a}, vertical leg = ${b}.` },
+      { t: `Hypotenuse = ${c}`, why: `${a}-${b}-${c} Pythagorean triple` },
+      { t: `Perimeter = ${a} + ${b} + ${c} = ${perim}`, op: 'add all three sides' }
+    ];
+    return q;
   }
 });
 
@@ -1539,6 +1953,86 @@ function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'
 function fmtDur(sec){sec=Math.max(0,Math.round(sec));if(sec<60)return sec+' sec';var m=Math.round(sec/60);if(m<60)return m+' min';var h=Math.floor(m/60);return h+'h '+(m%60)+'m';}
 function fmtClock(sec){sec=Math.max(0,Math.floor(sec));var m=Math.floor(sec/60);return m+':'+('0'+(sec%60)).slice(-2);}
 function etDate(){try{return new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});}catch(e){return new Date().toISOString().slice(0,10);}}
+// ---- v2 helpers: answer checking + smooth-scroll following ----
+// Typed answers are compared leniently: "3/2", "1.5", " 3 / 2 " all match.
+function normStr(s){return String(s==null?'':s).toLowerCase().replace(/−/g,'-').replace(/\s+/g,'').replace(/°/g,'');}
+function parseNum(s){
+  s=normStr(s);
+  if(/^-?\d+(\.\d+)?$/.test(s))return parseFloat(s);
+  var m=s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+  if(m&&parseFloat(m[2])!==0)return parseFloat(m[1])/parseFloat(m[2]);
+  return null;
+}
+function ansEqual(given,correct){
+  var a=parseNum(given),b=parseNum(correct);
+  if(a!==null&&b!==null)return Math.abs(a-b)<1e-9;
+  return normStr(given)===normStr(correct);
+}
+// An MC answer is offered as a type-in ("exact") question only when it is
+// short and purely numeric/coordinate-like — never an equation or a phrase.
+function typeable(s){return typeof s==='string'&&s.length<=16&&/^[-−\d\s.,()/]+$/.test(s);}
+// Smooth-scroll the nearest scrolling container so el is visible — this is
+// what makes the page follow the work as it goes down.
+function scrollFollow(el,block){
+  if(!el)return;
+  setTimeout(function(){try{el.scrollIntoView({behavior:'smooth',block:block||'end'});}catch(e){try{el.scrollIntoView();}catch(e2){}}},40);
+}
+// ---- worked-solution player ----
+// A work step is a string, or {t:'line', op:'− 15 from both sides'} (an
+// operation pill), or {t:'line', why:'Vertical Angles Theorem'} (a reason
+// pill), or {note:'a side comment'}. Lines reveal one at a time on ruled
+// notebook paper, and the view scrolls to follow the newest line.
+var WP=null;
+function workLineEl(step){
+  if(typeof step==='string')step={t:step};
+  var row=document.createElement('div');row.className='wline';
+  if(step.note&&!step.t){row.classList.add('wnote');row.style.display='block';row.textContent=step.note;return row;}
+  var l=document.createElement('span');l.className='wl hand';l.textContent=step.t||'';row.appendChild(l);
+  if(step.op){var o=document.createElement('span');o.className='wop';o.textContent=step.op;row.appendChild(o);}
+  else if(step.why){var w=document.createElement('span');w.className='why2';w.textContent=step.why;row.appendChild(w);}
+  return row;
+}
+function workSetup(host,work,btn){
+  workStopTimer();
+  host.innerHTML='';host.classList.add('workpaper');host.style.display='';
+  var title=document.createElement('div');title.className='wp-title';title.textContent='Worked solution';host.appendChild(title);
+  var els=[];
+  work.forEach(function(s){var el=workLineEl(s);host.appendChild(el);els.push(el);});
+  WP={els:els,idx:-1,timer:null,btn:btn||null};
+}
+function workStopTimer(){if(WP&&WP.timer){clearInterval(WP.timer);WP.timer=null;}}
+function workRevealNext(){
+  if(!WP||WP.idx>=WP.els.length-1)return false;
+  WP.idx++;WP.els[WP.idx].classList.add('show');
+  scrollFollow(WP.els[WP.idx]);
+  return WP.idx<WP.els.length-1;
+}
+function workBtnDone(){
+  if(WP&&WP.btn){WP.btn.textContent='Work shown';WP.btn.disabled=true;}
+}
+function workPause(){
+  workStopTimer();
+  if(!WP)return;
+  if(WP.idx>=WP.els.length-1){workBtnDone();}
+  else if(WP.btn){WP.btn.textContent='Keep going';}
+}
+function workToggle(){
+  if(!WP&&typeof WP_PEND!=='undefined'&&WP_PEND){workSetup($('workbox'),WP_PEND,$('showwork'));WP_PEND=null;}
+  if(!WP)return;
+  if(WP.timer){workPause();return;}
+  if(WP.idx>=WP.els.length-1)return;
+  if(WP.btn)WP.btn.textContent='Pause';
+  if(!workRevealNext()){workPause();return;}
+  WP.timer=setInterval(function(){if(!workRevealNext())workPause();},1000);
+}
+function workShowAll(){
+  if(!WP&&typeof WP_PEND!=='undefined'&&WP_PEND){workSetup($('workbox'),WP_PEND,$('showwork'));WP_PEND=null;}
+  if(!WP)return;
+  workStopTimer();
+  while(WP.idx<WP.els.length-1){WP.idx++;WP.els[WP.idx].classList.add('show');}
+  if(WP.els.length)scrollFollow(WP.els[WP.els.length-1]);
+  workBtnDone();
+}
 
 // ---- screens ----
 function show(id){
@@ -1631,8 +2125,11 @@ function route(){
       case 'archive': showArchive(); break;
       case 'board': openBoard(); break;
       case 'practice':
-        if(PR){show('s-practice');}
-        else if(SESSION_REQ){var q=SESSION_REQ;SESSION_REQ=null;startPractice(q.pool,q.title);}
+        // A pending session request always wins: it means the user just
+        // tapped a practice entry point, even if a stale session object
+        // is still around from earlier navigation.
+        if(SESSION_REQ){var q=SESSION_REQ;SESSION_REQ=null;startPractice(q.pool,q.title);}
+        else if(PR){show('s-practice');}
         else{replaceNav('');}
         break;
       // DONE_OK is consumed on arrival: the done screen can never be
@@ -1867,92 +2364,143 @@ function showArchive(){
   show('s-archive');
 }
 
-// ---- concepts + interactive recap ----
-var RC={id:null,step:0,exIdx:-1};
+// ---- concepts + notebook recap ----
+// The recap is one continuous notebook page: steps stack downward, and
+// each step's worked example is written out line by line (like a person
+// working down the page) while the view smooth-scrolls to follow.
+var RC={id:null,chunks:[],pos:-1};
 function openConcept(id){
   if(!IN_ROUTE){RC.id=id;nav('concept/'+id);return;}
-  RC.step=0;RC.exIdx=-1;
+  RC.id=id;
   var t=TOPICS[id];
   $('conceptname').textContent=t.name;
   $('conceptdesc').textContent=t.recap?t.recap.intro:'';
   show('s-concept');
 }
 function startRecap(id){
-  RC={id:id,step:0,exIdx:-1};
+  RC.id=id;
   if(!IN_ROUTE){nav('recap');return;}
   renderRecapScreen();
 }
+// A recap step's example lines: 'a → b → c' chains are split so each
+// stage of the work lands on its own line of the notebook.
+function recapLines(step){
+  var out=[];
+  (step.ex||[]).forEach(function(line){
+    if(line.indexOf(' → ')>-1){line.split(' → ').forEach(function(seg){out.push(seg.trim());});}
+    else out.push(line);
+  });
+  return out;
+}
 function renderRecapScreen(){
-  var tg=$('tryone');if(tg)tg.remove();
-  var sb=document.querySelector('#s-recap .stepbox');if(sb)sb.style.display='';
-  renderRecap();show('s-recap');
-}
-function renderRecap(){
-  var t=TOPICS[RC.id],r=t.recap,step=r.steps[RC.step];
+  var old=$('tryone');if(old)old.remove();
+  var t=TOPICS[RC.id];if(!t||!t.recap)return;
+  var r=t.recap;
   $('recaptitle').textContent=r.title;
-  $('stepnum').textContent='Step '+(RC.step+1)+' of '+r.steps.length;
-  $('steph').textContent=step.h;
-  $('stepbody').textContent=step.body;
-  RC.exIdx=-1;
-  var box=$('exbox');box.style.display='none';box.innerHTML='';
-  $('exbtn').style.display='';
-  $('exbtn').textContent='Show worked example';
-  var last=RC.step===r.steps.length-1;
-  $('recapnext').style.display='';
-  $('recapnext').textContent=last?'Try one →':'Next step →';
-}
-function recapNextEx(){
-  var step=TOPICS[RC.id].recap.steps[RC.step];
-  var box=$('exbox');
-  if(RC.exIdx===-1){
-    box.style.display='';box.innerHTML='';
-    step.ex.forEach(function(line){
-      var d=document.createElement('div');d.className='eline';d.textContent=line;box.appendChild(d);
-    });
-    RC.exIdx=0;box.children[0].classList.add('show');
-  }else if(RC.exIdx<step.ex.length-1){
-    RC.exIdx++;box.children[RC.exIdx].classList.add('show');
-  }
-  if(RC.exIdx>=step.ex.length-1)$('exbtn').style.display='none';
-  else $('exbtn').textContent='Reveal next line';
+  $('recapintro').textContent=r.intro;
+  var nb=$('nb');nb.innerHTML='';nb.scrollTop=0;
+  RC.chunks=[];RC.pos=-1;
+  r.steps.forEach(function(s,i){
+    RC.chunks.push({k:'head',i:i});
+    recapLines(s).forEach(function(L){RC.chunks.push({k:'line',t:L});});
+  });
+  var b=$('recapnext');b.style.display='';b.textContent='Start the recap →';
+  show('s-recap');
 }
 function recapNext(){
-  var r=TOPICS[RC.id].recap;
-  if(RC.step<r.steps.length-1){RC.step++;renderRecap();}
-  else{recapTryOne();}
+  var t=TOPICS[RC.id];if(!t||!t.recap)return;
+  var r=t.recap;
+  RC.pos++;
+  if(RC.pos>=RC.chunks.length){recapTryOne();return;}
+  var c=RC.chunks[RC.pos],nb=$('nb');
+  if(c.k==='head'){
+    var s=r.steps[c.i];
+    var d=document.createElement('div');d.className='wstep';
+    d.innerHTML='<div class="wnum">Step '+(c.i+1)+' of '+r.steps.length+'</div><h3>'+esc(s.h)+'</h3><div class="wbody">'+esc(s.body)+'</div>';
+    nb.appendChild(d);
+    scrollFollow(d,'nearest');
+  }else{
+    var el=workLineEl(c.t);nb.appendChild(el);
+    requestAnimationFrame(function(){el.classList.add('show');});
+    scrollFollow(el);
+  }
+  var nxt=RC.chunks[RC.pos+1];
+  $('recapnext').textContent=!nxt?'Try one →':(nxt.k==='head'?'Next step →':'Next line →');
 }
-// End of the recap: one real generated problem, answered and checked,
-// then clear exits — practice, a fresh try-one, or the concepts list.
-// (The old "Back to recap" button dropped you on the last step, whose
-// only way forward was "Try one" again: a loop through this question.)
+// End of the recap: one real generated problem (multiple choice, or
+// type-in when the answer is a short numeric one), answered and checked,
+// with the worked solution available — then clear exits.
+var TRY=null;
 function recapTryOne(){
   var t=TOPICS[RC.id];
   var p=t.generate();
+  $('recapnext').style.display='none';
   var old=$('tryone');if(old)old.remove();
-  $('recaptitle').textContent='Try one';
-  var sb=document.querySelector('#s-recap .stepbox');sb.style.display='none';
-  $('exbtn').style.display='none';$('recapnext').style.display='none';
   var tg=document.createElement('div');tg.id='tryone';tg.className='card';
-  tg.innerHTML='<span class="tag">'+esc(t.tag)+'</span><div id="tqtext" style="font-size:18px;line-height:1.5"></div><div class="answers" id="tanswers" style="margin-top:12px"></div><div id="tfeed" style="min-height:26px;text-align:center;font-weight:600;margin:8px 0 2px"></div><div id="tafter" style="display:none"><button class="btn big" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button><button class="btn sec" onclick="recapTryOne()">Try another one</button><button class="btn sec" onclick="goUp(\'concepts\')">All concepts</button></div>';
-  var sbp=sb.parentNode;sbp.insertBefore(tg,sb.nextSibling);
+  tg.innerHTML='<span class="tag">'+esc(t.tag)+'</span><div class="wp-title" style="line-height:1.4;margin-bottom:6px">Try one</div><div id="tqtext" style="font-size:18px;line-height:1.5"></div><div id="tzone"></div><div id="tfeed" style="min-height:26px;text-align:center;font-weight:600;margin:8px 0 2px"></div><div id="twork"></div><div id="tafter" style="display:none"><button class="btn big" onclick="startPractice([RC.id],TOPICS[RC.id].name)">Practice this concept</button><button class="btn sec" onclick="recapTryOne()">Try another one</button><button class="btn sec" onclick="goUp(\'concepts\')">All concepts</button></div>';
+  var nb=$('nb');nb.parentNode.insertBefore(tg,nb.nextSibling);
+  scrollFollow(tg,'nearest');
+  TRY={p:p,answered:false};
   $('tqtext').textContent=p.q;
-  p.choices.forEach(function(c,i){
-    var b=document.createElement('button');b.className='btn';b.textContent=c;
-    b.onclick=function(){tryAnswer(b,i,p);};
-    $('tanswers').appendChild(b);
-  });
+  var zone=$('tzone');zone.innerHTML='';
+  if(typeable(p.choices[p.answer])&&Math.random()<0.35){
+    TRY.kind='exact';
+    var row=document.createElement('div');row.className='exactrow';
+    row.innerHTML='<input type="text" id="texact" placeholder="Type your answer" autocomplete="off"><button class="btn" id="tcheck">Check</button>';
+    zone.appendChild(row);
+    $('tcheck').onclick=tryExact;
+    $('texact').addEventListener('keydown',function(e){if(e.key==='Enter')tryExact();});
+  }else{
+    TRY.kind='mc';
+    var box=document.createElement('div');box.className='answers';box.id='tanswers';
+    p.choices.forEach(function(c,i){
+      var b=document.createElement('button');b.className='btn';b.textContent=c;
+      b.onclick=function(){tryMC(i);};
+      box.appendChild(b);
+    });
+    zone.appendChild(box);
+  }
 }
-function tryAnswer(btn,i,p){
+function tryFinish(ok){
+  var p=TRY.p;TRY.answered=true;
+  var f=$('tfeed');
+  if(ok){f.textContent='Correct.';f.style.color='#15803d';}
+  else{f.textContent='Not quite — the answer is '+p.choices[p.answer]+'.';f.style.color='#b91c1c';}
+  if(p.work&&p.work.length){
+    var host=$('twork');
+    var btn=document.createElement('button');btn.className='btn sec';btn.textContent='Show the work';
+    host.appendChild(btn);
+    var paper=document.createElement('div');paper.style.display='none';
+    host.appendChild(paper);
+    btn.onclick=function(){workSetup(paper,p.work,btn);workToggle();};
+  }
+  $('tafter').style.display='';
+  scrollFollow($('tafter'));
+}
+function tryMC(i){
+  if(!TRY||TRY.answered)return;
+  var p=TRY.p;
   var btns=$('tanswers').querySelectorAll('.btn');
   for(var j=0;j<btns.length;j++)btns[j].disabled=true;
   btns[p.answer].classList.add('right');
-  var f=$('tfeed');
-  if(i===p.answer){f.textContent='Correct.';f.style.color='#15803d';}
-  else{btn.classList.add('wrongpick');f.textContent='Not quite — the answer is '+p.choices[p.answer]+'.';f.style.color='#b91c1c';}
-  $('tafter').style.display='';
+  if(i!==p.answer)btns[i].classList.add('wrongpick');
+  tryFinish(i===p.answer);
+}
+function tryExact(){
+  if(!TRY||TRY.answered)return;
+  var inp=$('texact');var v=(inp.value||'').trim();if(!v)return;
+  inp.disabled=true;
+  var ok=ansEqual(v,TRY.p.choices[TRY.p.answer]);
+  inp.classList.add(ok?'rightin':'wrongin');
+  tryFinish(ok);
 }
 
-// ---- practice engine ----
+
+// ---- practice engine: four question formats ----
+// Multiple choice (the classic), exact (type the answer in), flashcards
+// (vocabulary, tap to flip, self-graded), and prove (build a short proof
+// by picking the reason for each step). Any format can be followed by a
+// worked solution on notebook paper when the generator provides one.
 var PR=null; // {pool,title,answered,correct,elapsed,flushedSecs,flushedCorrect,current}
 function startPractice(topicIds,title){
   topicIds=topicIds.filter(function(s){return TOPICS[s];});
@@ -1963,40 +2511,178 @@ function startPractice(topicIds,title){
   show('s-practice');
   nextQ();
 }
+var WP_PEND=null; // worked solution waiting for the "Show the work" tap
 function nextQ(){
-  var t=TOPICS[PR.pool[Math.floor(Math.random()*PR.pool.length)]];
-  var p=t.generate();
-  PR.current=p;
-  $('ptag').textContent=t.tag;
-  $('qtext').textContent=p.q;
+  workStopTimer();WP=null;WP_PEND=null;
+  var wb=$('workbox');wb.style.display='none';wb.innerHTML='';wb.classList.remove('workpaper');
+  $('workbtns').style.display='none';
+  var sw=$('showwork');sw.disabled=false;sw.textContent='Show the work';
   $('feed').textContent='';$('feed').className='';
-  var box=$('answers');box.innerHTML='';
+  $('prnext').style.display='none';
+  var tid=PR.pool[Math.floor(Math.random()*PR.pool.length)];
+  var t=TOPICS[tid];
+  $('ptag').textContent=t.tag;
+  if(t.generateProve&&Math.random()<0.35){
+    var pv=t.generateProve();
+    PR.current={kind:'prove',pv:pv,step:0,clean:true,p:null};
+    renderProve(pv);
+  }else if(t.vocab&&t.vocab.length&&Math.random()<0.3){
+    var v=t.vocab[Math.floor(Math.random()*t.vocab.length)];
+    PR.current={kind:'flash',v:v,p:null};
+    renderFlash(t,v);
+  }else{
+    var p=t.generate();
+    $('qtext').textContent=p.q;
+    if(typeable(p.choices[p.answer])&&Math.random()<0.35){
+      PR.current={kind:'exact',p:p};
+      renderExact();
+    }else{
+      PR.current={kind:'mc',p:p};
+      renderMC(p);
+    }
+  }
+  updatePrStats();
+  var sc=$('s-practice');if(sc)sc.scrollTo({top:0,behavior:'smooth'});
+}
+function completeQuestion(ok,answerText,noMsg){
+  var cur=PR.current;if(!cur)return;PR.current=null;
+  PR.answered++;if(ok)PR.correct++;
+  var f=$('feed');
+  if(answerText){f.textContent=ok?'Correct.':'Not quite — the answer is '+answerText+'.';}
+  else{f.textContent=ok?'Correct.':(noMsg||'Not quite.');}
+  f.className=ok?'ok':'no';
+  if(cur.p&&cur.p.work&&cur.p.work.length){
+    WP_PEND=cur.p.work;
+    $('workbtns').style.display='flex';
+    var b=$('showwork');b.disabled=false;b.textContent='Show the work';
+  }
+  $('prnext').style.display='';
+  updatePrStats();
+  scrollFollow($('prnext'),'nearest');
+}
+// -- multiple choice --
+function renderMC(p){
+  var zone=$('qzone');zone.innerHTML='';
+  var box=document.createElement('div');box.className='answers';box.id='answers';
   p.choices.forEach(function(c,i){
     var b=document.createElement('button');b.className='btn';b.textContent=c;
-    b.onclick=function(){answer(i);};
+    b.onclick=function(){answerMC(i);};
     box.appendChild(b);
   });
-  $('prnext').style.display='none';
-  updatePrStats();
+  zone.appendChild(box);
 }
-function answer(i){
-  if(!PR||!PR.current)return;
-  var p=PR.current;PR.current=null;
+function answerMC(i){
+  var cur=PR.current;if(!cur||cur.kind!=='mc')return;
+  var p=cur.p;
   var btns=$('answers').querySelectorAll('.btn');
   for(var j=0;j<btns.length;j++)btns[j].disabled=true;
   btns[p.answer].classList.add('right');
-  PR.answered++;
-  var f=$('feed');
-  if(i===p.answer){PR.correct++;f.textContent='Correct.';f.className='ok';}
-  else{btns[i].classList.add('wrongpick');f.textContent='Not quite — the answer is '+p.choices[p.answer]+'.';f.className='no';}
-  $('prnext').style.display='';
-  updatePrStats();
+  if(i!==p.answer)btns[i].classList.add('wrongpick');
+  completeQuestion(i===p.answer,p.choices[p.answer]);
+}
+// -- exact (typed) answers --
+function renderExact(){
+  var zone=$('qzone');zone.innerHTML='';
+  var row=document.createElement('div');row.className='exactrow';
+  row.innerHTML='<input type="text" id="exactin" placeholder="Type your answer" autocomplete="off"><button class="btn" id="exactbtn">Check</button>';
+  zone.appendChild(row);
+  $('exactbtn').onclick=answerExact;
+  $('exactin').addEventListener('keydown',function(e){if(e.key==='Enter')answerExact();});
+}
+function answerExact(){
+  var cur=PR.current;if(!cur||cur.kind!=='exact')return;
+  var inp=$('exactin');var v=(inp.value||'').trim();if(!v)return;
+  inp.disabled=true;
+  var p=cur.p;
+  var ok=ansEqual(v,p.choices[p.answer]);
+  inp.classList.add(ok?'rightin':'wrongin');
+  completeQuestion(ok,p.choices[p.answer]);
+}
+// -- flashcards --
+function renderFlash(t,v){
+  $('qtext').textContent='Flashcard — tap the card to flip it, then grade yourself honestly.';
+  var zone=$('qzone');zone.innerHTML='';
+  var wrap=document.createElement('div');wrap.className='flashwrap';
+  var fl=document.createElement('div');fl.className='flash';
+  fl.innerHTML='<div class="face front"><div class="flabel">'+esc(t.tag)+' · vocabulary</div><div class="ftext big"></div><div class="flabel" style="margin:10px 0 0">tap to flip</div></div><div class="face back"><div class="flabel">what it means</div><div class="ftext"></div></div>';
+  fl.querySelector('.front .ftext').textContent=v.f;
+  fl.querySelector('.back .ftext').textContent=v.b;
+  fl.onclick=function(){
+    if(fl.classList.contains('flipped'))return;
+    fl.classList.add('flipped');
+    var g=document.createElement('div');g.className='gradebtns';g.id='gradebtns';
+    g.innerHTML='<button class="btn" id="gknow">Got it</button><button class="btn sec" id="gstill">Still learning</button>';
+    zone.appendChild(g);
+    $('gknow').onclick=function(){gradeFlash(true);};
+    $('gstill').onclick=function(){gradeFlash(false);};
+  };
+  wrap.appendChild(fl);zone.appendChild(wrap);
+}
+function gradeFlash(know){
+  var cur=PR.current;if(!cur||cur.kind!=='flash')return;
+  var g=$('gradebtns');if(g)g.remove();
+  completeQuestion(know,null,know?null:'No problem — that card will keep coming around.');
+}
+// -- prove: pick the reason for each step of a short proof --
+function renderProve(pv){
+  $('qtext').textContent=pv.q;
+  var zone=$('qzone');zone.innerHTML='';
+  var tbl=document.createElement('div');tbl.className='proof';
+  pv.steps.forEach(function(s,i){
+    var row=document.createElement('div');row.className='prow';
+    row.innerHTML='<div class="pstmt"><span class="pno">'+(i+1)+'.</span>'+esc(s.text)+'</div><div class="preason" id="preason'+i+'">?</div>';
+    tbl.appendChild(row);
+  });
+  zone.appendChild(tbl);
+  var opts=document.createElement('div');opts.className='ropts';opts.id='ropts';
+  zone.appendChild(opts);
+  proveStepUI();
+}
+function proveStepUI(){
+  var cur=PR.current;if(!cur||cur.kind!=='prove')return;
+  var pv=cur.pv,i=cur.step;
+  var cell=$('preason'+i);if(!cell)return;
+  cell.textContent='Pick the reason →';cell.classList.add('active');
+  var box=$('ropts');box.innerHTML='';
+  var label=document.createElement('div');
+  label.style.cssText='width:100%;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--mut);text-transform:uppercase';
+  label.textContent='Why is step '+(i+1)+' true?';
+  box.appendChild(label);
+  pv.steps[i].options.forEach(function(o,oi){
+    var b=document.createElement('button');b.className='ropt';b.textContent=o;
+    b.onclick=function(){provePick(oi,b);};
+    box.appendChild(b);
+  });
+  scrollFollow(box,'nearest');
+}
+function provePick(oi,btn){
+  var cur=PR.current;if(!cur||cur.kind!=='prove')return;
+  var pv=cur.pv,i=cur.step,s=pv.steps[i];
+  var cell=$('preason'+i);
+  if(oi===s.answer){
+    btn.classList.add('right');
+    var btns=$('ropts').querySelectorAll('.ropt');
+    for(var j=0;j<btns.length;j++)btns[j].disabled=true;
+    cell.textContent=s.options[s.answer];cell.classList.remove('active');cell.classList.add('done');
+    cur.step++;
+    if(cur.step>=pv.steps.length){
+      $('ropts').innerHTML='';
+      completeQuestion(cur.clean,null,cur.clean?null:'Proof finished — a couple of reasons needed a second try. The finished proof is above.');
+    }else{
+      setTimeout(proveStepUI,380);
+    }
+  }else{
+    cur.clean=false;
+    btn.classList.add('wrongpick');btn.disabled=true;
+    cell.textContent='Not that one — try again';cell.classList.remove('active');cell.classList.add('miss');
+  }
 }
 function updatePrStats(){
   $('prstats').textContent='Answered '+PR.answered+' · Correct '+PR.correct;
   $('prtime').textContent=fmtClock(PR.elapsed);
 }
 function endPractice(){
+  workStopTimer();
   flushTime(false);
   var pct=PR&&PR.answered?Math.round(100*PR.correct/PR.answered):0;
   $('donestats').innerHTML=
@@ -2008,6 +2694,7 @@ function endPractice(){
   if(!IN_ROUTE){nav('done');return;}
   show('s-done');
 }
+
 // ---- time + correct tracking ----
 // Time accrues only while a practice session is open and the tab is visible.
 // Every ~20 seconds (and on session end / page hide) the delta is sent to the
