@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="7ee86f8836ff";</script>
+<script>window.__BUILD_ID__="c54a1050df19";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -393,7 +393,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -871,6 +871,173 @@ registerTopic({
     return mkQ('LINES',
       `A line has slope ${m} and crosses the y-axis at ${PT(0, b)}. Which is an equation of the line?`,
       correct, pool);
+  }
+});
+
+// ---- topic: proofs-intro ----
+// Intro to Proofs: naming reasons, reading conditionals, applying theorems.
+// Original, procedurally generated. Unit 2: Lines & Intro to Proof.
+// Three question flavors: (1) a proof step is shown — name the property,
+// definition, or theorem that justifies it; (2) read the hypothesis and
+// conclusion of a conditional; (3) apply a named theorem to a figure and
+// pick the statement that follows. Letters, angle numbers, and measures
+// are randomized; every question is original, similar in kind to classwork
+// but never a copy of a homework problem.
+registerTopic({
+  id: 'proofs-intro',
+  name: 'Intro to Proofs',
+  tag: 'PROOF',
+  units: ['2'],
+  added: '2026-10-22',
+  assignments: ['p-12-p-14-hw'],
+  recap: {
+    title: 'Intro to Proofs: Reasons, Conditionals, and Next Steps',
+    intro: 'A proof is just an argument with receipts: every statement you write has to be backed by a reason — a definition, a postulate, a theorem, or a property of equality. These questions train the three moves proofs are built from: naming the reason, reading an if-then statement, and using a theorem to take the next step.',
+    steps: [
+      {
+        h: 'A proof is statements paired with reasons',
+        body: 'Most geometry proofs are written in two columns: statements on the left, reasons on the right. You start from the Given, and every new line must follow from an earlier line plus a reason you can name. "Because it looks true" is never a reason.',
+        ex: [
+          'Given: M is the midpoint of segment AB. Prove: AM = MB.',
+          'Statement: "M is the midpoint of AB" — Reason: Given.',
+          'Statement: "AM = MB" — Reason: Definition of midpoint.'
+        ]
+      },
+      {
+        h: 'Equality and congruence have their own properties',
+        body: 'Some reasons are pure logic about = and \u2245. Reflexive: a thing equals itself (AB = AB). Symmetric: you can flip an equality (if AB = CD then CD = AB). Transitive: equality chains (if a = b and b = c then a = c). Addition: adding the same thing to both sides keeps equality. Look at the step and spot which pattern it matches.',
+        ex: [
+          '"AB \u2245 AB" is the Reflexive Property of Congruence.',
+          '"If XY = PQ, then PQ = XY" is the Symmetric Property of Equality.',
+          '"m\u22201 = m\u22202, so m\u22201 + m\u22203 = m\u22202 + m\u22203" is the Addition Property of Equality.'
+        ]
+      },
+      {
+        h: 'Definitions and theorems are named reasons too',
+        body: 'Many steps are justified by a definition ("M is the midpoint of AB, so AM = MB") or a theorem you already know ("\u22201 and \u22202 are vertical angles, so \u22201 \u2245 \u22202"). Learn the exact names: Vertical Angles Theorem, Linear Pair Postulate, Segment Addition Postulate, Alternate Interior Angles Theorem, Right Angle Congruence Theorem.',
+        ex: [
+          '"Points A, B, C are collinear with B between A and C, so AB + BC = AC" — Segment Addition Postulate.',
+          '"\u22201 and \u22202 form a linear pair, so they are supplementary" — Linear Pair Postulate.',
+          '"Ray BD bisects \u2220ABC, so \u2220ABD \u2245 \u2220DBC" — Definition of Angle Bisector.'
+        ]
+      },
+      {
+        h: 'Read the if-then: hypothesis, then conclusion',
+        body: 'Every theorem is secretly a conditional: "If [hypothesis], then [conclusion]." The hypothesis is the setup you are allowed to assume; the conclusion is what you get. To use a theorem in a proof, match your figure to the hypothesis — then the conclusion becomes your next statement.',
+        ex: [
+          '"If two angles are vertical angles, then they are congruent."',
+          'Hypothesis: two angles are vertical angles. Conclusion: they are congruent.',
+          'The converse ("If they are congruent, then they are vertical angles") is a different statement — don\u2019t mix them up.'
+        ]
+      },
+      {
+        h: 'Apply the theorem to take the next step',
+        body: 'The payoff: a theorem plus numbers gives you a new fact. If \u2220A and \u2220B are complementary and m\u2220A = 35\u00B0, the definition of complementary angles hands you m\u2220B = 55\u00B0. If a ray bisects a 100\u00B0 angle, the definition of an angle bisector gives two 50\u00B0 angles. Name the reason, do the arithmetic, write the next line.',
+        ex: [
+          '\u22201 and \u22202 form a linear pair, m\u22201 = 110\u00B0 \u2192 m\u22202 = 70\u00B0 (Linear Pair Postulate).',
+          'M is the midpoint of AB, AB = 24 \u2192 AM = MB = 12 (Definition of Midpoint).',
+          'Always check: does your new statement actually say what the reason claims?'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const ABC = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+    const S = ABC[0] + ABC[1], T = ABC[2] + ABC[3], U = ABC[4] + ABC[5];
+    let d1 = R(1, 9), d2 = R(1, 9);
+    while (d2 === d1) d2 = R(1, 9);
+    const d3 = R(1, 9);
+    const REASONS = [
+      'Reflexive Property of Congruence',
+      'Reflexive Property of Equality',
+      'Symmetric Property of Equality',
+      'Transitive Property of Equality',
+      'Addition Property of Equality',
+      'Segment Addition Postulate',
+      'Definition of Midpoint',
+      'Definition of Angle Bisector',
+      'Definition of Congruent Angles',
+      'Definition of Complementary Angles',
+      'Vertical Angles Theorem',
+      'Linear Pair Postulate',
+      'Right Angle Congruence Theorem',
+      'Alternate Interior Angles Theorem'
+    ];
+    const v = R(0, 2);
+
+    if (v === 0) {
+      // ---- flavor 1: name the reason for a proof step ----
+      const l1 = ABC[6].toLowerCase(), l2 = ABC[7].toLowerCase();
+      const scenarios = [
+        { st: `${S} \u2245 ${S}`, r: 'Reflexive Property of Congruence' },
+        { st: `m\u2220${ABC[8]} = m\u2220${ABC[8]}`, r: 'Reflexive Property of Equality' },
+        { st: `If ${S} = ${T}, then ${T} = ${S}`, r: 'Symmetric Property of Equality' },
+        { st: `${S} = ${T} and ${T} = ${U}, so ${S} = ${U}`, r: 'Transitive Property of Equality' },
+        { st: `m\u2220${d1} = m\u2220${d2}, so m\u2220${d1} + m\u2220${d3} = m\u2220${d2} + m\u2220${d3}`, r: 'Addition Property of Equality' },
+        { st: `Points ${ABC[9]}, ${ABC[10]}, ${ABC[11]} are collinear with ${ABC[10]} between ${ABC[9]} and ${ABC[11]}, so ${ABC[9]}${ABC[10]} + ${ABC[10]}${ABC[11]} = ${ABC[9]}${ABC[11]}`, r: 'Segment Addition Postulate' },
+        { st: `${ABC[12]} is the midpoint of segment ${S}, so ${ABC[0]}${ABC[12]} = ${ABC[12]}${ABC[1]}`, r: 'Definition of Midpoint' },
+        { st: `Ray ${ABC[1]}${ABC[2]} bisects \u2220${ABC[0]}${ABC[1]}${ABC[3]}, so \u2220${ABC[0]}${ABC[1]}${ABC[2]} \u2245 \u2220${ABC[2]}${ABC[1]}${ABC[3]}`, r: 'Definition of Angle Bisector' },
+        { st: `m\u2220${d1} = m\u2220${d2}, so \u2220${d1} \u2245 \u2220${d2}`, r: 'Definition of Congruent Angles' },
+        { st: `\u2220${ABC[13]} and \u2220${ABC[14]} are complementary, so m\u2220${ABC[13]} + m\u2220${ABC[14]} = 90\u00B0`, r: 'Definition of Complementary Angles' },
+        { st: `\u2220${d1} and \u2220${d2} are vertical angles, so \u2220${d1} \u2245 \u2220${d2}`, r: 'Vertical Angles Theorem' },
+        { st: `\u2220${d1} and \u2220${d2} form a linear pair, so \u2220${d1} and \u2220${d2} are supplementary`, r: 'Linear Pair Postulate' },
+        { st: `\u2220${ABC[15]} and \u2220${ABC[16]} are both right angles, so \u2220${ABC[15]} \u2245 \u2220${ABC[16]}`, r: 'Right Angle Congruence Theorem' },
+        { st: `Lines ${l1} and ${l2} are parallel and are cut by a transversal, so the alternate interior angles are congruent`, r: 'Alternate Interior Angles Theorem' }
+      ];
+      const sc = pick(scenarios);
+      return mkQ('PROOF',
+        `In a two-column proof, one step reads: "${sc.st}". Which reason justifies this step?`,
+        sc.r, REASONS.filter(x => x !== sc.r));
+    }
+
+    if (v === 1) {
+      // ---- flavor 2: hypothesis / conclusion of a conditional ----
+      const conds = [
+        ['two angles are vertical angles', 'they are congruent'],
+        ['a point is the midpoint of a segment', 'it divides the segment into two congruent segments'],
+        ['two lines are parallel', 'alternate interior angles are congruent'],
+        ['an angle measures 90\u00B0', 'it is a right angle'],
+        ['two angles are complementary to the same angle', 'the two angles are congruent'],
+        ['a ray bisects an angle', 'it divides the angle into two congruent angles']
+      ];
+      const c = pick(conds), H = c[0], C = c[1];
+      const ask = pick(['hypothesis', 'conclusion']);
+      const correct = ask === 'hypothesis' ? H : C;
+      return mkQ('PROOF',
+        `Consider the conditional statement: "If ${H}, then ${C}." What is the ${ask} of this conditional?`,
+        correct,
+        [ask === 'hypothesis' ? C : H,
+         `If ${C}, then ${H}.`,
+         `If it is not the case that ${H}, then it is not the case that ${C}.`]);
+    }
+
+    // ---- flavor 3: apply a named theorem and pick what follows ----
+    const x = pick([30, 50, 70, 110, 130, 150]);   // linear-pair given measure
+    const y = pick([20, 30, 60, 70]);              // complementary given measure
+    const Lv = pick([12, 18, 24, 30]);            // segment length (even)
+    const Tt = pick([60, 80, 100, 120]);          // bisected angle (even)
+    const c = 180 - x;
+    const apps = [
+      { g: `\u2220${d1} and \u2220${d2} are vertical angles.`, th: 'Vertical Angles Theorem',
+        ans: `\u2220${d1} \u2245 \u2220${d2}`,
+        wr: [`m\u2220${d1} + m\u2220${d2} = 90\u00B0`, `m\u2220${d1} + m\u2220${d2} = 180\u00B0`, `\u2220${d1} and \u2220${d2} are complementary`] },
+      { g: `M is the midpoint of segment AB and AB = ${Lv}.`, th: 'definition of midpoint',
+        ans: `AM = MB = ${Lv / 2}`,
+        wr: [`AM = MB = ${Lv}`, `AM = ${Lv} and MB = ${Lv}`, `AM + MB = ${Lv / 2}`] },
+      { g: `Ray BD bisects \u2220ABC and m\u2220ABC = ${Tt}\u00B0.`, th: 'definition of an angle bisector',
+        ans: `m\u2220ABD = m\u2220DBC = ${Tt / 2}\u00B0`,
+        wr: [`m\u2220ABD = m\u2220DBC = ${Tt}\u00B0`, `m\u2220ABD = ${Tt / 2}\u00B0 and m\u2220DBC = ${Tt}\u00B0`, `m\u2220ABD + m\u2220DBC = ${Tt / 2}\u00B0`] },
+      { g: `\u2220${d1} and \u2220${d2} form a linear pair and m\u2220${d1} = ${x}\u00B0.`, th: 'Linear Pair Postulate',
+        ans: `m\u2220${d2} = ${c}\u00B0`,
+        wr: [`m\u2220${d2} = ${x}\u00B0`, `m\u2220${d2} = ${c + 15 <= 155 ? c + 15 : c - 15}\u00B0`, `m\u2220${d2} = ${x <= 120 ? x + 35 : x - 35}\u00B0`] },
+      { g: `\u2220A and \u2220B are complementary and m\u2220A = ${y}\u00B0.`, th: 'definition of complementary angles',
+        ans: `m\u2220B = ${90 - y}\u00B0`,
+        wr: [`m\u2220B = ${y}\u00B0`, `m\u2220B = ${180 - y}\u00B0`, `m\u2220B = ${y + 25 <= 75 ? y + 25 : y - 25}\u00B0`] }
+    ];
+    const ap = pick(apps);
+    return mkQ('PROOF',
+      `A proof gives this fact: ${ap.g} By the ${ap.th}, which statement follows?`,
+      ap.ans, ap.wr);
   }
 });
 
