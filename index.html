@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="5473deca61ab";</script>
+<script>window.__BUILD_ID__="de4be00d2fac";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -465,7 +465,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": []}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}], "currentUnit": "2"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -1338,6 +1338,230 @@ registerTopic({
       step(`Ray ${L[1]}${L[2]} bisects \u2220${L[0]}${L[1]}${L[3]}.`, 'Given'),
       step(`\u2220${L[0]}${L[1]}${L[2]} \u2245 \u2220${L[2]}${L[1]}${L[3]}`, 'Definition of Angle Bisector'),
       step(`m\u2220${L[0]}${L[1]}${L[2]} = m\u2220${L[2]}${L[1]}${L[3]}`, 'Definition of Congruent Angles')
+    ]};
+  }
+});
+
+// ---- topic: proving-parallel ----
+// Proving Lines Parallel: the converse direction — use angle relationships
+// to show two lines are parallel, and name the converse theorem that
+// justifies the step. Original, procedurally generated. Unit 2: Lines &
+// Intro to Proof. This is the flip side of parallel-transversals: there,
+// the lines were already known to be parallel; here, the angle facts are
+// the evidence and "the lines are parallel" is the conclusion.
+// Four question flavors: (1) conclude parallel lines from an angle
+// relationship; (2) name the converse reason for a proof step; (3) decide
+// from angle measures whether the lines are parallel; (4) identify which
+// lines are shown parallel. Angle numbers, measures, and scenarios are
+// randomized; every question is original, similar in kind to classwork
+// but never a copy of a homework problem.
+registerTopic({
+  id: 'proving-parallel',
+  name: 'Proving Lines Parallel',
+  tag: 'PROOF',
+  units: ['2'],
+  added: '2026-10-26',
+  assignments: ['p-11-p-14-hw'],
+  vocab: [
+    { f: 'Converse of a statement', b: 'The statement with its hypothesis and conclusion swapped. "If A, then B" becomes "If B, then A" — a different claim that needs its own justification.' },
+    { f: 'Converse of the Corresponding Angles Postulate', b: 'If two lines are cut by a transversal and corresponding angles are congruent, then the lines are parallel.' },
+    { f: 'Converse of the Alternate Interior Angles Theorem', b: 'If two lines are cut by a transversal and alternate interior angles are congruent, then the lines are parallel.' },
+    { f: 'Converse of the Alternate Exterior Angles Theorem', b: 'If two lines are cut by a transversal and alternate exterior angles are congruent, then the lines are parallel.' },
+    { f: 'Converse of the Same-Side Interior Angles Theorem', b: 'If two lines are cut by a transversal and same-side interior angles are supplementary, then the lines are parallel.' },
+    { f: 'Lines perpendicular to the same line', b: 'If two lines are both perpendicular to the same line, then they are parallel to each other.' },
+    { f: 'Same-side interior angles', b: 'Angles between the two lines, on the same side of the transversal. For parallel lines they are supplementary — this is the one pair where you add, not compare for equality.' }
+  ],
+  recap: {
+    title: 'Proving Lines Parallel: Flip the Theorem Around',
+    intro: 'You already know what parallel lines give you: matching angle pairs are congruent (or supplementary, for same-side interior). Proving lines parallel runs that logic backwards: you are handed an angle fact, and you use it to conclude the lines are parallel. The tool for that is the converse of the theorem — and the converse has to be named exactly, because the forward theorem proves the opposite direction.',
+    steps: [
+      {
+        h: 'Forward versus converse — direction matters',
+        body: 'Forward: "If the lines are parallel, then corresponding angles are congruent." Converse: "If corresponding angles are congruent, then the lines are parallel." Same words, swapped roles. A proof that concludes "the lines are parallel" can never cite the forward theorem — the lines being parallel is what you are trying to prove, not what you are allowed to assume.',
+        ex: [
+          'Forward (given parallel): lines l ∥ m, so ∠1 ≅ ∠2 (Corresponding Angles Postulate).',
+          'Converse (proving parallel): ∠1 ≅ ∠2 and they are corresponding, so l ∥ m (Converse of the Corresponding Angles Postulate).',
+          'Mixing them up is the classic error: check which side of the "if" your figure actually matches.'
+        ]
+      },
+      {
+        h: 'The four converse tests',
+        body: 'With a transversal cutting two lines, any one of these is enough to prove the lines parallel: corresponding angles congruent; alternate interior angles congruent; alternate exterior angles congruent; or same-side interior angles supplementary (measures adding to 180°). Name the pair, name the converse, write the conclusion.',
+        ex: [
+          '∠3 ≅ ∠5, alternate interior angles → l ∥ m by the Converse of the Alternate Interior Angles Theorem.',
+          '∠2 ≅ ∠7, alternate exterior angles → l ∥ m by the Converse of the Alternate Exterior Angles Theorem.',
+          '∠4 and ∠6 are same-side interior with measures 70° and 110° → they are supplementary, so l ∥ m by the Converse of the Same-Side Interior Angles Theorem.'
+        ]
+      },
+      {
+        h: 'Same-side interior is the odd one out',
+        body: 'Three of the four tests compare for equality: congruent, congruent, congruent. Same-side interior is the exception — those angles are not congruent in general, they are supplementary. If two same-side interior angles measure 65° and 115°, their sum is 180°, so the lines are parallel. If someone writes "same-side interior angles are congruent, so the lines are parallel," that is wrong on both counts.',
+        ex: [
+          'Same-side interior: 65° + 115° = 180° → supplementary → lines parallel.',
+          'Same-side interior: 65° + 100° = 165° → not supplementary → this test does not prove the lines parallel.',
+          'Never claim same-side interior angles are congruent — they add to 180° when the lines are parallel, they are not equal.'
+        ]
+      },
+      {
+        h: 'The perpendicular shortcut',
+        body: 'Two lines that are both perpendicular to the same line are parallel to each other. No angle measuring needed: if line l is perpendicular to transversal t and line m is also perpendicular to t, then l ∥ m. The reason is the "two lines perpendicular to the same line" theorem, and it works in both directions of the same idea — perpendicular to a common line forces the lines to run the same way.',
+        ex: [
+          'Line l ⊥ line t and line m ⊥ line t → line l ∥ line m.',
+          'Reason: If two lines are perpendicular to the same line, then they are parallel.',
+          'This is a separate theorem from the converse angle tests — do not cite a converse angle theorem for a perpendicular setup.'
+        ]
+      },
+      {
+        h: 'Write it as a two-column proof step',
+        body: 'In a two-column proof, the angle fact goes in the statement column and the converse theorem goes in the reason column, and the very next statement is the parallel conclusion. Start from the Given (the angle fact), then apply the converse. If a step only identifies the pair ("these are alternate interior angles") that is just setup — the reason that actually proves parallelism is the converse theorem.',
+        ex: [
+          'Statement: "∠1 ≅ ∠2" — Reason: Given.',
+          'Statement: "Line l is parallel to line m" — Reason: Converse of the Corresponding Angles Postulate.',
+          'Check your pair first: corresponding, alternate interior, and alternate exterior all need congruence; same-side interior needs supplementary.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const a1 = R(1, 8); let a2 = R(1, 8); while (a2 === a1) a2 = R(1, 8);
+    const SCENARIOS = [
+      { rel: 'corresponding angles', fact: 'congruent', reason: 'Converse of the Corresponding Angles Postulate', short: 'Corresponding Angles Converse' },
+      { rel: 'alternate interior angles', fact: 'congruent', reason: 'Converse of the Alternate Interior Angles Theorem', short: 'Alternate Interior Angles Converse' },
+      { rel: 'alternate exterior angles', fact: 'congruent', reason: 'Converse of the Alternate Exterior Angles Theorem', short: 'Alternate Exterior Angles Converse' },
+      { rel: 'same-side interior angles', fact: 'supplementary', reason: 'Converse of the Same-Side Interior Angles Theorem', short: 'Same-Side Interior Angles Converse' },
+      { rel: 'perpendicular to the same transversal', fact: 'perpendicular', reason: 'Lines Perpendicular to the Same Line Theorem', short: 'Perpendicular to the Same Line Theorem' }
+    ];
+    const sc = pick(SCENARIOS);
+    const ALL_REASONS = SCENARIOS.map(s => s.reason).concat([
+      'Corresponding Angles Postulate',
+      'Alternate Interior Angles Theorem',
+      'Alternate Exterior Angles Theorem',
+      'Same-Side Interior Angles Theorem',
+      'Vertical Angles Theorem'
+    ]);
+    const v = R(0, 3);
+
+    if (v === 0) {
+      // ---- flavor 1: conclude parallel lines from an angle relationship ----
+      const givenText = sc.fact === 'perpendicular'
+        ? 'Line l is perpendicular to transversal t, and line m is also perpendicular to transversal t.'
+        : (sc.fact === 'supplementary'
+          ? `∠${a1} and ∠${a2} are ${sc.rel} formed by lines l and m cut by transversal t, and they are supplementary.`
+          : `∠${a1} and ∠${a2} are ${sc.rel} formed by lines l and m cut by transversal t, and ∠${a1} ≅ ∠${a2}.`);
+      const ans = 'Lines l and m are parallel';
+      const q = mkQ('PROOF',
+        `${givenText} What can you conclude?`,
+        ans,
+        ['Lines l and m are perpendicular', 'Line l is parallel to transversal t', 'Nothing can be concluded from this information']);
+      q.work = [
+        { t: givenText },
+        { note: `The angle fact matches the hypothesis of the ${sc.short}.` },
+        { t: ans, why: sc.reason }
+      ];
+      return q;
+    }
+
+    if (v === 1) {
+      // ---- flavor 2: name the converse reason for a proof step ----
+      const step = sc.fact === 'perpendicular'
+        ? 'Line l ⊥ transversal t and line m ⊥ transversal t, so line l ∥ line m'
+        : (sc.fact === 'supplementary'
+          ? `∠${a1} and ∠${a2} are ${sc.rel} and supplementary, so line l ∥ line m`
+          : `∠${a1} ≅ ∠${a2} and they are ${sc.rel}, so line l ∥ line m`);
+      const q = mkQ('PROOF',
+        `In a two-column proof, one step reads: "${step}". Which reason justifies this step?`,
+        sc.reason,
+        ALL_REASONS.filter(x => x !== sc.reason));
+      q.work = [
+        { t: `Step: ${step}` },
+        { note: 'The step concludes that the lines are parallel, so the reason must be a converse theorem, not a forward one.' },
+        { t: sc.reason, why: 'The reason' }
+      ];
+      return q;
+    }
+
+    if (v === 2) {
+      // ---- flavor 3: decide from angle measures ----
+      const m = sc.fact === 'supplementary' ? R(50, 130) : R(40, 140);
+      const n = sc.fact === 'supplementary' ? 180 - m : m;
+      const givenText = sc.fact === 'supplementary'
+        ? `∠${a1} and ∠${a2} are ${sc.rel} formed by lines l and m cut by transversal t. m∠${a1} = ${m}° and m∠${a2} = ${n}°.`
+        : `∠${a1} and ∠${a2} are ${sc.rel} formed by lines l and m cut by transversal t. m∠${a1} = ${m}° and m∠${a2} = ${n}°.`;
+      const ans = 'Yes, lines l and m are parallel';
+      const q = mkQ('PROOF',
+        `${givenText} Are lines l and m parallel?`,
+        ans,
+        ['No, lines l and m are not parallel', 'Cannot tell from the measures given', 'Lines l and m are perpendicular']);
+      const checkLine = sc.fact === 'supplementary'
+        ? { t: `${m}° + ${n}° = 180°`, op: 'add the measures' }
+        : { t: `${m}° = ${n}°`, op: 'the measures are equal' };
+      q.work = [
+        { t: givenText },
+        checkLine,
+        { t: `The angles are ${sc.fact}, so the ${sc.short} applies.`, why: sc.reason },
+        { t: ans }
+      ];
+      return q;
+    }
+
+    // ---- flavor 4: identify which lines are shown parallel ----
+    const givenText = sc.fact === 'perpendicular'
+      ? 'Transversal t cuts lines l and m. Line l is perpendicular to t, and line m is perpendicular to t.'
+      : (sc.fact === 'supplementary'
+        ? `Transversal t cuts lines l and m. ∠${a1} and ∠${a2} are ${sc.rel} and are supplementary.`
+        : `Transversal t cuts lines l and m. ∠${a1} and ∠${a2} are ${sc.rel} and ∠${a1} ≅ ∠${a2}.`);
+    const ans = 'Lines l and m are parallel';
+    const q = mkQ('PROOF',
+      `${givenText} Which lines are shown to be parallel?`,
+      ans,
+      ['Lines l and t are parallel', 'Lines m and t are parallel', 'No lines are shown to be parallel']);
+    q.work = [
+      { t: givenText },
+      { note: `The ${sc.rel} fact is about lines l and m, so the ${sc.short} concludes something about l and m.` },
+      { t: ans, why: sc.reason }
+    ];
+    return q;
+  },
+  // Prove format: a short two-column proof where each step's reason is
+  // picked from options. Served by the client alongside generate().
+  generateProve: function(){
+    const a1 = R(1, 8); let a2 = R(1, 8); while (a2 === a1) a2 = R(1, 8);
+    const POOL = ['Given', 'Definition of Congruent Angles', 'Definition of Supplementary Angles',
+      'Converse of the Corresponding Angles Postulate',
+      'Converse of the Alternate Interior Angles Theorem',
+      'Converse of the Alternate Exterior Angles Theorem',
+      'Converse of the Same-Side Interior Angles Theorem',
+      'Lines Perpendicular to the Same Line Theorem',
+      'Corresponding Angles Postulate', 'Alternate Interior Angles Theorem',
+      'Vertical Angles Theorem', 'Linear Pair Postulate'];
+    const step = (text, reason) => {
+      const options = shuffle([reason].concat(shuffle(POOL.filter(r => r !== reason)).slice(0, 3)));
+      return { text: text, options: options, answer: options.indexOf(reason) };
+    };
+    const v = R(0, 4);
+    if (v === 0) return { q: `Prove it: if ∠${a1} and ∠${a2} are corresponding angles and ∠${a1} ≅ ∠${a2}, then the lines are parallel. Pick the reason for each step.`, steps: [
+      step(`∠${a1} ≅ ∠${a2}, and they are corresponding angles.`, 'Given'),
+      step('Line l is parallel to line m.', 'Converse of the Corresponding Angles Postulate')
+    ]};
+    if (v === 1) return { q: `Prove it: if ∠${a1} and ∠${a2} are alternate interior angles and ∠${a1} ≅ ∠${a2}, then the lines are parallel. Pick the reason for each step.`, steps: [
+      step(`∠${a1} ≅ ∠${a2}, and they are alternate interior angles.`, 'Given'),
+      step('Line l is parallel to line m.', 'Converse of the Alternate Interior Angles Theorem')
+    ]};
+    if (v === 2) return { q: `Prove it: if ∠${a1} and ∠${a2} are alternate exterior angles and ∠${a1} ≅ ∠${a2}, then the lines are parallel. Pick the reason for each step.`, steps: [
+      step(`∠${a1} ≅ ∠${a2}, and they are alternate exterior angles.`, 'Given'),
+      step('Line l is parallel to line m.', 'Converse of the Alternate Exterior Angles Theorem')
+    ]};
+    if (v === 3) {
+      const m = R(50, 130);
+      return { q: `Prove it: if ∠${a1} and ∠${a2} are same-side interior angles with measures adding to 180°, then the lines are parallel. Pick the reason for each step.`, steps: [
+        step(`m∠${a1} + m∠${a2} = 180°, and they are same-side interior angles.`, 'Given'),
+        step(`∠${a1} and ∠${a2} are supplementary.`, 'Definition of Supplementary Angles'),
+        step('Line l is parallel to line m.', 'Converse of the Same-Side Interior Angles Theorem')
+      ]};
+    }
+    return { q: 'Prove it: if line l and line m are both perpendicular to transversal t, then the lines are parallel. Pick the reason for each step.', steps: [
+      step('Line l is perpendicular to transversal t, and line m is perpendicular to transversal t.', 'Given'),
+      step('Line l is parallel to line m.', 'Lines Perpendicular to the Same Line Theorem')
     ]};
   }
 });
