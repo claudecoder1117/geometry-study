@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="36fbf13f9c7f";</script>
+<script>window.__BUILD_ID__="32f97dcdcaa1";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -465,7 +465,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}], "currentUnit": "2"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -1563,6 +1563,178 @@ registerTopic({
       step('Line l is perpendicular to transversal t, and line m is perpendicular to transversal t.', 'Given'),
       step('Line l is parallel to line m.', 'Lines Perpendicular to the Same Line Theorem')
     ]};
+  }
+});
+
+// ---- topic: translations ----
+// Translations: sliding a figure in the coordinate plane — image of a
+// point, the translation rule from preimage to image, working backwards
+// to a preimage, word-form translations, and what a translation preserves.
+// Original, procedurally generated. Unit 3: Transformations. Every
+// question is original, similar in kind to classwork but never a copy of
+// a homework problem.
+registerTopic({
+  id: 'translations',
+  name: 'Translations',
+  tag: 'TRANSFORM',
+  units: ['3'],
+  added: '2026-10-30',
+  assignments: ['unit-3-transformations'],
+  vocab: [
+    { f: 'Translation', b: 'A slide: every point of a figure moves the same distance in the same direction. Nothing turns, flips, or changes size.' },
+    { f: 'Translation vector', b: 'An ordered pair ⟨a, b⟩ that tells how a translation moves a point: add a to the x-coordinate and b to the y-coordinate.' },
+    { f: 'Image', b: 'The figure after a transformation. Image points are labeled with prime notation, like A′ for the image of A.' },
+    { f: 'Preimage', b: 'The original figure, before a transformation is applied.' },
+    { f: 'Rigid motion', b: 'A transformation that preserves distances and angle measures, so the image is congruent to the preimage. Translations are rigid motions.' },
+    { f: 'Prime notation', b: 'Writing A′ (read "A prime") for the image of point A after a transformation, so preimage and image points are easy to tell apart.' }
+  ],
+  recap: {
+    title: 'Translations: Slide It, Don\'t Change It',
+    intro: 'A translation is the simplest transformation: pick a figure up and slide it somewhere else. Every point moves the same distance in the same direction, so the figure itself does not change at all — only its position does. In the coordinate plane that slide is just addition: a translation vector tells you exactly what to add to each coordinate.',
+    steps: [
+      {
+        h: 'A translation slides every point the same way',
+        body: 'A translation moves each point of a figure the same distance in the same direction. There is no turning, no flipping, and no resizing. If one point moves 3 units right and 2 units up, every point of the figure moves 3 units right and 2 units up — the whole figure keeps its shape, size, and orientation.',
+        ex: [
+          'Point A (3, 1) translated 3 units right and 2 units up lands on A′ (6, 3).',
+          'Translate a whole triangle and every vertex moves by the same amount — the triangle looks identical, just somewhere else.',
+          'If different points moved by different amounts, that would not be a translation at all.'
+        ]
+      },
+      {
+        h: 'Add the vector to the coordinates',
+        body: 'A translation vector ⟨a, b⟩ is the recipe: a new x-coordinate is the old x plus a, and the new y-coordinate is the old y plus b. In symbols, (x, y) → (x + a, y + b). Work the two coordinates separately and you cannot go wrong — just be careful with the signs when a or b is negative.',
+        ex: [
+          'Point P (2, −3) translated by ⟨−4, 5⟩: x′ = 2 + (−4) = −2, y′ = −3 + 5 = 2, so P′ (−2, 2).',
+          'Point Q (−1, 6) translated by ⟨3, −2⟩: Q′ (2, 4).',
+          'Adding a negative is subtracting: translating by ⟨−5, 0⟩ moves a point 5 units left and not at all vertically.'
+        ]
+      },
+      {
+        h: 'Words mean signs: right and up are positive',
+        body: 'When a translation is described in words, turn each direction into a sign before you add. Right means positive x, left means negative x, up means positive y, down means negative y. "4 units left and 3 units down" is the vector ⟨−4, −3⟩ — and mixing up even one sign lands you in the wrong quadrant.',
+        ex: [
+          '"5 units right and 1 unit up" is ⟨5, 1⟩.',
+          '"5 units left and 1 unit down" is ⟨−5, −1⟩.',
+          'Point (4, 4) translated 4 units left and 3 units down: (4 + (−4), 4 + (−3)) = (0, 1).'
+        ]
+      },
+      {
+        h: 'Work backwards: subtract to find the rule or the preimage',
+        body: 'Given a preimage point and its image, the translation is the difference: a = x′ − x and b = y′ − y. And given an image point and the vector, undo the translation by subtracting the vector: the preimage is (x′ − a, y′ − b). Forward is addition, backwards is subtraction — the same vector, opposite operation.',
+        ex: [
+          'A (1, 2) → A′ (4, 6): the translation is ⟨4 − 1, 6 − 2⟩ = ⟨3, 4⟩, or 3 right and 4 up.',
+          'Image point B′ (7, −1) after a translation by ⟨2, 5⟩: the preimage is B (7 − 2, −1 − 5) = (5, −6).',
+          'Check a rule by applying it: if your vector does not send the preimage exactly onto the image, the sign or the subtraction is off.'
+        ]
+      },
+      {
+        h: 'Translations are rigid motions: only position changes',
+        body: 'Because every point moves the same amount, a translation preserves everything about the figure except where it sits: side lengths stay the same, angle measures stay the same, and the figure is not turned around, so its orientation is unchanged. That is what makes a translation a rigid motion, and it is why the image of any figure under a translation is congruent to the original.',
+        ex: [
+          'A segment of length 5 translated anywhere is still a segment of length 5.',
+          'A right angle translated is still a right angle, pointing the same way it did before.',
+          'Image notation: the image of point A is written A′ and read "A prime"; the image of triangle ABC is A′B′C′.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const LETTERS = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+    const L = LETTERS[0];
+    const nz = () => { let n = R(-6, 6); while (n === 0) n = R(-6, 6); return n; };
+    const v = R(0, 4);
+
+    if (v === 0) {
+      // ---- flavor 1: image of a point, vector form ----
+      const x = R(-8, 8), y = R(-8, 8), a = nz(), b = nz();
+      const ans = PT(x + a, y + b);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is translated by ⟨${a}, ${b}⟩. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(x - a, y + b), PT(x + a, y - b), PT(x - a, y - b)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), translation ⟨${a}, ${b}⟩` },
+        { t: `x′ = ${x} + ${a} = ${x + a}`, op: 'add to the x-coordinate' },
+        { t: `y′ = ${y} + ${b} = ${y + b}`, op: 'add to the y-coordinate' },
+        { t: `${L}′ = (${x + a}, ${y + b})` }
+      ];
+      return q;
+    }
+
+    if (v === 1) {
+      // ---- flavor 2: find the translation from preimage to image ----
+      const x = R(-6, 6), y = R(-6, 6), dx = nz(), dy = nz();
+      const x2 = x + dx, y2 = y + dy;
+      const desc = (hx, vy) =>
+        `${Math.abs(hx)} units ${hx > 0 ? 'right' : 'left'} and ${Math.abs(vy)} units ${vy > 0 ? 'up' : 'down'}`;
+      const ans = desc(dx, dy);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is translated to ${L}′ (${x2}, ${y2}). How was the point translated?`,
+        ans,
+        [desc(-dx, dy), desc(dx, -dy), desc(-dx, -dy)]);
+      q.work = [
+        { t: `Change in x: ${x2} − ${x} = ${dx}`, op: 'subtract the x-coordinates' },
+        { t: `Change in y: ${y2} − ${y} = ${dy}`, op: 'subtract the y-coordinates' },
+        { t: ans }
+      ];
+      return q;
+    }
+
+    if (v === 2) {
+      // ---- flavor 3: preimage from image and vector ----
+      const x = R(-8, 8), y = R(-8, 8), a = nz(), b = nz();
+      const x2 = x + a, y2 = y + b;
+      const ans = PT(x, y);
+      const q = mkQ('TRANSFORM',
+        `Point ${L}′ (${x2}, ${y2}) is the image of point ${L} after a translation by ⟨${a}, ${b}⟩. What were the coordinates of ${L}?`,
+        ans,
+        [PT(x2 + a, y2 + b), PT(x2 + a, y2), PT(x2, y2 + b)]);
+      q.work = [
+        { t: `The image is (${x2}, ${y2}) after adding ⟨${a}, ${b}⟩, so undo it by subtracting.` },
+        { t: `x = ${x2} − ${a} = ${x}`, op: 'subtract' },
+        { t: `y = ${y2} − ${b} = ${y}`, op: 'subtract' },
+        { t: `${L} = (${x}, ${y})` }
+      ];
+      return q;
+    }
+
+    if (v === 3) {
+      // ---- flavor 4: image of a point, word form ----
+      const x = R(-8, 8), y = R(-8, 8);
+      const h = R(1, 6), vv = R(1, 6);
+      const hdir = pick(['right', 'left']), vdir = pick(['up', 'down']);
+      const dx = hdir === 'right' ? h : -h;
+      const dy = vdir === 'up' ? vv : -vv;
+      const ans = PT(x + dx, y + dy);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is translated ${h} units ${hdir} and ${vv} units ${vdir}. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(x - dx, y + dy), PT(x + dx, y - dy), PT(x - dx, y - dy)]);
+      q.work = [
+        { t: `${h} units ${hdir} means ${dx > 0 ? '+' : ''}${dx} in x; ${vv} units ${vdir} means ${dy > 0 ? '+' : ''}${dy} in y.` },
+        { t: `x′ = ${x} + ${dx} = ${x + dx}`, op: 'add to the x-coordinate' },
+        { t: `y′ = ${y} + ${dy} = ${y + dy}`, op: 'add to the y-coordinate' },
+        { t: `${L}′ = (${x + dx}, ${y + dy})` }
+      ];
+      return q;
+    }
+
+    // ---- flavor 5: what a translation preserves ----
+    const a = nz(), b = nz();
+    const ans = 'The image is congruent to the original figure';
+    const q = mkQ('TRANSFORM',
+      `A figure is translated by ⟨${a}, ${b}⟩. Which statement is true of the image?`,
+      ans,
+      ['The image is larger than the original figure',
+       'The image is smaller than the original figure',
+       'The image has a different orientation than the original figure']);
+    q.work = [
+      { t: 'A translation slides every point the same distance in the same direction.' },
+      { note: 'Sliding changes position only — it does not stretch, shrink, or turn the figure.' },
+      { t: ans, why: 'Translation is a rigid motion' }
+    ];
+    return q;
   }
 });
 
