@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="32f97dcdcaa1";</script>
+<script>window.__BUILD_ID__="e34481130b3f";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -465,7 +465,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}], "currentUnit": "2"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations", "reflections"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}, {"id": "pp-7-10-hw", "name": "pp. 7-10", "topics": ["translations", "reflections"]}], "currentUnit": "2"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -1733,6 +1733,281 @@ registerTopic({
       { t: 'A translation slides every point the same distance in the same direction.' },
       { note: 'Sliding changes position only — it does not stretch, shrink, or turn the figure.' },
       { t: ans, why: 'Translation is a rigid motion' }
+    ];
+    return q;
+  }
+});
+
+// ---- topic: reflections ----
+// Reflections: flipping a figure across a line — across the axes,
+// across y = x and y = −x, across horizontal and vertical lines, and
+// finding the line of reflection from a preimage/image pair, including
+// writing its equation. Original, procedurally generated. Unit 3:
+// Transformations. Every question is original, similar in kind to
+// classwork but never a copy of a homework problem.
+registerTopic({
+  id: 'reflections',
+  name: 'Reflections',
+  tag: 'TRANSFORM',
+  units: ['3'],
+  added: '2026-11-04',
+  assignments: ['pp-7-10-hw'],
+  vocab: [
+    { f: 'Reflection', b: 'A flip: a figure is mirrored across a line, so every point lands the same distance on the other side of that line.' },
+    { f: 'Line of reflection', b: 'The line a figure is flipped across. It is the perpendicular bisector of every segment joining a preimage point to its image.' },
+    { f: 'Rigid motion', b: 'A transformation that preserves distances and angle measures, so the image is congruent to the preimage. Reflections are rigid motions.' },
+    { f: 'Orientation', b: 'The order of a figure\'s vertices as you go around it (clockwise or counterclockwise). A reflection reverses orientation — the image is a mirror image, not a slide or a turn.' },
+    { f: 'Perpendicular bisector', b: 'A line that cuts a segment in half at a right angle. The line of reflection is the perpendicular bisector of the segment from any point to its image.' },
+    { f: 'Mirror image', b: 'What a reflection produces: the same figure, flipped, so left and right are swapped across the line of reflection.' }
+  ],
+  recap: {
+    title: 'Reflections: Flip It Across the Line',
+    intro: 'A reflection flips a figure across a line, like looking in a mirror. Every point of the figure moves to the other side of the line, landing exactly as far from the line as it started — no closer, no farther. The figure keeps its size and shape, but it comes out mirrored: left and right swap, so its orientation reverses.',
+    steps: [
+      {
+        h: 'A reflection flips across a line, keeping the distance to the line',
+        body: 'Pick a line — the line of reflection — and flip the figure across it. A point on the line itself does not move at all. A point off the line lands on the other side, at the same distance from the line, on a path perpendicular to the line. That is the whole rule: same distance, other side, straight across. It is why the line of reflection is the perpendicular bisector of the segment joining any point to its image.',
+        ex: [
+          'Point A (2, 5) reflected across the x-axis lands on A′ (2, −5): same distance from the axis, other side.',
+          'A point sitting exactly on the line of reflection is its own image — it has nowhere to flip to.',
+          'Reflect a triangle and you get the same triangle, mirrored: same side lengths, same angle measures, opposite orientation.'
+        ]
+      },
+      {
+        h: 'Across the axes, one coordinate changes sign',
+        body: 'Reflecting across the x-axis flips the figure up-down, so the y-coordinate changes sign and x stays put: (x, y) → (x, −y). Reflecting across the y-axis flips it left-right, so the x-coordinate changes sign and y stays put: (x, y) → (−x, y). The coordinate that stays the same tells you which axis you flipped across — if x is unchanged, it was the x-axis.',
+        ex: [
+          'Point P (3, 4) across the x-axis: P′ (3, −4). Only the y changed sign.',
+          'Point P (3, 4) across the y-axis: P′ (−3, 4). Only the x changed sign.',
+          'Point (−2, −5) across the x-axis: (−2, 5). A negative y becoming positive is still just a sign change.'
+        ]
+      },
+      {
+        h: 'Across y = x, swap the coordinates; across y = −x, swap and negate',
+        body: 'The diagonal lines have their own clean rules. Reflect across y = x and the coordinates trade places: (x, y) → (y, x). Reflect across y = −x and they trade places and both change sign: (x, y) → (−y, −x). If a point and its image have swapped coordinates, the line of reflection is y = x; if they are swapped and negated, it is y = −x.',
+        ex: [
+          'Point P (2, 7) across y = x: P′ (7, 2).',
+          'Point P (2, 7) across y = −x: P′ (−7, −2). Swap, then change both signs.',
+          'Point (4, 4) lies on y = x, so reflecting across y = x leaves it exactly where it is.'
+        ]
+      },
+      {
+        h: 'Across a horizontal or vertical line, mirror the one coordinate',
+        body: 'To reflect across a horizontal line y = k, only y changes: the image is as far below (or above) the line as the original was above (or below) it, so y′ = 2k − y. Across a vertical line x = h, only x changes: x′ = 2h − x. The trick is that the line\'s value gets doubled — the point and its image are symmetric around the line, so the line\'s value is their midpoint.',
+        ex: [
+          'Point (5, 1) across y = 3: y′ = 2(3) − 1 = 5, so the image is (5, 5). The point was 2 below the line; the image is 2 above it.',
+          'Point (1, 4) across x = 4: x′ = 2(4) − 1 = 7, so the image is (7, 4).',
+          'Point (6, −2) across y = −2 does not move: it sits on the line of reflection.'
+        ]
+      },
+      {
+        h: 'Find the line of reflection from a point and its image',
+        body: 'Given a preimage point and its image, the line of reflection is the perpendicular bisector of the segment joining them — and for the lines this unit uses, that reduces to a midpoint. If the two points share an x-coordinate, the line is horizontal: y equals the average of the two y-values. If they share a y-coordinate, the line is vertical: x equals the average of the two x-values. If the coordinates are swapped, the line is y = x; if they are swapped and negated, it is y = −x. Writing that equation is the whole answer.',
+        ex: [
+          'A (2, 1) → A′ (2, 7): same x, so the line is horizontal, y = (1 + 7) / 2 = 4. The line of reflection is y = 4.',
+          'A (1, 3) → A′ (7, 3): same y, so the line is vertical, x = (1 + 7) / 2 = 4. The line of reflection is x = 4.',
+          'A (3, 5) → A′ (5, 3): coordinates swapped, so the line of reflection is y = x.'
+        ]
+      },
+      {
+        h: 'Reflections are rigid motions — congruent, but mirrored',
+        body: 'A reflection preserves distances and angle measures, so the image is congruent to the preimage — same size, same shape. What it does not preserve is orientation: going around the image, the vertices come in the opposite order from the preimage, the way your mirror image raises the opposite hand. That reversal is the signature of a reflection; slides and turns never do it.',
+        ex: [
+          'A segment of length 5 reflected anywhere is still a segment of length 5.',
+          'Triangle ABC reflected across the y-axis gives A′B′C′ with the same side lengths and angles — but clockwise ABC becomes counterclockwise A′B′C′.',
+          'If an image is larger, smaller, or has different angles, it is not a reflection — something else changed the figure.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const LETTERS = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+    const L = LETTERS[0];
+    const nz = () => { let n = R(-8, 8); while (n === 0) n = R(-8, 8); return n; };
+    const v = R(0, 6);
+
+    if (v === 0) {
+      // ---- flavor 1: reflect across the x-axis ----
+      const x = nz(), y = nz();
+      const ans = PT(x, -y);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected across the x-axis. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(-x, y), PT(-x, -y), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), reflected across the x-axis` },
+        { t: 'Across the x-axis, x stays the same and y changes sign.', why: 'Reflection across the x-axis: (x, y) → (x, −y)' },
+        { t: `${L}′ = (${x}, ${-y})` }
+      ];
+      return q;
+    }
+
+    if (v === 1) {
+      // ---- flavor 2: reflect across the y-axis ----
+      const x = nz(), y = nz();
+      const ans = PT(-x, y);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected across the y-axis. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(x, -y), PT(-x, -y), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), reflected across the y-axis` },
+        { t: 'Across the y-axis, y stays the same and x changes sign.', why: 'Reflection across the y-axis: (x, y) → (−x, y)' },
+        { t: `${L}′ = (${-x}, ${y})` }
+      ];
+      return q;
+    }
+
+    if (v === 2) {
+      // ---- flavor 3: reflect across y = x ----
+      let x = nz(), y = nz(); while (y === x) y = nz();
+      const ans = PT(y, x);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected across the line y = x. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(-y, -x), PT(y, -x), PT(-y, x)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), reflected across y = x` },
+        { t: 'Across y = x, the coordinates swap places.', why: 'Reflection across y = x: (x, y) → (y, x)' },
+        { t: `${L}′ = (${y}, ${x})` }
+      ];
+      return q;
+    }
+
+    if (v === 3) {
+      // ---- flavor 4: reflect across y = −x ----
+      let x = nz(), y = nz(); while (x + y === 0) y = nz();
+      const ans = PT(-y, -x);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected across the line y = −x. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(y, x), PT(-y, x), PT(y, -x)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), reflected across y = −x` },
+        { t: 'Across y = −x, the coordinates swap places and both change sign.', why: 'Reflection across y = −x: (x, y) → (−y, −x)' },
+        { t: `${L}′ = (${-y}, ${-x})` }
+      ];
+      return q;
+    }
+
+    if (v === 4) {
+      // ---- flavor 5: reflect across a horizontal or vertical line ----
+      if (pick([true, false])) {
+        const k = nz(), x = nz();
+        let y = nz(); while (y === k) y = nz();
+        const y2 = 2 * k - y;
+        const ans = PT(x, y2);
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${x}, ${y}) is reflected across the line y = ${k}. What are the coordinates of ${L}′?`,
+          ans,
+          [PT(x, y), PT(-x, y2), PT(x, k)]);
+        q.work = [
+          { t: `${L} = (${x}, ${y}), reflected across y = ${k}` },
+          { t: `The line is horizontal, so only y changes: y′ = 2(${k}) − ${y} = ${y2}`, op: 'mirror y across the line' },
+          { t: `${L}′ = (${x}, ${y2})` }
+        ];
+        return q;
+      }
+      const h = nz(), y = nz();
+      let x = nz(); while (x === h) x = nz();
+      const x2 = 2 * h - x;
+      const ans = PT(x2, y);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected across the line x = ${h}. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(x, y), PT(x2, -y), PT(h, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), reflected across x = ${h}` },
+        { t: `The line is vertical, so only x changes: x′ = 2(${h}) − ${x} = ${x2}`, op: 'mirror x across the line' },
+        { t: `${L}′ = (${x2}, ${y})` }
+      ];
+      return q;
+    }
+
+    if (v === 5) {
+      // ---- flavor 6: find the line of reflection from preimage and image ----
+      const sub = R(0, 3);
+      if (sub === 0) {
+        // same x, different y, same parity -> horizontal line y = midpoint
+        const x = R(-8, 8);
+        const y1 = R(-8, 8);
+        let y2 = R(-8, 8);
+        while (y2 === y1 || (y2 - y1) % 2 !== 0) y2 = R(-8, 8);
+        const m = (y1 + y2) / 2;
+        const ans = `y = ${m}`;
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${x}, ${y1}) is reflected to ${L}′ (${x}, ${y2}). What is the equation of the line of reflection?`,
+          ans,
+          [`x = ${x}`, `y = ${y1}`, `y = ${y2}`]);
+        q.work = [
+          { t: `${L} (${x}, ${y1}) → ${L}′ (${x}, ${y2}): the x-coordinate is unchanged, so the line is horizontal.` },
+          { t: `y = (${y1} + ${y2}) / 2 = ${m}`, op: 'average the y-values' },
+          { t: `The line of reflection is y = ${m}` }
+        ];
+        return q;
+      }
+      if (sub === 1) {
+        // same y, different x, same parity -> vertical line x = midpoint
+        const y = R(-8, 8);
+        const x1 = R(-8, 8);
+        let x2 = R(-8, 8);
+        while (x2 === x1 || (x2 - x1) % 2 !== 0) x2 = R(-8, 8);
+        const m = (x1 + x2) / 2;
+        const ans = `x = ${m}`;
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${x1}, ${y}) is reflected to ${L}′ (${x2}, ${y}). What is the equation of the line of reflection?`,
+          ans,
+          [`x = ${x1}`, `x = ${x2}`, `y = ${y}`]);
+        q.work = [
+          { t: `${L} (${x1}, ${y}) → ${L}′ (${x2}, ${y}): the y-coordinate is unchanged, so the line is vertical.` },
+          { t: `x = (${x1} + ${x2}) / 2 = ${m}`, op: 'average the x-values' },
+          { t: `The line of reflection is x = ${m}` }
+        ];
+        return q;
+      }
+      if (sub === 2) {
+        // swapped coordinates -> y = x
+        let a = nz(), b = nz(); while (b === a) b = nz();
+        const ans = 'y = x';
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${a}, ${b}) is reflected to ${L}′ (${b}, ${a}). What is the equation of the line of reflection?`,
+          ans,
+          ['y = −x', 'the x-axis', 'the y-axis']);
+        q.work = [
+          { t: `${L} (${a}, ${b}) → ${L}′ (${b}, ${a}): the coordinates have swapped places.` },
+          { note: 'Swapped coordinates mean the flip was across the diagonal y = x.' },
+          { t: 'The line of reflection is y = x' }
+        ];
+        return q;
+      }
+      // swapped and negated coordinates -> y = −x
+      let a = nz(), b = nz(); while (a + b === 0) b = nz();
+      const ans = 'y = −x';
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${a}, ${b}) is reflected to ${L}′ (${-b}, ${-a}). What is the equation of the line of reflection?`,
+        ans,
+        ['y = x', 'the x-axis', 'the y-axis']);
+      q.work = [
+        { t: `${L} (${a}, ${b}) → ${L}′ (${-b}, ${-a}): the coordinates have swapped places and changed sign.` },
+        { note: 'Swapped and negated coordinates mean the flip was across the diagonal y = −x.' },
+        { t: 'The line of reflection is y = −x' }
+      ];
+      return q;
+    }
+
+    // ---- flavor 7: a reflection preserves size and shape ----
+    const x = nz(), y = nz();
+    const ans = 'The image is congruent to the original figure';
+    const q = mkQ('TRANSFORM',
+      `A figure is reflected across the line y = ${x}. Which statement is true of the image?`,
+      ans,
+      ['The image is larger than the original figure',
+       'The image is smaller than the original figure',
+       'The image is not congruent to the original figure']);
+    q.work = [
+      { t: `A figure is reflected across y = ${x}.` },
+      { note: 'A reflection flips the figure but does not stretch, shrink, or change its angles — it only reverses orientation.' },
+      { t: ans, why: 'Reflection is a rigid motion' }
     ];
     return q;
   }
