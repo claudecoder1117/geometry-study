@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="825e2e7ccc93";</script>
+<script>window.__BUILD_ID__="bdde08ef0ce2";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -465,7 +465,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations", "reflections"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}, {"id": "pp-7-10-hw", "name": "pp. 7-10", "topics": ["translations", "reflections"]}, {"id": "unit-3-test-review", "name": "Unit 3 Test Review (Nov 23)", "topics": ["translations", "reflections"]}], "currentUnit": "3"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations", "reflections", "rotations"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}, {"id": "pp-7-10-hw", "name": "pp. 7-10", "topics": ["translations", "reflections"]}, {"id": "unit-3-test-review", "name": "Unit 3 Test Review (Nov 23)", "topics": ["translations", "reflections", "rotations"]}, {"id": "rotations-pp-11-14", "name": "Rotations pp. 11-14", "topics": ["rotations"]}], "currentUnit": "3"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -2008,6 +2008,267 @@ registerTopic({
       { t: `A figure is reflected across y = ${x}.` },
       { note: 'A reflection flips the figure but does not stretch, shrink, or change its angles — it only reverses orientation.' },
       { t: ans, why: 'Reflection is a rigid motion' }
+    ];
+    return q;
+  }
+});
+
+// ---- topic: rotations ----
+// Rotations: turning a figure about a point — 90° clockwise,
+// 90° counterclockwise, 180°, and 270° about the origin, rotating about
+// a center that is not the origin, and identifying a rotation from a
+// preimage/image pair. Original, procedurally generated. Unit 3:
+// Transformations. Every question is original, similar in kind to
+// classwork but never a copy of a homework problem.
+registerTopic({
+  id: 'rotations',
+  name: 'Rotations',
+  tag: 'TRANSFORM',
+  units: ['3'],
+  added: '2026-11-10',
+  assignments: ['rotations-pp-11-14'],
+  vocab: [
+    { f: 'Rotation', b: 'A turn: a figure is spun about a fixed point, so every point moves along a circle centered on that point.' },
+    { f: 'Center of rotation', b: 'The fixed point a figure turns around. It does not move. Every other point moves along a circle centered on it.' },
+    { f: 'Angle of rotation', b: 'How far the figure turns, measured in degrees. A full turn is 360°; a quarter turn is 90°; a half turn is 180°.' },
+    { f: 'Clockwise', b: 'Turning in the direction a clock\'s hands move. A 90° clockwise turn sends (x, y) to (y, −x) about the origin.' },
+    { f: 'Counterclockwise', b: 'Turning against the direction a clock\'s hands move. A 90° counterclockwise turn sends (x, y) to (−y, x) about the origin.' },
+    { f: 'Rigid motion', b: 'A transformation that preserves distances and angle measures, so the image is congruent to the preimage. Rotations are rigid motions, and they preserve orientation too.' }
+  ],
+  recap: {
+    title: 'Rotations: Turn It About a Point',
+    intro: 'A rotation turns a figure about a fixed point — the center of rotation — by a set angle, in a set direction. Every point of the figure travels along a circle centered on that point, so its distance from the center never changes. The figure keeps its size and shape, and unlike a reflection it keeps its orientation too: clockwise stays clockwise.',
+    steps: [
+      {
+        h: 'A rotation turns a figure about a fixed center, keeping every distance from the center',
+        body: 'Pick a center and an angle, and turn the figure. The center itself does not move at all. Every other point moves along a circle centered on that point — its distance from the center stays exactly the same, and it sweeps through the given angle. A 90° turn is a quarter of a full turn, 180° is a half turn, and 270° is three quarters. The direction matters: clockwise and counterclockwise are opposite turns, and they land in different places.',
+        ex: [
+          'Rotating a triangle 90° about the origin moves every vertex a quarter turn around (0, 0).',
+          'A point sitting exactly on the center of rotation is its own image — it has nowhere to turn to.',
+          'A full 360° rotation brings every point back to where it started.'
+        ]
+      },
+      {
+        h: '90° clockwise about the origin: (x, y) → (y, −x)',
+        body: 'A quarter turn clockwise about the origin sends the point (x, y) to (y, −x): the coordinates swap places, and the new y-coordinate changes sign. One way to remember it is that the point\'s old y becomes its new x, and the old x becomes its new y with a minus sign in front. The sign lands on the second coordinate — that is what makes it clockwise rather than counterclockwise.',
+        ex: [
+          'Point P (3, 4) rotated 90° clockwise about the origin: P′ (4, −3). The 4 moved to the x-spot, the 3 moved to the y-spot with a minus sign.',
+          'Point P (2, −5) rotated 90° clockwise: P′ (−5, −2). Swap, then negate the new y.',
+          'Point (−1, 6) rotated 90° clockwise: P′ (6, 1). The old y, 6, is now the x; the old x, −1, becomes −(−1) = 1.'
+        ]
+      },
+      {
+        h: '90° counterclockwise about the origin: (x, y) → (−y, x)',
+        body: 'A quarter turn counterclockwise about the origin sends the point (x, y) to (−y, x): again the coordinates swap places, but this time the sign lands on the first coordinate instead. The old y becomes the new x with a minus sign, and the old x becomes the new y unchanged. It is the mirror image of the clockwise rule — same swap, opposite sign.',
+        ex: [
+          'Point P (3, 4) rotated 90° counterclockwise about the origin: P′ (−4, 3).',
+          'Point P (2, −5) rotated 90° counterclockwise: P′ (5, 2). The old y, −5, becomes −(−5) = 5.',
+          'A 270° clockwise turn is the same as a 90° counterclockwise turn — both are a quarter turn against the clock.'
+        ]
+      },
+      {
+        h: '180° about the origin: (x, y) → (−x, −y)',
+        body: 'A half turn about the origin is the simplest rule of all: both coordinates change sign, (x, y) → (−x, −y). Direction does not matter for a half turn — 180° clockwise and 180° counterclockwise land in exactly the same place, because a half turn either way is the same move. The point ends up on the opposite side of the origin, at the same distance.',
+        ex: [
+          'Point P (3, 4) rotated 180° about the origin: P′ (−3, −4).',
+          'Point P (−2, 5) rotated 180°: P′ (2, −5). Both signs flip.',
+          'Rotating 180° twice is a full 360° turn — the point comes back to where it started.'
+        ]
+      },
+      {
+        h: 'Rotating about a point that is not the origin: shift, turn, shift back',
+        body: 'When the center is some other point (h, k), the trick is to pretend the center is the origin for a moment. First subtract the center from the point, so you are working with how far the point sits from the center. Then apply the usual origin rule to that offset. Then add the center back. For 180° about (h, k), that shortcut gives (2h − x, 2k − y) — the center is the midpoint of the point and its image.',
+        ex: [
+          'Point A (5, 1) rotated 90° clockwise about (2, 1): the offset is (3, 0), which turns to (0, −3), so A′ is (2 + 0, 1 − 3) = (2, −2).',
+          'Point A (4, 6) rotated 180° about (1, 2): A′ is (2(1) − 4, 2(2) − 6) = (−2, −2). The center (1, 2) is the midpoint of (4, 6) and (−2, −2).',
+          'If the point you are rotating is the center itself, it does not move — the offset is (0, 0).'
+        ]
+      },
+      {
+        h: 'Identify a rotation from a preimage point and its image',
+        body: 'Given a point and its image, look at what happened to the coordinates. If both signs flipped and nothing swapped, it was a 180° turn. If the coordinates swapped and the new y changed sign, it was 90° clockwise. If the coordinates swapped and the new x changed sign, it was 90° counterclockwise. If nothing changed at all, either the point was the center or the turn was 360°.',
+        ex: [
+          'A (2, 5) → A′ (5, −2): the coordinates swapped and the new y flipped sign, so the rotation is 90° clockwise.',
+          'A (2, 5) → A′ (−5, 2): the coordinates swapped and the new x flipped sign, so the rotation is 90° counterclockwise.',
+          'A (2, 5) → A′ (−2, −5): both coordinates flipped sign, so the rotation is 180°.'
+        ]
+      },
+      {
+        h: 'Rotations are rigid motions — congruent, and the orientation stays',
+        body: 'A rotation preserves distances and angle measures, so the image is congruent to the preimage — same size, same shape. It also preserves orientation: going around the image, the vertices come in the same order as the preimage, clockwise or counterclockwise. That is what separates a rotation from a reflection, which reverses orientation. If an image is larger, smaller, or has different angles, no rotation produced it.',
+        ex: [
+          'A segment of length 5 rotated anywhere is still a segment of length 5.',
+          'Triangle ABC rotated 90° about the origin gives A′B′C′ with the same side lengths and angles, and clockwise ABC stays clockwise A′B′C′.',
+          'Rotating a figure 90° clockwise and then 90° counterclockwise brings it back to where it started.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const LETTERS = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+    const L = LETTERS[0];
+    const nz = () => { let n = R(-8, 8); while (n === 0) n = R(-8, 8); return n; };
+    const v = R(0, 6);
+
+    if (v === 0) {
+      // ---- flavor 1: 90° clockwise about the origin ----
+      const x = nz(), y = nz();
+      const ans = PT(y, -x);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated 90° clockwise about the origin. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(-y, x), PT(-x, -y), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), rotated 90° clockwise about the origin` },
+        { t: '90° clockwise: swap the coordinates, then change the sign of the new y.', why: 'Rotation 90° clockwise about the origin: (x, y) → (y, −x)' },
+        { t: `${L}′ = (${y}, ${-x})` }
+      ];
+      return q;
+    }
+
+    if (v === 1) {
+      // ---- flavor 2: 90° counterclockwise about the origin ----
+      const x = nz(), y = nz();
+      const ans = PT(-y, x);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated 90° counterclockwise about the origin. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(y, -x), PT(-x, -y), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), rotated 90° counterclockwise about the origin` },
+        { t: '90° counterclockwise: swap the coordinates, then change the sign of the new x.', why: 'Rotation 90° counterclockwise about the origin: (x, y) → (−y, x)' },
+        { t: `${L}′ = (${-y}, ${x})` }
+      ];
+      return q;
+    }
+
+    if (v === 2) {
+      // ---- flavor 3: 180° about the origin ----
+      const x = nz(), y = nz();
+      const ans = PT(-x, -y);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated 180° about the origin. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(y, -x), PT(-y, x), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), rotated 180° about the origin` },
+        { t: '180°: both coordinates change sign.', why: 'Rotation 180° about the origin: (x, y) → (−x, −y)' },
+        { t: `${L}′ = (${-x}, ${-y})` }
+      ];
+      return q;
+    }
+
+    if (v === 3) {
+      // ---- flavor 4: 270° clockwise about the origin ----
+      const x = nz(), y = nz();
+      const ans = PT(-y, x);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated 270° clockwise about the origin. What are the coordinates of ${L}′?`,
+        ans,
+        [PT(y, -x), PT(-x, -y), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), rotated 270° clockwise about the origin` },
+        { t: '270° clockwise is the same turn as 90° counterclockwise: swap the coordinates, then change the sign of the new x.', why: '270° clockwise = 90° counterclockwise: (x, y) → (−y, x)' },
+        { t: `${L}′ = (${-y}, ${x})` }
+      ];
+      return q;
+    }
+
+    if (v === 4) {
+      // ---- flavor 5: identify the rotation from a preimage/image pair ----
+      const sub = R(0, 2);
+      let x = nz(), y = nz();
+      while (y === x || y === -x) { x = nz(); y = nz(); }
+      if (sub === 0) {
+        const ans = '90° clockwise';
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${x}, ${y}) is rotated about the origin to ${L}′ (${y}, ${-x}). Which rotation was performed?`,
+          ans,
+          ['90° counterclockwise', '180°', '360°']);
+        q.work = [
+          { t: `${L} (${x}, ${y}) → ${L}′ (${y}, ${-x}): the coordinates swapped, and the new y changed sign.` },
+          { note: 'Swapped coordinates with the sign on the new y means a quarter turn clockwise.' },
+          { t: 'The rotation is 90° clockwise' }
+        ];
+        return q;
+      }
+      if (sub === 1) {
+        const ans = '90° counterclockwise';
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${x}, ${y}) is rotated about the origin to ${L}′ (${-y}, ${x}). Which rotation was performed?`,
+          ans,
+          ['90° clockwise', '180°', '360°']);
+        q.work = [
+          { t: `${L} (${x}, ${y}) → ${L}′ (${-y}, ${x}): the coordinates swapped, and the new x changed sign.` },
+          { note: 'Swapped coordinates with the sign on the new x means a quarter turn counterclockwise.' },
+          { t: 'The rotation is 90° counterclockwise' }
+        ];
+        return q;
+      }
+      const ans = '180°';
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated about the origin to ${L}′ (${-x}, ${-y}). Which rotation was performed?`,
+        ans,
+        ['90° clockwise', '90° counterclockwise', '360°']);
+      q.work = [
+        { t: `${L} (${x}, ${y}) → ${L}′ (${-x}, ${-y}): both coordinates changed sign, and nothing swapped.` },
+        { note: 'Both signs flipping with no swap means a half turn.' },
+        { t: 'The rotation is 180°' }
+      ];
+      return q;
+    }
+
+    if (v === 5) {
+      // ---- flavor 6: rotate about a center that is not the origin ----
+      const sub = R(0, 1);
+      const h = R(-4, 4), k = R(-4, 4);
+      let dx = nz(), dy = nz();
+      const x = h + dx, y = k + dy;
+      if (sub === 0) {
+        // 90° clockwise about (h, k): offset (dx, dy) -> (dy, -dx)
+        const x2 = h + dy, y2 = k - dx;
+        const ans = PT(x2, y2);
+        const q = mkQ('TRANSFORM',
+          `Point ${L} (${x}, ${y}) is rotated 90° clockwise about the point (${h}, ${k}). What are the coordinates of ${L}′?`,
+          ans,
+          [PT(h - dy, k + dx), PT(2 * h - x, 2 * k - y), PT(x, y)]);
+        q.work = [
+          { t: `${L} = (${x}, ${y}), center (${h}, ${k}) — first find the offset from the center: (${x} − ${h}, ${y} − ${k}) = (${dx}, ${dy})`, op: 'subtract the center' },
+          { t: `90° clockwise turns the offset (${dx}, ${dy}) into (${dy}, ${-dx})`, why: '90° clockwise: (x, y) → (y, −x)' },
+          { t: `Add the center back: (${h} + ${dy}, ${k} + ${-dx}) = (${x2}, ${y2})`, op: 'add the center back' },
+          { t: `${L}′ = (${x2}, ${y2})` }
+        ];
+        return q;
+      }
+      // 180° about (h, k): (2h - x, 2k - y)
+      const x2 = 2 * h - x, y2 = 2 * k - y;
+      const ans = PT(x2, y2);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated 180° about the point (${h}, ${k}). What are the coordinates of ${L}′?`,
+        ans,
+        [PT(h + dy, k - dx), PT(h - dy, k + dx), PT(x, y)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}), rotated 180° about (${h}, ${k})` },
+        { t: `For a 180° turn the center is the midpoint of the point and its image: x′ = 2(${h}) − ${x} = ${x2}`, op: 'mirror x across the center' },
+        { t: `y′ = 2(${k}) − ${y} = ${y2}`, op: 'mirror y across the center' },
+        { t: `${L}′ = (${x2}, ${y2})` }
+      ];
+      return q;
+    }
+
+    // ---- flavor 7: a rotation preserves size, shape, and orientation ----
+    const x = nz(), y = nz();
+    const ans = 'The image is congruent to the original figure, with the same orientation';
+    const q = mkQ('TRANSFORM',
+      `A figure is rotated 90° about the origin. Which statement is true of the image?`,
+      ans,
+      ['The image is larger than the original figure',
+       'The image is smaller than the original figure',
+       'The image is congruent to the original figure, but with reversed orientation']);
+    q.work = [
+      { t: `A figure is rotated 90° about the origin.` },
+      { note: 'A rotation turns the figure but does not stretch, shrink, or change its angles — and unlike a reflection, it keeps the vertices in the same order.' },
+      { t: ans, why: 'Rotation is a rigid motion that preserves orientation' }
     ];
     return q;
   }
