@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Geometry Study — Housen</title>
-<script>window.__BUILD_ID__="bdde08ef0ce2";</script>
+<script>window.__BUILD_ID__="cd9a8b8e36a4";</script>
 <style>
 :root{--bg:#f2f5fb;--panel:#ffffff;--ink:#182238;--mut:#64708a;--acc:#2456d6;--acc-d:#1b41a8;--ok:#15803d;--okbg:#e9f7ef;--bad:#b91c1c;--badbg:#fdeaea;--line:#e2e8f4;--gold:#8a6d00;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -465,7 +465,7 @@ function mkQ(topic,q,correct,cands){
 const TOPICS={};
 function registerTopic(t){TOPICS[t.id]=t;}
 //__HELPERS_END__
-const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations", "reflections", "rotations"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}, {"id": "pp-7-10-hw", "name": "pp. 7-10", "topics": ["translations", "reflections"]}, {"id": "unit-3-test-review", "name": "Unit 3 Test Review (Nov 23)", "topics": ["translations", "reflections", "rotations"]}, {"id": "rotations-pp-11-14", "name": "Rotations pp. 11-14", "topics": ["rotations"]}], "currentUnit": "3"};
+const MANIFEST={"active": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel", "translations", "reflections", "rotations", "compositions"], "archive": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"], "assignmentSets": [{"id": "midpoint-distance-hw", "name": "Midpoint & Distance HW", "topics": ["midpoint", "distance", "missing-endpoint"]}, {"id": "segment-addition-hw", "name": "Segment Addition HW", "topics": ["seg-add"]}, {"id": "partitioning-hw", "name": "Partitioning HW", "topics": ["partition"]}, {"id": "radicals-review", "name": "Radicals Review", "topics": ["radicals"]}, {"id": "graphing-hw", "name": "Graphing HW", "topics": ["graphing"]}, {"id": "coord-perimeter-area-hw", "name": "Coordinate Perimeter & Area HW", "topics": ["coord-perimeter-area"]}, {"id": "unit-1b-review-packet", "name": "Unit 1B Review Packet", "topics": ["midpoint", "distance", "missing-endpoint", "partition", "seg-add", "radicals", "graphing", "coord-perimeter-area"]}, {"id": "parallel-transversals-hw", "name": "Parallel Lines & Transversals HW", "topics": ["parallel-transversals"]}, {"id": "packet-4-7-8", "name": "Packet pp. 4, 7, 8", "topics": ["parallel-transversals", "crook-problems"]}, {"id": "p-13-hw", "name": "p. 13", "topics": ["point-line-distance", "line-equations"]}, {"id": "p-12-p-14-hw", "name": "p. 12 & p. 14", "topics": ["proofs-intro"]}, {"id": "unit-2-review", "name": "Unit 2 Review", "topics": ["parallel-transversals", "crook-problems", "point-line-distance", "line-equations", "proofs-intro", "proving-parallel"]}, {"id": "p-11-p-14-hw", "name": "p. 11 #35 & p. 14", "topics": ["proving-parallel"]}, {"id": "unit-3-transformations", "name": "Unit 3: Transformations pp. 1-4", "topics": ["translations"]}, {"id": "pp-7-10-hw", "name": "pp. 7-10", "topics": ["translations", "reflections"]}, {"id": "unit-3-test-review", "name": "Unit 3 Test Review (Nov 23)", "topics": ["translations", "reflections", "rotations", "compositions"]}, {"id": "rotations-pp-11-14", "name": "Rotations pp. 11-14", "topics": ["rotations"]}, {"id": "pp-15-20-hw", "name": "pp. 15-20", "topics": ["compositions"]}], "currentUnit": "3"};
 // ---- topic: parallel-transversals ----
 // Parallel lines cut by a transversal — angle relationships + algebra.
 // Original, procedurally generated. Unit 2: Lines & Intro to Proof.
@@ -2269,6 +2269,245 @@ registerTopic({
       { t: `A figure is rotated 90° about the origin.` },
       { note: 'A rotation turns the figure but does not stretch, shrink, or change its angles — and unlike a reflection, it keeps the vertices in the same order.' },
       { t: ans, why: 'Rotation is a rigid motion that preserves orientation' }
+    ];
+    return q;
+  }
+});
+
+// ---- topic: compositions ----
+// Compositions of transformations: applying two transformations one
+// after another, in order — translation then translation, translation
+// then reflection, reflection then translation, rotation then
+// translation, translation then rotation, two reflections in a row,
+// and why the order matters. The class calls this "composition of
+// functions" (Nov 13/16 notes). Original, procedurally generated.
+// Unit 3: Transformations. Every question is original, similar in kind
+// to classwork but never a copy of a homework problem.
+registerTopic({
+  id: 'compositions',
+  name: 'Compositions of Transformations',
+  tag: 'TRANSFORM',
+  units: ['3'],
+  added: '2026-11-13',
+  assignments: ['pp-15-20-hw'],
+  vocab: [
+    { f: 'Composition of transformations', b: 'Applying two or more transformations one after another, in a set order. The output of the first transformation becomes the input of the next.' },
+    { f: 'Order of composition', b: 'Which transformation goes first. In a composition the order matters — swapping the order usually lands the image in a different place.' },
+    { f: 'Algebraic method', b: 'Finding an image by applying the coordinate rules one at a time, on paper, instead of tracing with patty paper. Each rule is applied to the point you got from the step before.' },
+    { f: 'Patty paper', b: 'Translucent paper used to trace a figure and physically slide, flip, or turn it onto its image — the hands-on way to find an image, as opposed to the algebraic method.' },
+    { f: 'Double prime (′′)', b: 'The mark for the final image after a composition: A goes to A′ after the first transformation, then to A′′ after the second one.' },
+    { f: 'Composition of rigid motions', b: 'A translation, reflection, or rotation followed by another one. The result is still a rigid motion, so the final image is congruent to the original figure.' }
+  ],
+  recap: {
+    title: 'Compositions: Two Transformations, One After the Other',
+    intro: 'A composition applies two transformations in a row — first one, then the other. The class calls this "composition of functions": each transformation is a rule for the coordinates, and you feed the output of the first rule into the second. The order is part of the problem: do the steps in the order given, and check the order before you start.',
+    steps: [
+      {
+        h: 'A composition runs two transformations in order — the first output feeds the second',
+        body: 'In a composition you do not apply both transformations to the starting point at once. You apply the first transformation, get an intermediate image (marked with one prime, A′), and then apply the second transformation to that intermediate point to get the final image (marked with two primes, A′′). Each step is an ordinary transformation — a slide, a flip, or a turn — done on the point you just got.',
+        ex: [
+          'Point A (2, 3) translated by ⟨1, 4⟩ and then reflected over the x-axis: first A′ (3, 7), then A′′ (3, −7).',
+          'The two primes on A′′ are a reminder that two transformations happened, not one.',
+          'If you apply both rules to the original point instead of chaining them, you get the wrong image.'
+        ]
+      },
+      {
+        h: 'The algebraic method: apply the first rule, then the second rule to the result',
+        body: 'With patty paper you trace and move the figure by hand. The algebraic method does the same thing with coordinate rules: write the first rule, apply it to the point, write down the new point, then apply the second rule to that new point. One step at a time, with the intermediate point written down so you never lose track of where you are. That is what the packet means when it says to use the algebraic method if you do not have patty paper.',
+        ex: [
+          '(5, −1) translated by ⟨−2, 3⟩, then rotated 180° about the origin: first (3, 2), then (−3, −2).',
+          'Writing the intermediate point down is the whole trick — it keeps the two steps separate.',
+          'A composition written as (x, y) → (x − 2, y + 3) → (−x, −y) is just the two rules chained together.'
+        ]
+      },
+      {
+        h: 'Translation then translation: the shifts add up to one slide',
+        body: 'Two translations in a row are the same as a single translation whose shifts are the sums. Translate by ⟨a, b⟩ and then by ⟨c, d⟩, and the point moves a + c in x and b + d in y altogether. So you can add the two shifts first and slide once — or do the two slides one after another and get the same place. Either way, the shifts add; they never cancel unless one is the exact opposite of the other.',
+        ex: [
+          'Point (1, 2) translated by ⟨3, −1⟩ and then by ⟨−2, 5⟩: first (4, 1), then (2, 6). The total shift is ⟨1, 4⟩.',
+          'Translating by ⟨4, 0⟩ and then by ⟨−4, 0⟩ brings the point back to where it started.',
+          'A translation followed by another translation never changes the size or shape — it is still just a slide.'
+        ]
+      },
+      {
+        h: 'Translation and reflection together: slide first, then flip — or flip first, then slide',
+        body: 'When a composition mixes a translation and a reflection, the order decides the answer. Translating and then reflecting over the x-axis flips the y-coordinate after the slide, so the shift in y ends up flipped too. Reflecting first and then translating flips the y-coordinate before the slide, so the shift in y stays as it was. The two orders give different images, and the work shows it: the intermediate point is different in each case.',
+        ex: [
+          '(2, 5) translated by ⟨1, −2⟩ then reflected over the x-axis: first (3, 3), then (3, −3).',
+          '(2, 5) reflected over the x-axis then translated by ⟨1, −2⟩: first (2, −5), then (3, −7). Different from the order above.',
+          'Reflecting over the x-axis changes the sign of the y-coordinate only — the x-coordinate is untouched.'
+        ]
+      },
+      {
+        h: 'Rotation and translation together: turn first, then slide — or slide first, then turn',
+        body: 'A rotation changes both coordinates at once, so it matters a lot whether it happens before or after the slide. Rotate 90° clockwise and then translate: the point turns first, and the slide is added to the turned point. Translate and then rotate: the slide happens first, and the rotation turns the shifted point — including the shift itself. The two orders almost never agree, so always do the first transformation listed, then the second.',
+        ex: [
+          '(3, 1) rotated 90° clockwise about the origin, then translated by ⟨2, 0⟩: first (1, −3), then (3, −3).',
+          '(3, 1) translated by ⟨2, 0⟩, then rotated 90° clockwise: first (5, 1), then (1, −5). Different image.',
+          'A 180° rotation flips both signs, so translating after a 180° turn adds the shift to a flipped point.'
+        ]
+      },
+      {
+        h: 'Two reflections in a row: flipping twice can act like a turn',
+        body: 'Reflect a point over the x-axis and then over the y-axis, and both coordinates end up with flipped signs — exactly what a 180° rotation about the origin does. Two reflections over perpendicular lines are the same as a half turn. And any composition of rigid motions is still a rigid motion: translations, reflections, and rotations all preserve distances and angles, so the final image after any chain of them is congruent to the original figure.',
+        ex: [
+          '(4, −2) reflected over the x-axis, then over the y-axis: first (4, 2), then (−4, 2). Both coordinates end up with flipped signs.',
+          'Reflecting over the x-axis and then the y-axis sends (x, y) to (−x, −y), the 180° rotation rule.',
+          'A composition of two rigid motions can never stretch or shrink the figure — the image stays congruent.'
+        ]
+      }
+    ]
+  },
+  generate: function(){
+    const LETTERS = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+    const L = LETTERS[0];
+    const nz = () => { let n = R(-8, 8); while (n === 0) n = R(-8, 8); return n; };
+    const v = R(0, 6);
+
+    if (v === 0) {
+      // ---- flavor 1: translation then translation ----
+      let x, y, a, b, c, d, ans, d1, d2, d3;
+      do {
+        x = nz(); y = nz();
+        a = nz(); b = nz(); c = nz(); d = nz();
+        ans = PT(x + a + c, y + b + d);
+        d1 = PT(x + a, y + b);
+        d2 = PT(x + c, y + d);
+        d3 = PT(x + a - c, y + b - d);
+      } while (new Set([ans, d1, d2, d3]).size < 4);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is translated by ⟨${a}, ${b}⟩ and then translated by ⟨${c}, ${d}⟩. What are the coordinates of ${L}′′?`,
+        ans,
+        [d1, d2, d3]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}). First translation ⟨${a}, ${b}⟩: (${x} + ${a}, ${y} + ${b}) = (${x + a}, ${y + b})`, op: 'add the first shift' },
+        { t: `Second translation ⟨${c}, ${d}⟩ applied to ${L}′ (${x + a}, ${y + b}): (${x + a} + ${c}, ${y + b} + ${d}) = (${x + a + c}, ${y + b + d})`, op: 'add the second shift' },
+        { t: `${L}′′ = (${x + a + c}, ${y + b + d})`, why: 'Two translations add up to one slide' }
+      ];
+      return q;
+    }
+
+    if (v === 1) {
+      // ---- flavor 2: translation then reflection over the x-axis ----
+      let x, y, a, b, ans, d1, d2, d3;
+      do {
+        x = nz(); y = nz();
+        a = nz(); b = nz();
+        ans = PT(x + a, -(y + b));
+        d1 = PT(x + a, -y + b);
+        d2 = PT(x + a, y + b);
+        d3 = PT(x, -y);
+      } while (new Set([ans, d1, d2, d3]).size < 4);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is translated by ⟨${a}, ${b}⟩ and then reflected over the x-axis. What are the coordinates of ${L}′′?`,
+        ans,
+        [d1, d2, d3]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}). First translate by ⟨${a}, ${b}⟩: ${L}′ = (${x + a}, ${y + b})`, op: 'add the shift' },
+        { t: `Then reflect ${L}′ over the x-axis: the y-coordinate changes sign.`, why: 'Reflection over the x-axis: (x, y) → (x, −y)' },
+        { t: `${L}′′ = (${x + a}, ${-(y + b)})` }
+      ];
+      return q;
+    }
+
+    if (v === 2) {
+      // ---- flavor 3: reflection over the y-axis then translation ----
+      let x, y, a, b, ans, d1, d2, d3;
+      do {
+        x = nz(); y = nz();
+        a = nz(); b = nz();
+        ans = PT(-x + a, y + b);
+        d1 = PT(-x - a, y + b);
+        d2 = PT(-x, y);
+        d3 = PT(x + a, y + b);
+      } while (new Set([ans, d1, d2, d3]).size < 4);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected over the y-axis and then translated by ⟨${a}, ${b}⟩. What are the coordinates of ${L}′′?`,
+        ans,
+        [d1, d2, d3]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}). First reflect over the y-axis: ${L}′ = (${-x}, ${y})`, why: 'Reflection over the y-axis: (x, y) → (−x, y)' },
+        { t: `Then translate ${L}′ by ⟨${a}, ${b}⟩: (${-x} + ${a}, ${y} + ${b}) = (${-x + a}, ${y + b})`, op: 'add the shift' },
+        { t: `${L}′′ = (${-x + a}, ${y + b})` }
+      ];
+      return q;
+    }
+
+    if (v === 3) {
+      // ---- flavor 4: 90° clockwise rotation then translation ----
+      let x, y, a, b, ans, d1, d2, d3;
+      do {
+        x = nz(); y = nz();
+        a = nz(); b = nz();
+        ans = PT(y + a, -x + b);
+        d1 = PT(y + b, -(x + a));
+        d2 = PT(y, -x);
+        d3 = PT(x + a, y + b);
+      } while (new Set([ans, d1, d2, d3]).size < 4);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is rotated 90° clockwise about the origin and then translated by ⟨${a}, ${b}⟩. What are the coordinates of ${L}′′?`,
+        ans,
+        [d1, d2, d3]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}). First rotate 90° clockwise about the origin: ${L}′ = (${y}, ${-x})`, why: '90° clockwise about the origin: (x, y) → (y, −x)' },
+        { t: `Then translate ${L}′ by ⟨${a}, ${b}⟩: (${y} + ${a}, ${-x} + ${b}) = (${y + a}, ${-x + b})`, op: 'add the shift' },
+        { t: `${L}′′ = (${y + a}, ${-x + b})` }
+      ];
+      return q;
+    }
+
+    if (v === 4) {
+      // ---- flavor 5: translation then 180° rotation ----
+      let x, y, a, b, ans, d1, d2, d3;
+      do {
+        x = nz(); y = nz();
+        a = nz(); b = nz();
+        ans = PT(-(x + a), -(y + b));
+        d1 = PT(-x + a, -y + b);
+        d2 = PT(-x, -y);
+        d3 = PT(x + a, y + b);
+      } while (new Set([ans, d1, d2, d3]).size < 4);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is translated by ⟨${a}, ${b}⟩ and then rotated 180° about the origin. What are the coordinates of ${L}′′?`,
+        ans,
+        [d1, d2, d3]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}). First translate by ⟨${a}, ${b}⟩: ${L}′ = (${x + a}, ${y + b})`, op: 'add the shift' },
+        { t: `Then rotate ${L}′ 180° about the origin: both coordinates change sign.`, why: '180° about the origin: (x, y) → (−x, −y)' },
+        { t: `${L}′′ = (${-(x + a)}, ${-(y + b)})` }
+      ];
+      return q;
+    }
+
+    if (v === 5) {
+      // ---- flavor 6: reflect over the x-axis, then over the y-axis ----
+      let x = nz(), y = nz();
+      while (y === x || y === -x) { x = nz(); y = nz(); }
+      const ans = PT(-x, -y);
+      const q = mkQ('TRANSFORM',
+        `Point ${L} (${x}, ${y}) is reflected over the x-axis and then reflected over the y-axis. What are the coordinates of ${L}′′?`,
+        ans,
+        [PT(x, y), PT(-y, x), PT(y, -x)]);
+      q.work = [
+        { t: `${L} = (${x}, ${y}). First reflect over the x-axis: ${L}′ = (${x}, ${-y})`, why: 'Reflection over the x-axis: (x, y) → (x, −y)' },
+        { t: `Then reflect ${L}′ over the y-axis: ${L}′′ = (${-x}, ${-y})`, why: 'Reflection over the y-axis: (x, y) → (−x, y)' },
+        { t: `${L}′′ = (${-x}, ${-y}) — the same as a 180° rotation about the origin`, why: 'Two reflections over perpendicular lines act like a half turn' }
+      ];
+      return q;
+    }
+
+    // ---- flavor 7: order matters in a composition ----
+    const ans = 'No — the image would be different; the order of the transformations matters';
+    const q = mkQ('TRANSFORM',
+      `A point is translated and then rotated 90° clockwise about the origin. If the rotation were done first and the translation second, would the final image be the same?`,
+      ans,
+      ['Yes — the image would be the same either way',
+       'No — the second transformation would undo the first one',
+       'Yes — translations and rotations always commute']);
+    q.work = [
+      { t: 'Translate, then rotate: the rotation turns the shifted point, shift and all.' },
+      { note: 'Rotate first, then translate: the translation is added to the turned point instead. The shift lands in a different place, so the two orders give different images.' },
+      { t: ans, why: 'In a composition, the order of the transformations matters' }
     ];
     return q;
   }
